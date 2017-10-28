@@ -1,0 +1,182 @@
+js总结
+1，js区分大小写；
+2，注释
+//    单行注释
+/*  */多行注释
+3，代码结束用;
+4，在html中通过<script src=""></script>来调用js
+5,    document.write("面积="+s);    //获取值得时候用+
+       alert('我来了')   //弹框，检查点
+	
+	   <input type="button" value="test2" onclick="fun();">  //函数的调用
+	   <script>
+	      function fun()
+		   {
+		        document.write("hahaha");
+				alert('我来了');
+		   }
+	   </script>
+	   var h=document.getElementById("t2").value;  //获取对应参数的值
+	   document.write(typeof(a));  //返回参数的类型
+6,js支持的表达式
+        赋值 =
+        关系> < >= <= !=
+        算数+ - * / %(取余)
+        逻辑&&  ||  !
+        条件  var w=3>6?8:9
+		位运算（按二进制来运算） >>(按位右移) <<(按位左移) &(按位与) |(按位或) ^(按位异或)
+		eg: w=2; w=w<<1; 
+		    那么计算机存储的数据 0000 0010 变成了0000 0100，即是4，相当于把原来的数变成了2倍；
+7，js中支持的数据类型   document.write(typeof())
+     number 整数类型，实数类型
+	 string 字符类型
+	 object 对象类型，如数组 ,空类型，var m1=new Array();
+	 boolean 布尔类型 如   var game=true;
+     undefined未定义类型
+8，语句结构
+      顺序结构，
+	  分支结构(if条件结构)，
+	  循环结构；while(){}        for(xx;xx;xx){}
+9. var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数
+    var userinput=window.prompt("请输入商品价格","");		
+	 {alert("恭喜你答对了，一共猜了"+n+"次");
+10,数组的定义：
+     var 数组名=new Array();
+	 var 数组名=[];
+	 var 数组名=[[],[],[]];
+	 数组的元素赋值
+	 var 数组名=[10,20,30,50,80];
+	 数组名[下表]=值;
+11,排序方法和多维数组：1，冒泡排序，2，快速排序，3，插入类排序（直接插入排序，希尔排序）
+12,&nbsp:空格	
+13,  innerHTML以及字符串的应用
+       var smenu=document.getElementById("smenu");
+       function change()
+		   {
+		   //  alert(stype.value);
+	         smenu.innerHTML="";
+			 var str="";
+			for(var n=0;n<menu[stype.value].length;n++){
+			    str=str+"<option>"+menu[stype.value][n]+"</option>";
+			   }
+			 smenu.innerHTML=str;
+		   }
+14,   Js获取当前日期时间及其它操作
+         var myDate = new Date();
+		 myDate.getYear();        //获取当前年份(2位)
+		 myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+		 myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+		 myDate.getDate();        //获取当前日(1-31)
+		 myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+		 myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+		 myDate.getHours();       //获取当前小时数(0-23)
+		 myDate.getMinutes();     //获取当前分钟数(0-59)
+		 myDate.getSeconds();     //获取当前秒数(0-59)
+		 myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+		 myDate.toLocaleDateString();     //获取当前日期
+		 var mytime=myDate.toLocaleTimeString();     //获取当前时间
+		 myDate.toLocaleString( );        //获取日期与时间		   
+15.  push, unshift, pop, splice
+       splice特定删除/添加元素，arrayObject.splice(index,howmany,item1,.....,itemX);
+       prototype函数扩展
+                function print(){
+				     for(var n=0;n<this.length;n++){
+					         document.write(this[n]+"<br>");
+					          }
+				        }
+				Array.prototype.show=print;	//为数组添加新的函数；
+				menu.show();//输出menu的所有函数
+16.  name.charAt(n)获取name定义的字符串的第n个字符；
+       name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
+	   name.toUpperCase();会把字符全部转换成大写字符；
+	   name.toLowerCase();会把字符全部转换成小写字符；
+	   split('|')字符串切割函数
+	   join('@')字符串链接函数， @为链接符号
+17.str为要去除空格的字符串:
+     去除所有空格:   
+     str=str.replace(/\s+/g,"");       
+     去除两头空格:   
+     str=str.replace(/^\s+|\s+$/g,"");
+     去除左空格：
+     str=str.replace( /^\s*/, '');
+     去除右空格：
+     str=str.replace(/(\s*$)/g, "");	   
+18.执行表达式：eval函数
+    document.write(eval("3+3*4-5"));	
+	判断ss的值为非空。document.write(isNaN(ss));	 
+19.  1,创建对象-通过函数
+         function npc(){
+		 }
+		 var n1=new npc();
+		 n1.hp=100;
+		 n1.act=33;
+		 n1.move=function(){
+		 .......
+		 }
+		 2.创建对象-通过object,  缺点：使用多个对象时需要对多个对象进行定义。
+		 var npc1=new Object();
+		 npc1.hp=100;
+		 npc1.act=33;
+		 npc1.move=function(){
+		 ......
+		 }
+		 3.创建对象-通过函数封装
+         function createPlayer(){
+		 var p1=new Object();
+		 p1.hp=100;
+		 p1.act=88;
+		 p1.move=function{...}
+		 return p1;
+		 }		
+         var p=createPlayer();
+		 4,创建对象-直接通过函数封装对象
+		 function Player(hp,name,act)
+		 {
+		     this.name=n;
+			 this.hp=h;
+			 this.act=a;
+			 this.money=m;
+			 this.move=function(){....}
+		 }
+		 var p3=new Player("小王",4,5,6);
+		 5,对对象的成员，属性进行输出；
+		 var pro="";
+		 for(pro in object){
+		   document.write("..........");
+		   }
+		 6,prototype也可以扩展对象的功能
+20.DOM编程Document Object Model 文档对象模型
+     <html>
+	 <head></head>
+	 <body>
+	 .......
+	 </body>
+	 </html>
+
+     BOM编程Browser Object Model 	浏览器对象模型
+        window history location...	 
+21.document.getElementById
+     document.getElementsByName
+	 document.getElementsByTagName
+        		 
+
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+     <title>js函数调用</title>
+</head>
+<body>
+       <input type="button" value="test1" onclick="alert('讨厌');">      
+	   <input type="button" value="test2" onclick="fun();">
+	   <script>
+	      function fun()
+		   {
+		        document.write("hahaha");
+				alert('我来了');
+		   }
+	   </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:250px;
+            padding:10px 20px;
+            border:15px solid transparent;
+        }
+        #round{
+            -webkit-border-image:url(border.png) 30 30 round;
+            -o-border-image:url(border.png)30 30 round;
+            border-image:url(border.png)30 30 round;
+            
+        }
+        #stretch{
+            -webkit-border-image:url(border.png) 30 30 stretch;
+            -o-border-image:url(border.png) 30 30 stretch;
+            border-image:url(border.png) 30 30 stretch;
+        }
+    </style>
+</head>
+<body>
+    <p>border-image属性用于设置图片边框</p>
+    <div id="round">
+        这里图像平铺来填充该区域
+    </div>
+    <br>
+    <div id="stretch">
+        这里图片拉伸以填充该区域
+    </div>
+    <p>这里是我们使用的图片素材</p>
+    <img src="border.png">
+</body>
+</html>

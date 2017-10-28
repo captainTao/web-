@@ -1,0 +1,1742 @@
+//html标签的笔记
+<!doctype html>
+头部添加span进行声明，body部分好调用
+    <style>
+        span{
+            color:blue;
+        }
+    </style>
+
+js格式：
+<html>
+    <head>
+	    <meta charset="utf-8">
+	    <title>我的第一个js程序</title>
+	    <script>
+            document.write("hello, hello!!!<br>");
+			document.write("captain-wanghaitao is handsome.<br>");
+        </script>
+    </head>
+	
+    <body>
+          <script>
+            document.write("h5edu good<br>");
+         </script>
+    </body>
+	
+    <script>
+           document.write("endend....<br>");
+    </script>
+</html>
+
+
+
+
+"测试网页"html
+<html>
+   <head>
+   <meta charset="utf-8">
+    <title>我的测试网页</title>
+   </head>
+    <body>
+	  <!标题标签>
+	  <h1>一级标签</h1>
+	  <h2>二级标签</h2>
+	  <h3>三级标签</h3>
+	  <h6>六级标签</h6>
+	  <!段落标签>
+	  <p>hello,美女，你好！！</p>
+	  <p>出任CEO</p>
+	  赢取人生的巅峰，奋发图强。<br>oh,yeah!
+    </body>
+</html>
+
+课程笔记：
+<br>：换行 <p>：换行隔一列
+<h1>---<h6>标题的级数
+<hr>#一条横线
+<!--xx-->作用在于代码运行的时候跳过注释部分
+<em>:字体倾斜
+<strong>:字体加粗强调
+<a>:链接网络 <a href="" target="_blank"></a>
+href 是跳转网页的地址 地址为# 空地址  target="_blank"在新的页面打开
+2.<img>:图片标签 <img src="地址" title="鼠标滑过显示" alt=“图片不存在显示”/>，
+   src是指图片的引用地址可以是本地路径 也可是网络图片路径，title 为鼠标滑过显示的内容  alt,如果根据地址路径找不到图片就会显示 alt中的内容 
+3.不能将 <body></body> 标签与 <frameset></frameset> 标签同时使用！
+4.每个 frameset 定义了一系列行或列, rows/columns 的值规定了每行或每列占据屏幕的面积，<frame> 标签中加入：noresize="noresize"。为不支持框架的浏览器添加 <noframes> 标签。
+4.注释代码：<!--xxx-->
+5.css声明以“；”结束，声明组用{}包括，css注释  /*注释内容*/
+6.类命名的第一个字符不能是数字，它无法再Firefox中起作用。
+7.background-color:rgb(255,0,0);
+
+<html>
+   <head>
+       <meta charset="utf-8">
+       <title>标题</title>
+	    <style type="text/css">   /*css头部标签样式*/
+		     body{
+			     background-color:#7f7f7f;
+				 text-align:left;
+			 }
+			 h1{
+			    color:green;
+				text-align:center;
+				font-size:30px;
+			 }
+			 #d1{                      /*对id进行样式定义*/
+			 width:100px;
+			 height:40px;
+			 }
+			 .center{                  /*对类class进行样式定义*/
+			     color;pureple;
+			     text-align:center; 
+			 }
+			 h2.center{
+			     text-align:center; /*对特定类class进行样式定义*/
+			 }
+			 .justify{
+                 text-align:justify;   /*对文本进行自动换行, 两端对齐*/
+			 }
+		 </style>
+		
+		 <link rel="stylesheet" type="text/css" href="mystyle.css">  /*链接外部样式表*/
+   </head>
+   <body>
+            <p>段落标签</p>
+			<h1></h1>
+			<h2></h2>
+			<h3></h3>
+			<h6></h6>
+			<a href="超链接"></a>
+			<img scr="" width="800" height="600" alt="miss不见了" title="Do you like me?">图片
+			<em><strong>斜体，加粗
+			<table border="1" bgcolor="blue">
+			     <tr>                                  /*行*/
+				      <th></th>                  /*表头*/
+				      <td></td>                  /*列*/
+				 </tr>
+			</table>
+			无序列表
+			<ul>
+			      <li>选项</li>
+			</ul>
+			有序列表
+			<ol>
+			       <li>选项</li>
+			</ol>
+			<div style="border:3px solid green"></div> 
+			<span></span>块标签，需要在头部进行声明
+			<dl>
+		       <dt>自定义标题</dt>
+			   <dd>自定义内容</dd>
+		   </dl>
+			表单
+			<form action="form_action.asp" method="get">
+			    表单元素"input type括号后面都需要/"
+				
+				<input type="text"/>文本框
+				<input type="password"/>密码框
+				
+				<input type="radio">单选框
+				     <input type="radio" name="sex"/>男<br>
+                     <input type="radio" name="sex"/>女<br>
+				     <input type="radio" name="sex1" id="1"/><label for="1">男</label><br>
+                     <input type="radio" name="sex2" id="2"/><label for="2">女</label><br>
+					 
+				<input type="checkbox">复选框
+				      <input type="checkbox" name="fuxuan"/>bike<br>
+                      <input type="checkbox" name="fuxuan" checked="checked"/>car<br>
+					  
+				下拉列表
+				 <select>
+				      <option>选项</option>
+				 </select>
+				          <select multiple="multiple">
+                             <option value="1"> 巧克力</option>
+                             <option value="2">草莓</option>
+                             <option value="3"> 蓝莓</option>
+                             <option value="4" selected="selected">椰果</option>
+                            </select>
+				 
+				 <textarea cols="30" rows="10"></textarea>文本域 
+			     <input type="button">按钮
+			     <input type="submit">提交
+				 
+		<fieldset>定义域
+		     <legend>健康信息</legend><br>
+			  身高：<input type="text"/>
+			  体重：<input type="text"/>
+			  三围：<input type="text"/>
+		</fieldset>
+		              按钮：<br>
+		             <input type="button" value="按钮"><br>
+		             <input type="submit" value="提交给哪个人"><br>
+		             <input type="reset" value="重置"><br>
+		             <button>戳我一下试试</button><br>
+			</form>
+			
+		<iframe src="http://www.h5edu.cn" name="iframe_a" width="400px",height="200px">
+       </iframe>
+	   <p><a href="http://www.9miaoedu.com/college/" target="iframe_a">九秒教育</a></p>
+	   注释：</b>由于链接的目标匹配 iframe 的名称，所以链接会在 iframe 中打开
+	   
+	     <h1 style="color:pink">内联样式</h1>
+         <h6 style="color:green; margin-left:10px">welcome to the www.h5.cn</h6>
+		 
+		 <div id="d1"></div>
+		 <p class="center">段落居中</p>
+		 <h2 class="center">特定标签居中</h2>
+   </body>
+   
+   <frameset rows="25%,50%,25%">
+        <frame src="daohang.html" noresize="noresize">
+        <frame src="test2.html" name="showframe">
+            <frameset cols="50%,50%">
+                <frame src="test1.html">
+                <frame src="test3.html">
+            </frameset>
+    </frameset> 
+</html>
+
+
+样式表.css
+
+文本属性：
+<style type="text/css">
+    .text{
+         text-decoration:overline;                          /*文字上划线*/
+         text-decoration:line-through;                   /*文字删除线*/
+         text-decoration:underline;                        /*文字下划线*/
+		 text-decoration:none;                              /*无线条修饰*/
+		
+		 text-transform:uppercase;                       /*所有英文字母大写*/
+	     text-transform:lowercase;                        /*所有英文字母小写*/
+	     text-transform:capitalize;                         /*英文首字母大写*/
+		 
+		 text-indent:50px;                                     /*文本首行缩进*/
+		 word-spacing:30px;                                 /*字符与字符间距*/
+	     letter-spacing:30px;                                 /*单词与单词间距*/
+		 
+		 vertical-align:text-top;                             /*图片文字上对齐*/
+	     vertical-align:middle;                                /*图片文字中对齐*/
+	     vertical-align:text-bottom;                       /*图片文字下对齐，默认对齐也是一个下对齐*/
+		 
+		 text-shadow:2px 2px 2px  #0fd326;        /*设置文字阴影*/
+		 color:white;
+		 
+		 font-family:"Times New Roman";             /*设置字体为罗马*/
+		 font-family:"Microsoft YaHei";                 /*设置字体为微软雅黑*/
+		 
+		 font-style:"normal";                                 /*设置字体为正常态*/
+		 font-style:"italic"；                                   /*设置字体为斜体*/
+		 font-style:"oblique";                                 /*设置字体为倾斜的文字*/
+		 
+		 font-size:"16px";                                      /*设置字体为16像素*/
+		 font-size;"2em";                                       /*设置字体为2英寸*/
+		 
+		 font-weight:"bold";                                  /*设置字体为粗体*/
+		 font-weight:"lighter";                               /*设置字体为细体*/
+}
+
+定义超链接的样式
+    a:vistited{                                                      /*访问过的链接的样式*/
+	         color:red；
+	}
+	a:hover{                                                         /*链接上移动鼠标样式*/
+	         background-color:green;   
+	}
+	a:active{                                                         /*链接没被激活的样式*/
+	         background-color:#00ffff;
+	}
+	a:link{                                                             /*链接没被访问过的样式*/
+	         color:blue
+	}
+	a:link,a:vistited{                                               /*链接样式可以多个一起定义*/
+	         display:block;
+			 font-weight:bold;
+			 color:#ffffff;
+			 background-color:#7f7f7f;
+			 width:120px;
+			 text-align:center;
+			 padding:4px;
+			 text-decoration:underline;
+	}
+     <a herf="http:\\www.hao123.com">hao123</a>    /*超链接用<a></a>*/
+无序列表样式：	 
+	 .ul{
+	     list-style-type:none;                 /*无序列表前无符号, 默认的为实行圆点*/
+		 list-style-type:circle;                 /*无序列表前圆形符号*/
+		 list-style-type:square;               /*无序列表前方形符号*/
+	 }
+</style>
+有序列表的样式：
+     .ol{
+	     list-style-type:none;                            /*有序列表前无符号, 默认的为阿拉伯数字*/
+		 list-style-type:lower-roman;                /*有序列表前为小写罗马数字 */
+		 list-style-type:hiragana-iroha;             /*有序列表前为日文片假名*/
+	 }
+无序，有序列表图片样式：
+     ul{
+	     list-style:none outside url(123.jpg);
+	 }
+     ol{
+	     list-style-type:lower-roman;
+		 list-style-position:inside;
+	     list-style:none outside url(123.jpg);
+		 }		 
+有序无序都可以用下面这个       
+	   list-style-image: url(123.jpg);
+	   
+table的样式：
+     table{
+	     border:1px solid red;
+	 }
+	  th{
+	     border:1px solid blue;
+	 }
+	  td{
+	     border:1px solid yellow;
+	 }
+表格文字对齐方式：
+   th{
+     text-align:left;        #居左对齐
+   }
+   td{
+     vertical-align:top;   #居上对齐
+	 height:100px;
+	 margin:0px 0px;          #外间距,第一个数字是上下间距，第二个数是左右间距；
+	 margin-left/margin-top/margin-bottom
+	 padding:0px 0px;       #内间距
+	 overline:边框外面
+   }
+   
+ <div>
+ <span></span>       #在div中添加一个行级别的快元素；
+ </div>
+ 边框的样式；
+ .border1{
+       width:100px;
+	   height:100px;
+	   border-style:dotted;  边框是点
+	   border-width:5px;
+	   border-color:rgb(255,0,0);
+	   
+	   border-right-style:dashed;    定义边框右为虚线
+	   border-right-width:thick;
+	   border-right-color:rgb(0,255,0) rgb(255,0,255);
+	   
+	   border-style:dashed solid;             定义边框左右为虚线，上下为实线
+	   border-width:thick;
+	   border-color:rgb(0,255,0) rgb(255,0,255);   定义边框左右为第一个颜色，上下为第二个要颜色
+ }
+ 轮廓的样式；
+ .outline{
+       width:100px;
+	   height:100px;
+	   border:2px dashed red;
+	   outline-style:dotted;
+	   outline-width:5px;
+	   outline-color:rgb(255,255,0); 
+ }
+.div{
+     width:100px;
+	 height:100px;
+	 border:2px dotted red;
+	 margin:50px auto;                  div标签距离上下的距离为50像素，左右居中
+	 
+	 margin-bottom:150px;            div标签下边界距离下一个标签为150像素
+	 margin-top:100px;                  div标签上边界距离上一个标签为100像素
+	 margin-left:10px;                    div标签左边界距离左边为10像素
+}
+
+显示没有div边框
+body{
+       margin:0;
+	   padding:0;
+}
+  margin:0px 0px;                        上下，左右边距；
+  margin:0px 0px 0px 0px;           上下左右边距；
+  
+.padding{
+       padding-top:123px;
+	   padding-bottom:50px;
+	   padding-left:30px;
+	   padding-right:20px;
+}  
+css尺寸控制
+.div{
+     min-width:400px;        对尺寸的最小值定义
+	 min-height:10px;
+	 
+	 max-width:700px;        对尺寸最大值定义
+	 max-height:100px;
+	 
+	 width:400px;                 对宽高尺寸设定固定值
+	 height:100px;
+}
+设置元素隐藏
+两种方式
+.display{
+   display:none;
+}
+.visibility{
+     visibility:hidden;
+}
+
+显示和隐藏
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>隐藏和显示属性</title>
+	 input{
+	         width:100%;
+			 height:80px;
+	 }
+	 .hide{
+	         display:none;
+	 }
+</head>
+<body>
+           <input id="bt01" type="button" value="显示"\><br>
+		   <input id="bt02" type="button" value="隐藏"\><br>
+		   <img id="im1" class="hide" scr="logo.png" width="100%" height="30%">
+
+<script>
+           var img=document.getElementById("im1");
+		   var bt=document.getElementById("bt01");
+		   bt.onclick=function(){
+		      img.style.display="block";
+		   };
+		   var bt02=document.getElementById("bt02");
+		   bt02.onclick=function(){
+		       img.style.display="none";
+		   };
+</script>
+</body>
+</html>
+
+fixed定位样式：      网页滚动的时候，它的位置跟随滚动，主要用于导航栏
+   p{
+        position:fixed;
+		top:40px;
+		right:40px
+   }
+相对域div部分定位用：
+   #IM1{
+    position:relative; 
+	top:50px;
+	right:80px;
+	}
+绝对定位
+.div2{
+     width:300px;
+	 height:200px;
+	 position:absolute;
+}
+浮动元素
+.td1{
+ float:left/right/both;
+}
+元素浮动之后，周围的元素会重新排列，为了避免使用float属性。clear属性指定元素两侧不能出现浮动元素。
+float清除浮动
+.text{
+   clear:both;
+   }
+ <html>
+ <head>
+          <meta charset="utf-8">
+          <titile>H5edu</title>
+		  <style>
+		          .div1{
+				        width:70%;
+						height:10%;
+						background:blue;
+						margin:auto;
+				  }
+				   .div2{
+				        position:absolute;
+						right:0px;
+				        width:300px;
+						height:200px;
+						background:#b0eced;
+				  }
+				   .div3{
+				        float:left;
+				        width:300px;
+						height:200px;
+						background:yellow;
+				  }
+		  </style>
+ </head>
+ <body>
+         <div class="div1">
+		       <h3>块级元素中心对齐</h3>
+		 </div>
+		 <div class="div2">
+		       <h3>左右对齐postion</h3>
+		 </div>
+		 <div class="div3">
+		       <h3>左右对齐float</h3>
+		 </div>
+ </body>
+ </html>  
+ 
+ 指定div内部某个标签的样式
+ <html>
+ <head>
+       <meta charset="utf-8">
+       <title>my practice page</title>
+	   <style>
+	         div>p{                                             #指定div内部p标签的样式
+			    background:yellow;
+			 }
+	   </style>
+ </head>
+ <body>
+       <div>
+	         <h2>my name is captain</h2>
+			 <p>I love H5</p>                              #指定样式在此
+	   </div>
+ </body> 
+ </html>
+ 
+  指定相邻兄弟的样式
+ <html>
+ <head>
+       <meta charset="utf-8">
+       <title>my practice page</title>
+	   <style>
+	         div+p{                                             #指定div后底一个p标签的样式
+			    background:yellow;
+			 }
+	   </style>
+ </head>
+ <body>
+       <div>
+	         你好！！                               
+	   </div>
+	   <p>该项可以被选择</p>                        #指定样式在此
+	   <p>该项不可以被选择</p>
+ </body> 
+ </html>
+ 
+指定div后面兄弟的样式
+ <html>
+ <head>
+       <meta charset="utf-8">
+       <title>my practice page</title>
+	   <style>
+	         div~p{                                             #指定div后面所有p标签的样式
+			    background:yellow;
+			 }
+	   </style>
+ </head>
+ <body>
+       <div>
+	         你好！！                               
+	   </div>
+	   <p>该项可以被选择</p>                        #指定样式在此
+	   <p>该项也可以被选择</p>                      #指定样式也在此
+ </body> 
+ </html>
+ 普通兄弟选择器也可以选取所有指定元素的兄弟元素。   ex： div~p(....)
+ 
+<html>
+<head>
+       <meta charset="utf-8">
+       <title>anchor伪类</title>
+	   <style>
+	         a:link{color:blue;}
+			 a:vistited{color:yellow;}
+			 a:hover{color:pink;}
+			 a:active{color:red;}
+			
+	   </style>
+</head>
+<body>
+         欢迎来到百度<a href="https://www.baidu.com">baidu.com</a>
+</body> 
+</html>
+
+css类和css伪类      指定某个标签的超链接样式
+<html>
+<head>
+       <meta charset="utf-8">
+       <title>css类和css伪类</title>
+	   <style>
+	         a:link{color:blue;}
+			 a:vistited{color:yellow;}
+			 a.red:hover{color:pink;}                               指定red标签的超链接样式                 
+			 a:active{color:red;}
+		
+	   </style>
+</head>
+<body>
+        <p> <a href="#">baidu.com</a></p>
+		<p> <a class="red" href="#">baidu.com</a></p>       指定样式在此
+</body> 
+</html>
+ 
+ first-child伪类
+ 匹配其它元素的第一个子元素，例如：一个div中包括多个p元素，匹配第一个p元素可使用:first-child伪类
+ <html>
+ <head>
+        <meta charset="utf-8">
+		<title> first-child伪类</title>
+		<style>
+		        p:first-child{
+				     color:blue;
+				}
+		</style>
+ </head>
+  <body>
+            <p>对于你的行为，我只给99分。</p>
+			<p>剩下的一分不给你，是怕你太傲娇。</p>
+  </body>
+ </html>
+ 
+ lang伪类
+ <!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>lang伪类</title>
+    <style>
+        p:lang(if){
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <p>对于你的行为，我给你103分</p>
+    <p>比满分多三分多什么嘛！</p>
+    <p>多一份关怀</p>
+    <p>过一分爱护</p>
+    <p lang="if">多一分打野爸爸对你的爱</p>
+</body>
+</html>
+
+"first-line" 伪元素用于向文本的首行设置特殊样式。
+"first-line" 伪元素只能用于块级元素。下面的属性可应用于 "first-line" 伪元素：font color background clear line-height text-transform等等
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        p:first-line{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <p>You can use the :first-line pseudo-element 
+    to add a special effect to the first line of 
+    a text.</p>
+</body>
+</html>
+
+first-letter伪元素:指定第一个字母的样式
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        p:first-letter{
+            color:red;
+            font-size:30px;
+        }
+    </style>
+</head>
+<body>
+    <p>good good study ,daydayup!!!</p>
+</body>
+</html>
+
+:before伪元素：指在标签前插入的元素
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        h1:before{
+            content:url(logo.png);
+            
+        }
+    </style>
+</head> 
+<body>
+    <h1>该元素前插入图片！</h1>
+</body>
+</html>
+
+after伪元素：在标签后插入元素
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        h1:after{
+            content:url(1234.jpg);
+        }
+    </style>
+</head>
+<body>
+    <h1>在给元素后插入图片</h1>
+</body>
+</html>
+
+css 导航栏（水平导航，垂直导航）
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        ul{
+        list-style-type:none;
+        margin:0px;
+        padding:0px;
+        }
+        .div2 li{
+            display:inline;
+        }
+        .div2 a{
+            background:#98bf21;
+            text-decoration:none;
+            padding:6px;
+        }
+        .div3 li{
+            float:left;
+            border-right:1px solid red;
+        }
+        .div3 a {
+            display:block;
+            background:#98bf21;
+            text-decoration:none;
+            width:120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <h3>垂直导航栏</h3>
+        <ul>
+            <li>首页</li>
+            <li>商城</li>
+            <li>购物车</li>
+            <li>返回</li>
+        </ul>
+    </div>
+    <div class="div2">
+        <h3>水平导航栏inline</h3>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">商城</a></li>
+            <li><a href="#">购物车</a></li>
+            <li><a href="#">返回</a></li>
+        </ul>
+    </div>
+        <div class="div3">
+        <h3>水平导航栏float</h3>
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">商城</a></li>
+            <li><a href="#">购物车</a></li>
+            <li><a href="#">返回</a></li>
+        </ul>
+    </div>    
+</body>
+</html>
+
+css 图片廊
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        div{
+            width:200px;
+            height:300px;
+            border:1px solid deepskyblue;
+            float:left;
+            margin-right:10px;
+            text-align:center;
+        }
+        img{
+            width:150px;
+            height:200px;
+        }
+        a:hover img{
+            border:1px solid #0000ff;
+        }
+    </style>
+</head> 
+<body>
+    <div>
+        <a href="#"><img src="img1.jpg"/></a>
+        <p>添加图片描述</p>
+    </div>
+    <div>
+        <a href="#"><img src="img2.jpg"/></a>
+        <p>添加图片描述</p>
+    </div>
+    <div>
+        <a href="#"><img src="img3.jpg"/></a>
+        <p>添加图片描述</p>
+    </div>
+    <div>
+        <a href="#"><img src="img4.jpg"/></a>
+        <p>添加图片描述</p>
+    </div>
+</body>
+</html>
+
+css 图片透明度opacity:0.4;
+<!doctype html>
+<html>
+<head>
+    <title>图像透明</title>
+    <meta charset="utf-8">
+    <style>
+        img{
+            opacity:0.4;
+            width:300px;
+            height:200px;
+        }
+        img:hover{
+            opacity:1;
+        }
+    </style>
+</head>    
+<body>
+    <img src="logo.png"/>
+    <img src="logo.png"/>
+    <p>鼠标移动到图片上显示完整图片</p>
+</body>    
+</html>
+
+css3增加的圆角属性： border-radius:25px;
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #rcorners1{
+            border-radius:25px;
+            background:blue;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorners2{
+            border-radius:25px;
+            border:2px solid green;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorners3{
+            border-radius:25px;
+            background:url(1234.jpg);
+            background-position:left top;
+            background-repeat:repeat;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+    </style>
+</head>    
+<body>
+    <p>border-radius 属性允许向元素添加圆角</p>
+    <P>指定背景颜色圆角</P>
+    <p id="rcorners1">圆角</p>
+    <p>指定边框元素的圆角</p>
+    <p id="rcorners2">圆角</p>
+    <P>指定背景图片元素的圆角</P>
+    <p id ="rcorners3">圆角</p>
+</body>
+</html>
+圆角属性
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #rcorner1{
+            border-radius:15px 50px 30px 5px;
+            background:blue;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorner2{
+            border-radius:15px 50px 30px;
+            background:blue;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorner3{
+            border-radius:15px 50px;
+            background:blue;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+    </style>
+    
+</head>
+<body>
+    <p>四个属性值-border-radius：15px 50px 30px 50px ：</p>
+    <P id="rcorner1"></P>
+    <p>三个属性值-border-radius：15px 50px 30px</p>
+    <p id="rcorner2"></p>
+    <P >l两个值 border-radius：15px 50</P>
+    <P id="rcorner3"></P>
+</body>    
+</html>
+圆角属性3
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #rcorner1{
+            border-radius:50px/15px;
+            background:green;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorner2{
+            border-radius:15px/50px;
+            background:green;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+        #rcorner3{
+            border-radius:50%;
+            background:blue;
+            padding:20px;
+            width:200px;
+            height:150px;
+        }
+    </style>
+</head>    
+<body>
+    <p>椭圆边框1</p>
+    <p id="rcorner1"></p>
+    <p>椭圆边框2</p>
+    <p id="rcorner2"></p>
+    <p>椭圆边框3</p>
+    <p id="rcorner3"></p>
+</body>
+</html>
+
+边框阴影：box-shadow:10px 10px 5px 5px gray inset;
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .div1{
+            width:200px;
+            height:100px;
+            background:yellow;
+            box-shadow:10px 10px 5px 5px gray;
+        }
+        .div2{
+            width:200px;
+            height:100px;
+            background:green;
+            box-shadow:10px 10px 5px 5px gray inset;
+        }
+    </style>
+</head>    
+<body>
+    <div class="div1">
+        外阴影
+    </div>
+    <div class="div2">
+        内阴影
+    </div>
+</body>
+</html>
+
+设置多层阴影
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:200px;
+            height:100px;
+            background:yellow;
+            box-shadow:10px 10px 5px 5px gray,
+            15px 15px 5px 5px blue,
+            20px 20px 5px 5px yellow,
+            25px 25px 5px 5px green;
+        }
+    </style>
+</head>  
+<body>
+    <div>设置多层阴影</div>
+</body>
+</html>
+
+设置图片边框： border-image属性用于设置图片边框
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:250px;
+            padding:10px 20px;
+            border:15px solid transparent;
+        }
+        #round{
+            -webkit-border-image:url(border.png) 30 30 round;
+            -o-border-image:url(border.png)30 30 round;
+            border-image:url(border.png)30 30 round;
+            
+        }
+        #stretch{
+            -webkit-border-image:url(border.png) 30 30 stretch;
+            -o-border-image:url(border.png) 30 30 stretch;
+            border-image:url(border.png) 30 30 stretch;
+        }
+    </style>
+</head>
+<body>
+    <p>border-image属性用于设置图片边框</p>
+    <div id="round">
+        这里图像平铺来填充该区域
+    </div>
+    <br>
+    <div id="stretch">
+        这里图片拉伸以填充该区域
+    </div>
+    <p>这里是我们使用的图片素材</p>
+    <img src="border.png">
+</body>
+</html>
+
+css3 背景属性1
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:300px;
+            height:300px;
+            border:1px solid blueviolet;
+            background:url(img_flwr.gif);
+            background-repeat:no-repeat;
+        }
+        .div1{
+            background-size:cover;
+        }
+        .div2{
+            contain:
+        }
+        .div3{
+            background-size:100% 100%;
+        }
+        
+    </style>
+</head> 
+<body>
+    <div class="div1">
+        
+    </div>
+    <div class="div2">
+        
+    </div>
+    <div class="div3"></div>
+</body>
+</html>
+
+css3 背景属性2
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            border:1px solid black;
+            padding:35px;
+            background-image:url('1234.jpg');
+            background-repeat:no-repeat;
+            background-position:left;
+        }
+        #div1{
+            background-origin:border-box;
+        }
+        #div2{
+            background-origin:content-box;
+        }
+    </style>
+</head>
+<body>
+    <p>background-origin:border-box</p>
+    <div id="div1">
+    Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit, sed diam nonummy nibh
+    euismod tincidunt ut laoreet dolore magna
+    aliquam erat volutpat. Ut wisi enim ad minim
+    veniam, quis nostrud exerci tation ullamcorper
+    suscipit lobortis nisl ut aliquip ex ea commodo
+    consequat.  
+    </div>
+    <p> background-origin:content-box</p>
+    <div id="div2">
+     Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit, sed diam nonummy nibh
+    euismod tincidunt ut laoreet dolore magna
+    aliquam erat volutpat. Ut wisi enim ad minim
+    veniam, quis nostrud exerci tation ullamcorper
+    suscipit lobortis nisl ut aliquip ex ea commodo
+    consequat.   
+    </div>
+</body>
+</html>
+
+css3 背景属性3
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:500px;
+            height:500px;
+            background-image:url(img_flwr.gif)
+            ,url(img_tree.gif);
+        }
+    </style>
+</head>    
+<body>
+    <div>
+        多重背景图片        
+    </div>
+</body>
+</html>
+
+css3 渐变属性 线性渐变
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:300px;
+            height:300px;
+        }
+        .linear1{
+        background:-webkit-linear-gradient(top,red,blue);
+            
+        }
+        .linear2{
+            background:-webkit-linear-gradient(top,red 50%,green 75%,
+            blue 100%);
+        }
+        .linear3{
+            background:-webkit-linear-gradient(-45deg,orange,purple);
+        }
+        .linear4{
+            background:-webkit-linear-gradient(top,red,orange,yellow,
+            green,cyan,blue,purple);
+        }
+    </style>
+</head> 
+<body>
+    <div class="linear1">
+        线性渐变简单版本
+    </div>
+    <div class="linear2">
+        线性渐变 设置指定颜色长度
+    </div>
+    <div class="linear3">
+        改变方向
+    </div>
+    <div class="linear4">
+        彩虹渐变
+    </div>
+</body>
+</html>
+
+css3 渐变属性 径向渐变  background:-webkit-radial-gradient(center center,circle,red,green);
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:200px;
+            height:100px;
+        }
+        .radial1{
+            background:-webkit-radial-gradient(center center,red,green);
+        }
+        .radial2{
+            background:-webkit-radial-gradient(center center,cyan 25%,red
+            75%,yellow 100%);
+        }
+        .radial3{
+            background:-webkit-radial-gradient(20px 70px,blue ,pink);
+        }
+        .radial4{
+            background:-webkit-radial-gradient(center center,circle,red,green);
+        }
+        .white{
+            width:200px;
+            height:200px;
+            border-radius:100px;
+            background:-webkit-radial-gradient(140px 60px, circle,blue,yellow);
+        }
+    </style>
+</head>    
+<body>
+    <div class="radial1">
+        径向渐变 简单版版本
+    </div>
+    <div class="radial2">
+        指定颜色长度
+    </div>
+    <div class="radial3">
+        指定渐变起始位置
+    </div>
+    <div class="radial4">
+        
+    指定渐变形状
+    </div>
+    <div class="white"></div>
+</body>    
+</html>
+
+<hr>插入水平线
+
+css3 倒影效果 图片倒影  -webkit-box-reflect:above
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> www.h5edu.cn</title>
+    <style>
+        img{
+            width:100px;
+            height:200px;
+            margin:200px;
+        }
+        .normal{
+            -webkit-box-reflect:below 5px;
+        }
+        .top{
+            -webkit-box-reflect:above;
+        }
+        .left{
+            -webkit-box-reflect:left;
+        }
+        .right{
+            -webkit-box-reflect:right;
+        }
+        .water{
+            -webkit-box-reflect:below 3px 
+            -webkit-linear-gradient(top,transparent 20%,#ffffff)
+        }
+    </style>
+</head>   
+<body>
+    <img class="normal" src="miss.jpg">
+    <hr>
+    <img class="top" src="miss.jpg">
+    <hr>
+    <img class="left" src="miss.jpg">
+    <hr>
+    <img class="right" src="miss.jpg">
+    <hr>
+    <img class="water" src="miss.jpg">
+</body>
+</html>
+
+css3 倒影效果 文字 -webkit-box-reflect
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        p{
+            font-size:36px;
+            -webkit-box-reflect:below -10px
+            -webkit-linear-gradient(top,transparent 20%,#ffffff)
+        }
+    </style>
+</head> 
+<body>
+    <p>李白乘舟不给钱</p>
+    <p>一脚把他踢下船</p>
+    <p>桃花潭水深千尺</p>
+    <p>不会游泳就玩完</p>
+</body> 
+</html>
+
+ css3 自定义字体文件
+ <html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        @font-face{
+            font-family:myfristFont;
+            src:url('Sansation_Light.ttf');
+        }
+        div{
+            font-family:myfristFont;
+            font-weight:bold;
+        }
+    </style>
+</head> 
+<body>
+    <p>Internet Explorer 9 only supports .eot fonts.</p>
+    <div>
+        With CSS3, websites can finally use fonts other
+        than the pre selected "web-safe" fonts.
+    </div>
+</body>
+</html>
+
+css3 文本属性 （1）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        h1{
+            text-shadow:5px 5px 5px pink;
+        }
+    </style>
+</head>    
+<body>
+    <h1>www.h5edu.cn</h1>
+    显示文本阴影
+</body>
+</html>
+
+css3 文本属性 （2）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        .text1{
+            width:11em;
+            border:1px solid green;
+        }
+        .text2{
+            width:11em;
+            border:1px solid yellow;
+            word-wrap:break-word;
+        }
+    </style>
+</head>    
+<body>
+    <p class="text1">
+        This paragraph contains a very long word:
+    thisisaveryveryveryveryveryverylongword.
+    The long word will break and wrap to the
+    next line.    
+    </p>
+    <p class="text2">
+        This paragraph contains a very long word:
+    thisisaveryveryveryveryveryverylongword.
+    The long word will break and wrap to the
+    next line.    
+    </p>
+</body>
+</html>
+
+css3 文本属性 （3）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            white-space:nowrap;
+            width:12em;
+            overflow:hidden;
+            border:1px solid green;
+        }
+        .div1{
+            text-overflow:ellipsis;
+        }
+        .div2{
+            text-overflow:clip;
+        }
+    </style>
+</head>   
+<body>
+    <p>
+    The following two divs contains along 
+    text that will not fit in thebox. 
+    Asyou can see, the text is clipped.    
+    </p>
+    <p>text-overflow:ellipsis</p>
+    <div class="div1">
+    The following two divs contains along 
+    text that will not fit in thebox. 
+    Asyou can see, the text is clipped.
+    </div>
+    <p>text-overflow:clip</p>
+    <div class="div2">
+    The following two divs contains along 
+    text that will not fit in thebox. 
+    Asyou can see, the text is clipped.    
+    </div>
+</body>
+</html>
+
+css3 2d转换（1）scale
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:100px;
+            height:75px;
+            background:green;
+        }
+        .div2{
+            margin:100px;
+            transform:scale(2,4);
+            -ms-transform:scale(2,4);
+            -webkit-transform:scale(2,4);
+        }
+    </style>
+</head>  
+<body>
+    <div>
+        div1
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</body>    
+</html>
+
+css3 2d转换（2）skew
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            margin:100px;
+            background:blue;
+        }
+        .div2{
+            transform:skew(30deg,20deg);
+            -webkit-transform(30deg,20deg);
+            -ms-transform(30deg,20deg);
+        }
+        
+    </style>
+</head>    
+<body>
+    <div>
+        div1
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</body>
+</html>
+
+css3 2d转换（3）rotate
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:200px;
+            height:100px;
+            background:yellow;
+            border:1px solid red;
+        }
+        .div2{
+            transform:rotate(30deg);
+            -webkit-transform:rotage(30deg);
+            -ms-transform:rotate(30deg);
+        }
+    </style>
+</head> 
+<body>
+    <div>
+        div1
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</body>
+</html>
+
+第21章 css3 2d转换（4）translate
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background:red;
+            border:1px solid blue;
+            /*margin:100px;*/
+        }
+        .div2{
+            transform:translate(50px,100px);
+            -webkit-transform:translate(50px,100px);
+            -ms-transform:translate(50px,100px);
+        }
+    </style>
+</head> 
+<body>
+    <div>
+        div1
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</body>
+</html>
+
+css3 3d转换
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:100px;
+            height:75px;
+            background:pink;
+            border:1px solid black;
+        }
+        #divX{
+            transform:rotateX(120deg);
+            -webkit-transform:rotateX(120deg);
+        }
+        #divy{
+            transform:rotateY(120deg);
+            -webkit-transform:rotateY(120deg);
+            
+        }
+        #divz{
+        transform:rotateZ(120deg);
+        -webkit-transform:rotateZ(120deg);
+        }
+        
+    </style>
+</head> 
+<body>
+    <div>
+        正常状态
+    </div>
+    <div id="divX">x轴旋转</div>
+    <div id="divy">y轴旋转</div>
+    <div id="divz">Z轴旋转</div>
+</body>
+</html>
+
+css3 过渡 transition
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background:yellow;
+        }
+        .class1{
+            transition-property:width;
+            transition-duration:1s;
+            transition-timing-function:linear;
+            transition-delay:2s;
+            
+            -webkit-transition-property:width;
+            -webkit-transition-duration:1s;
+            -webkit-transition-timing-function:linear;
+            -webkit-transition-delay:2s;
+        }
+        .div2{
+            transition:width 1s linear 0s;
+            -webkit-transition:width 1s linear 0s;
+        }
+        div:hover{
+            width:300px;
+            background:blue;
+        }
+    </style>
+</head>
+<body>
+    <p>鼠标移动到元素上查看效果</p>
+    <div class="class1">
+        属性完整写法
+    </div>
+    <div class="div2">
+        属性简写
+    </div>
+</body>
+</html>
+
+css3 多列布局（1）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            -moz-column-count:3;
+            -webkit-column-count:3;
+            column-count:3;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    “当我年轻的时候，我梦想改变这个世界；
+    当我成熟以后，我发现我不能够改变这个世界，
+    我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，
+    我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下
+    我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时
+    ，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能
+    改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；
+    然后，谁知道呢?我甚至可能改变这个世界。”
+    </div>
+</body>
+</html>
+
+css3 多列布局（2）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            -moz-column-count:3;
+            -webkit-column-count:3;
+            column-count:3;
+            
+            -moz-column-gap:40px;
+            -webkit-column-gap:40px;
+            column-gap:40px;
+        }
+    </style>
+</head> 
+<body>
+    <div>
+    Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit, sed diam nonummy nibh
+    euismod tincidunt ut laoreet dolore magna
+    aliquam erat volutpat. Ut wisi enim ad minim
+    veniam, quis nostrud exerci tation ullamcorper
+    suscipit lobortis nisl ut aliquip ex ea commodo
+    consequat. Duis autem vel eum iriure dolor in
+    hendrerit in vulputate velit esse molestie consequat,
+    vel illum dolore eu feugiat nulla facilisis at vero
+    eros et accumsan et iusto odio dignissim qui blandit
+    praesent luptatum zzril delenit augue duis dolore te
+    feugait nulla facilisi. Nam liber tempor cum soluta
+    nobis eleifend option congue nihil imperdiet doming
+    id quod mazim placerat facer possim assum. Typi non
+    habent claritatem insitam; est usus legentis in iis
+    qui facit eorum claritatem. Investigationes demonstraverunt
+    lectores legere me lius quod ii legunt saepius.
+    </div>
+</body>
+</html>
+
+css3 多列布局（3）
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            -moz-column-count:3;
+            -webkit-column-count:3;
+            column-count:3;
+            
+            -moz-column-rule:4px outset blue;
+            -webkit-column-rule:4px outset blue;
+            column-rule:4px outset blue;
+        }
+    </style>
+</head>    
+<body>
+    <div>
+    Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit, sed diam nonummy nibh
+    euismod tincidunt ut laoreet dolore magna
+    aliquam erat volutpat. Ut wisi enim ad minim
+    veniam, quis nostrud exerci tation ullamcorper
+    suscipit lobortis nisl ut aliquip ex ea commodo
+    consequat. Duis autem vel eum iriure dolor in
+    hendrerit in vulputate velit esse molestie consequat,
+    vel illum dolore eu feugiat nulla facilisis at vero
+    eros et accumsan et iusto odio dignissim qui blandit
+    praesent luptatum zzril delenit augue duis dolore te
+    feugait nulla facilisi. Nam liber tempor cum soluta
+    nobis eleifend option congue nihil imperdiet doming
+    id quod mazim placerat facer possim assum. Typi non
+    habent claritatem insitam; est usus legentis in iis
+    qui facit eorum claritatem. Investigationes demonstraverunt
+    lectores legere me lius quod ii legunt saepius.
+    </div>
+</body>
+</html>
+
+css3 创建动画
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>www.h5edu.cn</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background:yellow;
+            animation:myfrist 5s;
+            -webkit-animation:myfrist 5s;
+        }
+        @keyframes myfrist{
+            from{background:#ffff00;}
+            to{background:red;}
+        }
+        @-webkit-keyframes myfrist{
+            from{background:#ffff00;}
+        
+            t0{background:red;}
+        }
+        
+    </style>
+</head> 
+<body>
+    <div>
+        动画元素
+    </div>
+</body>
+</html>
+
+css3 创建动画(2)
