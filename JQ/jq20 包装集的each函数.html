@@ -1,0 +1,33 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>each函数遍历包装集</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <h3>HTML5最佳学习路线图</h3>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javaScript</li>
+            <li>JQuery</li>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>Canvas</li>
+        </ul>
+        <input type="button" value="修改">
+        <script>
+           $(function(){
+              $("input").click(function(){
+                //遍历包装集
+                $("li").each(function(index){
+                 // alert(index+":"+this.innerText);
+                  this.innerText=index+":"+this.innerText;
+                })    
+              }) ;
+               
+           });
+        </script>
+    </body>
+</html>

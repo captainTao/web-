@@ -1,0 +1,37 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>event对象</title>
+        <style type="text/css">
+            input{
+                width:45%;
+                height:80px;
+            }
+            div{
+                width:100px;
+                height:100px;
+                background-color:#7f7f7f;
+            }
+        </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="bt01" type="button" value="按钮1"><br>
+        <input id="bt02" type="button" value="按钮2">
+        <div id="div1">
+        </div>
+        <script>
+           $(function(){
+            var callback=function(event)
+            {
+               alert(event.type);
+               alert(event.target.id);
+            };
+            $("#bt01").click(callback);
+            $("#bt02").click(callback);
+            $("#div1").click(callback);
+           });
+        </script>
+    </body>
+</html>

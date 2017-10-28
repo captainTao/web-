@@ -1,0 +1,46 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>包装集元素添加</title>
+        <style type="text/css">
+          #bt01{
+              width:45%;
+              height:80px;
+          }
+          #bt02{
+              width:45%;
+              height:80px;
+          }
+          div{
+              border:1px solid red;
+             
+          }
+        </style>
+       <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="bt01" type="button" value="添加">
+        <input id="bt02" type="button" value="获取div1所有子元素">
+        <br>
+        <div id="div1">
+        
+        </div>    
+        <div id="div2">
+            
+        </div>
+        <script>
+          $(function(){
+              $("#bt01").click(function(){
+                 // alert("test");
+                 $("div").append("<p>hello h5edu.cn</p>"); 
+              });
+              $("#bt02").click(function(){
+                var objs=$("#div1").children();
+                alert("div1中子元素的数量="+objs.length)
+              })
+          });
+          
+        </script>
+    </body>
+</html>

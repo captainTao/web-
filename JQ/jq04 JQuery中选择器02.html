@@ -1,0 +1,32 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>选择器训练</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <p>H5edu.cn是一个不错在编程平台</p>
+        <p>你好</p>
+        <div>
+          <img src="logo.png" width="30%" height="30%">
+        </div>
+        <input type="button" id="bt01" value="P标签隐藏"><br>
+        <input type="button" id="bt02" value="全部显示"><br>
+        <input type="button" id="bt03" value="div,p隐藏">
+        <script>
+        $(document).ready(function(){
+            $("#bt01").click(function(){
+                $("p").hide();
+            });
+            $("#bt02").click(function(){
+               $("*").show(); 
+            });
+            $("#bt03").click(function(){
+               $("div,p,#bt01").hide(); 
+            });
+            
+        });
+        </script>
+    </body>
+</html>

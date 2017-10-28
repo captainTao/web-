@@ -1,0 +1,83 @@
+
+<!-- saved from url=(0070)http://www.h5edu.cn/usercode/faafeede800f7617da5cbdb1b33d866607fd3b5b/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>实现tab切换效果</title>
+       <!-- <style type="text/css">
+        #card{
+            width:300px;
+            height:200px;
+        }
+        #title{
+            width:100%;
+            height:25px;
+            line-height:25px;
+        }
+        #title a{
+            margin:0px;
+            padding:0px;
+            border:2px solid green;
+            width:80px;
+            color:green;
+            line-height:25px;
+        }
+        #content{
+            width:100%;
+            height:175px;
+            background:#7f7f7f;
+        }
+        #content div{
+            display:none;
+        }
+        #title .act{
+            border:2px solid red;
+        }
+        #content .active{
+            display:block;
+        }
+        </style>-->
+    </head>
+    <body>
+        <div id="card">
+            <div id="title">
+                <a href="javascript:show(1);" class="act">HTML</a>
+                <a href="javascript:show(2);" class="">CSS</a>
+                <a href="javascript:show(3);" class="">JavaScript</a>
+            </div>
+            <div id="content">
+                <div class="active" style="display: block;">
+                    <ul>
+                        <li>段落标签</li>
+                        <li>表格标签</li>
+                        <li>文本标签</li>
+                    </ul>
+                </div>
+                <div style="display: none;">
+                    CSS是层叠样式表
+                </div>
+                <div style="display: none;">
+                    javaScript是一种脚本语言
+                </div>
+            </div>
+        </div>
+        <script>
+          //           显示第num个div
+          function show(num)
+          {  //获取所有div和所有a标签对象
+             var alla=document.getElementsByTagName("a");
+             var divs=document.getElementById("content").getElementsByTagName("div");
+             for(var n=0;n<divs.length;n++)
+              {
+                  if(n==num-1)//找到了第num个div对象
+                  {
+                      alla[n].className="act";
+                      divs[n].style.display="block";
+                  }else{
+                      alla[n].className="";
+                      divs[n].style.display="none";
+                  }
+              }
+          }
+        </script>
+    
+</body></html>

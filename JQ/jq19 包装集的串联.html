@@ -1,0 +1,34 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JQuery包装集合串联</title>
+        <style type="text/css">
+          *{
+              border:1px solid #7f7f7f;
+          }
+          .bord{
+              border:2px solid red;
+          }
+        </style>
+      <!--  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script> -->
+
+      <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    </head>
+    <body>
+        <div>
+            <h2>包装集串联操作</h2>
+            <p>h5edu.cn</p>
+        </div>
+        <input type="button" value="包装集串联操作1">
+      <script>
+         $(function(){
+           $("input").click(function(){
+               //选择div 标签以及 div里面的p 添加一个样式
+                $("div").find("p").andSelf() .addClass("bord"); //动态添加样式
+           });
+          
+         });
+      </script>
+    </body>
+</html>

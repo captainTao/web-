@@ -1,0 +1,52 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JQuery对象和DOM对象</title>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+
+
+    </head>
+    <body onload="load();">
+        <p id="p1">第一个段落</p>
+        <p id="p2">第二个段落</p>
+        <input type="button" value="使用DOM修改第一个段落" onclick="change1()">
+        <input id="bt02" type="button" value="使用JQuery修改第一个段落"><br>
+        <input id="bt03" type="button" value="DOM对象转为JQuery对象">
+        <input id="bt04" type="button" value="JQuery对象转为DOM对象">
+        <script>
+         function load(){
+           alert("文档加载完成");  
+         };
+         function change1()
+         {//使用DOM修改第一个段落
+           var nowp=document.getElementById("p1");//DOM对象
+           nowp.innerHTML="使用DOM被修改";
+         }
+         //使用JQuery修改段落
+         $(document).ready(
+             function(){
+                 $("#bt02").click(
+                     function(){
+                        $("#p1").html("使用JQuer对象来修改"); 
+                       }
+                    );
+                 $("#bt03").click(
+                     function()
+                     {//DOM对象转为JQuery
+                        var nowp=document.getElementById("p2"); 
+                        var jq_nowp=$(nowp);//$(DOM对象)
+                        jq_nowp.html("哈哈哈");
+                     }
+                     );   
+                 $("#bt04").click(function(){
+                     var nowp=$("#p2")[0];//对象[0] 从JQ对象中获取DOM对象
+                     nowp.innerHTML="我是DOM改的!!!!";
+                 })  ;   
+              }
+         );
+         //
+        
+        </script>
+    </body>
+</html>

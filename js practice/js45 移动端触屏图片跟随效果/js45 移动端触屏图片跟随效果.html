@@ -1,0 +1,43 @@
+<html>
+<head>
+        <meta charset="utf-8">
+		<title>移动端触屏图片跟随效果</title>
+		<style type="text/css">
+		      #img1{
+			       position:absolute;
+				   left:50px;
+				   top:50px;
+			  }
+		</style>
+</head>
+<body>
+           移动端触屏图片跟随效果<br>
+		   <div id="content">
+		         <img id="img1" src="糖水西施.jpg" height="300px" width="200px">
+		   </div>
+		   <script>
+		         var con=document.getElementById("content");
+				 var img=document.getElementById("img1");
+				 con.ontouchstart=function(e){
+				      var touch=e.touches[0];  //参数e是返回用户点的坐标
+					  var x=touch.clientX;
+					  var y=touch.clientY;
+					  img.style.left=x;
+					  img.style.top=y;
+				 }
+				 con.ontouchmove=function(e){
+				      e.preventDefault();  //把缺省的事件给屏蔽掉,否在会在微信里面发生滚动，这是H5里面都会有这句代码
+					  var touch=e.touches[0];//返回第一次触摸点的坐标
+					  var x=touch.clientX;
+					  var y=touch.clientY;
+					  img.style.left=x;
+					  img.style.top=y;
+				 }
+				 con.ontouchend=function(e){
+				       var touch=e.touches[0];
+					   img.style.left=0;
+					   img.style.top=0;
+				 }
+		   </script>
+</body>
+</html>

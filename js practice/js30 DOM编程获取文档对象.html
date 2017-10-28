@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM编程获取文档对象</title>
+</head>
+<body>
+             <h2>DOM编程获取文档对象</h2>
+			 <ul>
+			         <li><input type="checkbox" name="menu" value="1">苹果</li>
+					 <li><input type="checkbox" name="menu" value="1">牛排</li>
+					 <li><input type="checkbox" name="menu" value="1">栗子</li>
+					 <li><input type="checkbox" name="menu" value="1">桃子</li>
+					 <li><input type="checkbox" name="menu" value="1">草莓</li>
+					 <li><input type="checkbox" name="menu" value="1">梨子</li>
+			 </ul>
+			 <a href="javascript:selectAll();">全选</a>
+			 <a href="javascript:selectNull();">全不选</a>
+			 <a href="javascript:selectRev();">反选</a>
+			 <script>
+			        //获取元素
+					var all=document.getElementsByName("menu");
+			        //定义全选函数
+					function selectAll(){
+					   for(var n=0;n<all.length;n++){
+					      all[n].checked="ture";
+					   }
+					}
+					//定义不选函数
+					function selectNull(){
+					      for( var n=0;n<all.length;n++){
+						  all[n].checked="";
+						  }
+					}
+					//定义反选函数
+					function selectRev(){
+					   for(var n=0;n<all.length;n++){
+					    if (all[n].checked){
+						//alert(all[n]);
+						all[n].checked="";
+						}else
+						 all[n].checked="true";
+					   }
+					}
+			 </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+           <meta charset="utf-8">
+		   <title>JSON处理</title>
+</head>
+<body>
+            <input onclick="fun1();" type="button" value="把字符串变成json对象"><br>
+			<input onclick="fun2();" type="button" value="获取json对象元素的值"><br>
+			<input onclick="fun3();" type="button" value="把json对象转化为字符串"><br>
+  <script>
+                var jsonstr='{name:"wangyi",age:"13"}'; //为json string格式,json格式"{}"
+				var jsonobj={ name:"jason",age:111};    //obj
+				function fun1()
+				{
+				       var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
+				       //eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
+					   alert(typeof(jsonstr));
+					   alert(typeof(jb));
+					   alert(jb.name);
+					   alert(jb.age);
+				}
+				function fun2()
+				{
+				        alert(typeof(jsonobj));
+						alert(jsonobj.name);
+						alert(jsonobj.age);
+				}
+				function fun3()
+				{
+				         alert(JSON.stringify(jsonobj));
+				}
+				
+  </script>
+</body>
+</html>

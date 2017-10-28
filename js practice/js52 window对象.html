@@ -1,0 +1,28 @@
+<html>
+<head>
+           <meta charset="utf-8">
+		   <title>window对象</title>
+</head>
+<body>
+       <input type="button" value="去百度" id="i1">
+	   <input type="button" value="打开一个新窗口" id="i2">
+	   <input type="button" value="关闭窗口" id="i3">
+	   <script>
+	         var i1=window.document.getElementById("i1");
+			 i1.onclick=function(){
+			       //window.location.href="https://www.baidu.com/";//修改当前页面的链接地址
+				   location.href="https://www.baidu.com/";//修改当前页面的链接地址
+			 }
+			 var i2=document.getElementById("i2");
+			 i2.onclick=function(){
+			       //打开一个新窗口
+				   open("http://news.baidu.com/");
+			 }
+			 var i3=document.getElementById("i3");
+			 i3.onclick=function(){
+			       //关闭窗口
+				   close();
+			 }
+	   </script>
+</body>
+</html>

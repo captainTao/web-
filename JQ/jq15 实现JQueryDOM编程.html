@@ -1,0 +1,26 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JQueryDOM编程</title>
+        <style>
+           #content{
+               border:1px solid blue;
+           }
+         </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="bt01" type="button" value="添加元素">
+        <div id="content">
+        </div>    
+        <script>
+          $(function(){
+             $("#bt01").click(function(){
+                 //动态创建DOM对象
+                 var newobj=$("<p/>").css("color","red").html("h5edu.cn");
+                 newobj.appendTo($("#content"));
+             }); 
+          });
+        </script>
+    </body>

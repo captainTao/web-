@@ -1,0 +1,25 @@
+<html>
+<head>
+          <meta charset="utf-8">
+		  <title>多种方式绑定事件</title>
+</head>
+<body>
+            <div id="div1">
+			          <h1>js事件编程</h1>
+			</div>
+            <input type="button" value="test" id="bt01">
+			<script>
+			      function show(){
+				            var object=document.getElementById("div1");
+							alert(object.innerText);
+				  }
+				  //获取bt01对象
+				  var bt01=document.getElementById("bt01");
+				  // bt01.onclick=show;   //这个函数调用方法和下面调用是一样的效果，两个同样的函数，执行最后一个函数；
+				  //对象.事件=事件处理函数
+				  bt01.onclick=function(){
+				             alert("what's  the next ?");
+				  }
+			</script>
+</body>
+</html>

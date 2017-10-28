@@ -1,0 +1,24 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>子元素过滤器</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+          <h3>学习HTML5路线图</h3>
+          <p>1.HTML</p>
+          <p>2.CSS</p>
+          <p>3.JavaScript</p>
+          <p>4.JQuery</p>
+        </div>
+        <script>
+          $(function(){
+             $("div p").css("color","blue"); //div中的p,
+             $("div p:nth-child(5)").css("color","red"); //div中的p, 且属于div中的第5个子元素
+             $("div p:nth-child(2n-1)").css("color","yellow"); //div中的p, 且属于div中的第奇数个子元素
+          });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+           <meta charset="utf-8">
+		   <title>数组的压栈和弹栈</title>
+</head>
+<body>
+            <h1>数组的压栈和弹栈<br></h1>
+			<script>
+			       var stu=[00,11,22,33,44,55,66,77,88];
+				   document.write("全量输出：<br>");
+				   //document.write(stu);
+				   for(var n=0;n<stu.length;n++){
+				          document.write("stu["+n+"]="+stu[n]+";");
+				     }
+					document.write("<br><br>");
+			        document.write("push压栈三个元素，值会压到最后面：<br>");
+					stu.push(99,111,112);
+					for(var n=0;n<stu.length;n++){
+				          document.write("stu["+n+"]="+stu[n]+";");
+				     }
+					 document.write("<br><br>");
+			         document.write("unshift压栈元素，值会添加到数组的最前面：<br>");
+					 stu.unshift(-22,-11);
+					 for(var n=0;n<stu.length;n++){
+				          document.write("stu["+n+"]="+stu[n]+";");
+				     }
+					 document.write("<br><br>");
+			         document.write("pop弹栈元素，会删除数组最后一个值：<br>");
+					 stu.pop();
+					 for(var n=0;n<stu.length;n++){
+				          document.write("stu["+n+"]="+stu[n]+";");
+				     }
+					 document.write("<br><br>");
+			         document.write("splice特定删除/添加元素，arrayObject.splice(index,howmany,item1,.....,itemX);<br>");
+					 stu.splice(2,3,1,3,5,7);
+					 for(var n=0;n<stu.length;n++){
+				          document.write("stu["+n+"]="+stu[n]+";");
+				     }
+					 
+			</script>
+</body>
+</html>

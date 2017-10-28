@@ -1,0 +1,36 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>css函数修改对象样式</title>
+        <style type="text/css">
+          input{
+              width:"30%";
+              height:80px;
+          }
+       </style>
+       <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <p>H5edu.cn是一个神奇的网站</p>
+        </div>
+        <input id="btred" type="button" value="红">
+        <input id="btblue" type="button" value="绿">
+        <input id="btyellow" type="button" value="黄">
+        <script>
+         $(function(){
+            $("#btred").click(function(){
+              //改变样式
+              $("p").css("color","red");
+            });
+            $("#btblue").click(function(){
+               $("p").css("color","blue"); 
+            });
+            $("#btyellow").click(function(){
+                $("p").css("color","yellow");
+            });
+         });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM编程获取对象</title>
+</head>
+<body>
+<div id="d1">第一个div</div>
+<div name="d2" style="width:300px; height:100px;background-color:green;">第二个div</div>
+<div name="d3">第三个div</div>
+<a id="d4" href="https://www.baidu.com/" target="blank" title="test">百度<br></a>
+<script>
+             //1，获取文档对象
+             var link=document.getElementById("d4");
+			 document.write("link="+link+"<br>");
+			 document.write("link.href="+link.href+"<br>");
+			 document.write("link.target="+link.target+"<br>");
+			 document.write("link.title="+link.title+"<br>");
+             //输出所有属性
+             // var pro="";
+             // for(pro in link){
+             // 	document.write(pro+"="+link[pro]+"<br>");
+             // }
+             //2，获取文档的对象的属性
+			 var div2=document.getElementsByName("d2");
+			 alert("div2.style.width="+div2[0].style.width);
+             //3，根据标签来获取DOM对象
+			 var alldiv=document.getElementsByTagName("div");
+			 alldiv[1].innerHTML="内部第二哥";
+			 alldiv[2].outerHTML="外部三哥";
+			 alldiv[0].innerText="内部文档";
+			 //alldiv[2].outerText="外部文档";*/
+</script>
+</body>
+</html>

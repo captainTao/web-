@@ -1,0 +1,28 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>next函数使用</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="t1" type="radio" value="0" name="type"><p>好</p>
+        <input type="radio" value="1" name="type"><p>中</p>
+        <input type="radio" value="2" name="type"><p>差</p>
+        <script>
+          $(function(){
+             $("#t1").next().css("color","red");
+             $(":radio").click(function(){
+                //alert(this.value); 
+                //alert($(this).next().html());
+               $("input:radio").next().css("color","red");
+                // $("input").next().css("color","red");这句等同于上面
+                //选中的选项后面的文字为蓝色
+               $(this).next().css("color","blue");//这个对象
+               
+             });
+            
+          });   
+        </script>
+    </body>
+</html>

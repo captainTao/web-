@@ -1,0 +1,53 @@
+<html>
+<head>
+       <meta charset="utf-8">
+	   <title>数组的最值和排序</title>
+</head>
+<body>
+<h1>数组的最值和排序</h1>
+<script>
+           //新建数组，对数组赋值
+		   var score=[20,33,47,89,5,34,74,70,35,88,99,100,49,333,-20,2,-15,0,56,-10,27,5];
+		   //输出数组长度
+		   document.write("数组的长度="+score.length+"<br>");
+		   //求最大值
+		   var max=score[0];
+		   for(var n=1;n<score.length;n++){
+		          if (max<score[n]){
+				        max=score[n];
+				 }
+		   }
+		   document.write("成绩最大值="+max+"<br>");
+		   //求最小值
+		   var min=score[0];
+		   for(var n=1;n<score.length;n++){   
+				  if  (min>score[n]){
+				       min=score[n];
+				  }
+		   }
+		   document.write("成绩最小值="+min+"<br>");
+           //数组排序,这儿用冒泡法，从小到大排序；
+		  /* for(var m=0;m<score.length;m++){
+		       for(var n=m+1;n<score.length;n++){
+		       if(score[m]>score[n]){
+			       var temp=score[m];
+				   score[m]=score[n];
+				   score[n]=temp;
+			    }   
+			   }
+		   }*/
+		   for(var m=0;m<score.length;m++){
+		          for(var n=0;n<score.length-m;n++)
+				{
+				       if(score[n]>score[n+1]){
+					   var temp=score[n];
+					   score[n]=score[n+1];
+					   score[n+1]=temp;
+					   }  
+				}  
+		   }
+		   document.write("成绩排序为:");
+		   for(m=0;m<score.length;m++){document.write(+score[m]+"、");}
+</script>
+</body>
+</html>

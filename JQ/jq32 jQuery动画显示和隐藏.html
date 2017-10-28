@@ -1,0 +1,39 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>元素的显示和隐藏</title>
+        <style type="text/css">
+         input{
+             width:30%;
+             height:80px;
+         }
+         div{
+             width:100px;
+             height:100px;
+             background-color:#7f7f7f;
+         }
+        </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="btshow" type="button" value="show">
+        <input id="bthide" type="button" value="hide">
+        <input id="toggle" type="button" value="toggle">
+        <div>
+        </div>
+        <script>
+           $(function(){
+              $("#btshow").click(function(){
+                  $("div").show(300);
+              });
+              $("#bthide").click(function(){
+                 $("div").hide(); 
+              });
+              $("#toggle").click(function(){
+                  $("div").toggle();
+              })
+           });
+        </script>
+    </body>
+</html>

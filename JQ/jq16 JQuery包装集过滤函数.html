@@ -1,0 +1,26 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JQuery包装集过滤函数</title>
+       <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <p>h5edu是一个在线编程网站</p>
+            <p>h5edu提供了大量的代码动画</p>
+            <p>h5edu有大量的开源项目</p>
+        </div>
+        <script>
+         $(function(){
+            $("p").eq(1).mouseover(function(){
+               $(this).css("font-size","25px");  
+            });
+            $("p").eq(1).mouseout(function(){
+                $(this).css("font-size","22px");
+            }) 
+             
+         });
+        </script>
+    </body>
+</html>

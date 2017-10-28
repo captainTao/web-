@@ -1,0 +1,43 @@
+<html>
+<head>
+              <meta charset="utf-8">
+			  <title>定时实现图片轮播</title>
+			  <style type="text/css">
+			  img{
+			  margin-left:5px;
+			  padding-left:10px;
+			  }
+			  </style>
+</head>
+<body>
+               <h1>穿衣搭配</h1>
+			   
+			   <img  id="im" src="1.jpg" onmouseover="over();" onmouseout="out();">
+			   <script>
+			        var  pics=["1.jpg","2.jpg","3.jpg"];
+					var  img=document.getElementById("im");//获取对象
+					var num=0;
+					var loop=true;
+					//setInterval(lunbo,3000);//定时调用一次
+				     setTimeout(lunbo,2000);//定时执行
+					function lunbo(){
+					   if(loop){
+					   num=(num+1)%3;
+					    img.src=pics[num];
+					   //alert("0");
+				      setTimeout(lunbo,2000);//重复调用
+					}}
+					function over(){
+					//alert("over");
+					loop=false;
+					//alert(loop);
+					}
+					function out(){
+					//alert("out");
+					loop=true;
+					//alert(loop);
+					setTimeout(lunbo,2000);
+					}
+			   </script>
+</body>
+</html>

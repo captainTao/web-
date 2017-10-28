@@ -1,0 +1,57 @@
+<html>
+<head>
+     <meta charset="utf-8">
+<title>学生成绩判定</title>
+</head>
+<body>
+       <h1>成绩判定</h1>
+	   成绩：<input type="text" id="score"/>
+	   <input type="button" value="判定" onclick="judge()"/>
+	   判定结果：<input type="text" id="result"/>
+	   <script>
+	   function judge()
+	      {
+	         var a=document.getElementById("score").value;   //获取分数
+
+			 if(a>=60)
+			 {
+			     //alert('合格');
+			     //document.write("成绩合格");
+				 //var res="成绩合格";
+				if(a>=80){
+				 var res="成绩优秀";
+				               }
+				else {
+				        if(a>=70){
+				          var res="成绩良好";
+				                       }
+				        else{
+				      var res="成绩一般";
+				              }
+			           }
+			 }
+			 else{
+			    //alert('不合格');
+			    //document.write("成绩不合格")
+				var res="成绩不合格";
+			 }
+			 
+			/* if (a>=80){
+                     var res="成绩优秀";			 
+			 }
+			 else if(a>=70){
+				    var res="成绩良好";
+				 }  
+				 else if(a>=60){
+					      var res="成绩一般";
+						}
+						else {
+						var res="成绩不及格";
+				            }
+			 */
+			 document.getElementById("result").value=res; //把结果放到文本框中
+			 }
+	  </script>
+	    
+</body>
+</html>

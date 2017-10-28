@@ -1,0 +1,29 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JQuery的Ajax编程</title>
+      <style type="text/css">
+        input{
+            width:100%;
+            height:80px;
+        }
+      </style>
+      <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div id="result">
+        </div>
+        <input type="button" value="GET">
+        <script>
+           $(function(){
+              $("input").click(function(){
+                  $("#result").load(
+                      "http://www.h5edu.cn/Public/weixin/test01.php"
+                      ,{"resultType":"html"});
+              }) ;
+           });
+        </script>
+    </body>
+    
+</html>

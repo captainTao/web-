@@ -1,0 +1,24 @@
+<html>
+<head>
+        <meta charset="utf-8">
+		<title>定时跳转功能</title>
+</head>
+<body>
+          <h1 id="h1"></h1>
+		  <script>
+		           setTimeout(change,1000);
+				   var num=10;
+				   function change()
+				   {
+				              if(num>1)
+							  {
+							     num--;
+								 document.getElementById("h1").innerHTML="抢红包倒计时："+num;
+								 setTimeout(change,1000);
+							  }else{
+							     location.href="https://www.baidu.com/";
+							  }
+				   }
+		  </script>
+</body>
+</html>

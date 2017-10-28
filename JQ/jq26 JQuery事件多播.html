@@ -1,0 +1,28 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jquery中的事件多播</title>
+        <style type="text/css">
+           input{
+               width:100%;
+               height:80px;
+           }
+        </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="bt01" type="button" value="确定">
+        <script>
+          $(function(){
+             $("#bt01").click(function(){
+                 alert("你好");
+             }); 
+             $("#bt01").bind("click",function(){
+                 
+                 alert("h5edu");
+             }) ;
+          });
+        </script>
+    </body>
+</html>

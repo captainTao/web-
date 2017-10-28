@@ -1,0 +1,30 @@
+<html>
+<head>
+        <meta charset="utf-8">
+		<title> DOM对象获取标签的父子节点</title>
+</head>
+<body>
+          <div id="div1"><img src=1.jpg width=200px;height=200px;></div>
+		  <input type="button" value="添加节点" onclick="add();" >
+		
+		  <script>
+		        function add(){
+				var newimg=document.createElement("img");
+				       newimg.src="1.jpg";
+					   newimg.style.width="200px";
+					   newimg.style.height="200px";
+				var  meinv=document.getElementById("div1");
+				meinv.appendChild(newimg);
+				}
+				/*function reduce(){
+				     var meinv=document.getElementById("div1");
+					 var newing=document.createElement("img");
+					   newimg.src="1.jpg";
+					   newimg.style.width="200px";
+					   newimg.style.height="200px";
+					 meinv.appendChild(newimg);
+					 meinv.removeChild(newing);
+				}*/
+		  </script>
+<body>
+</html>

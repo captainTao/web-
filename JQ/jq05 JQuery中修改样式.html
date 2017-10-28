@@ -1,0 +1,41 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CSS函数的使用</title>
+      <style>
+        div{
+            width:200px;
+            height:200px;
+            background-color:#afafaf;
+        }
+      </style>
+      <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div>
+        </div>
+        <input id="bt01" type="button" value="红">
+        <input id="bt02" type="button" value="绿">
+        <input id="bt03" type="button" value="黄"><br>
+        <input id="bt04" type="button" value="缩小">
+    <script>
+      $(document).ready(function(){
+          $("#bt01").click(function(){
+              //修改div样式
+              $("div").css("background-color","red");
+          });
+          $("#bt02").click(function(){
+              $("div").css("background-color","green"); 
+          });
+          $("#bt03").click(function(){
+             $("div").css("background-color","yellow"); 
+          });
+          $("#bt04").click(function(){
+             $("div").css({"width":"50px",
+                           "height":"50px"}); 
+          });
+      });
+    </script>
+    </body>
+</html>

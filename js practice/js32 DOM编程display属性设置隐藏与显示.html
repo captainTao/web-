@@ -1,0 +1,26 @@
+<html>
+<head>
+         <meta charset="utf-8">
+         <title>DOM编程display属性设置隐藏与显示</title>
+		 <style type="text/css">
+		    div{
+			height:100px;
+			width:400px;
+			border:1px solid green;
+			display:none;
+			}
+		 </style>
+</head>
+<body>
+           <h2>DOM编程display属性设置隐藏与显示</h2>
+		   <a href="javascript:display('block');">显示</a>
+		   <a href="javascript:display('none');">隐藏</a>
+		   <div id="div1">此容器内，设置此DIV内容的显示与隐藏，你点击按钮试试效果呢</div>
+		   
+		    <script>
+		     function display(type){
+			     document.getElementById("div1").style.display=type;
+				}
+			 </script>
+</body>
+</html>

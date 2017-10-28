@@ -1,0 +1,50 @@
+<html>
+<head>
+         <meta charset="utf-8">
+		 <title>函数的全局和局部变量以及函数的定义</title>
+</head>
+<body>
+         <h3>函数的全局和局部变量</h3>
+		 局部变量在局部使用完后就不用了，最后取值为全局变量。<br><br>
+		 var a=333;<br>
+			function ok(){<br>
+			 var a=33;<br>
+			}<br>
+			ok();<br>
+			document.write(a);<br>
+		运行结果为：
+         <script>
+		    var a=333;
+			function ok(){
+			 var a=33;
+			}
+			ok();
+			document.write(a+"<br>");
+			
+			
+		 </script>
+		 <h3>函数的定义：</h3><br>
+		  function tt(){<br>
+			 document.write("你是我的小呀小苹果!");<br>
+			}<br>
+			tt();<br>
+			var ss=function (){<br>
+			document.write("你是我的小苹果!");<br>
+			};<br>
+			ss();<br>
+			结果是：<br>
+		 <script>
+		 function tt(){
+			 document.write("你是我的小呀小苹果!<br>");
+			}
+			tt();
+			var ss=function (){
+			document.write("你是我的小苹果!<br>");
+			};
+			ss();
+			var kk=tt;
+			kk();
+			document.write(typeof(kk));
+		 </script>
+</body>
+</html>

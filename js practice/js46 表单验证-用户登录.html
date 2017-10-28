@@ -1,0 +1,52 @@
+<html>
+<head>
+        <meta charset="utf-8">
+		<title>表单验证-用户登录</title>
+</head>
+<body>
+         <h2>用户登录</h2>
+		 <form id="f2" name="f1" action="http://www.baidu.com/index.php" method="post" onsubmit="return check();">
+		            用户名<input type="text" name="username" onblur="endus();" value="手机/邮箱/用户名" onfocus="befinput();" ><br>
+					密&nbsp码<input id="secret" type="text" name="password"  value="密码" onfocus="beinput();"><br>
+					&nbsp&nbsp&nbsp<input type="submit" value="登录">
+		 </form>
+		 <script>
+		 //让用户名获取焦点
+		 //document.f1.username.focus();
+		 //当密码输入框丢失焦点执行
+		 function endus(){
+		    var us=document.f1.username.value
+			 if(us==""||us.replace(/(^\s*)|(\s*$)/g, "")==""){//输入为空，或者为空格；
+			   document.f1.username.focus();
+			   alert("你输入的用户名为空或为空白，请重新输入");
+			 }
+		 }
+		 //当焦点在密码输入框时，缺省值为空
+		 function befinput(){
+		      document.f1.username.value="";
+			 
+		 }
+		 //当焦点在密码输入框时，缺省值为空，且格式变为密码；
+		 function beinput(){
+		      document.f1.password.value="";
+			  document.f1.password.type="password"
+		 }
+		 function check(){
+		      var nowf=document.f1;//得到当前表单对象
+			  //或者可以：var nowf=document.forms[0];
+			  //或者可以：var nowf=document.getElementById("f2");
+			  //判断用户名和密码不能为空
+			  var us=nowf.username.value;
+			  var pw=nowf.password.value;
+			  //alert(pw);
+			  if(us==""||ps=="")
+			  {
+			         alert("用户名，密码不能为空");
+					 return false;//不提交表单到服务器
+			  }else{
+			     return true;//提交表单
+			  }
+			  }
+		 </script>
+</body>
+</html>

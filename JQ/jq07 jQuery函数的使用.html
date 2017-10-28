@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery函数的使用</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div id="divmsg">hello h5edu</div>
+        <input id="bt01" type="button" value="显示"><br>
+        <input id="bt02" type="button" value="隐藏"><br>
+        <script>
+            // $(document).ready(
+            //   function()
+            //   {
+            //       alert("文档加载ok");
+            //   }
+            // );
+            //下面的写法是上面的代码的简写形式
+            jQuery(function(){
+              alert("dom ok");
+              jQuery("#bt01").click(function(){
+                  jQuery("#divmsg").show();
+              });
+              jQuery("#bt02").click(function(){
+                  jQuery("#divmsg").hide();
+              });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+          <meta charset="utf-8">
+		  <title>使用DOM编程控制DIV的位置</title>
+		  <style type="text/css">
+		     div{
+			     border:1px solid green;
+				 position:absolute;
+				 left:100;
+				 top:100;
+			  }
+		  </style>
+</head>
+<body>
+          <h2>使用DOM编程控制DIV的位置</h2>
+		  <input type="button" value="向左" onclick="move(px-10,py);">
+		  <input type="button" value="向右" onclick="move(px+10,py);">
+		  <input type="button" value="向上" onclick="move(px,py-10);">
+		  <input type="button" value="向下" onclick="move(px,py+10);">
+		  <br>
+		  <div id="div1">
+		          <img src="34.jpg" width="580" height="385" alt=""/>
+		  </div>
+		  <script>
+		         var px=100;
+				 var py=200;
+		         function move(x,y){
+				    var content=document.getElementById("div1");
+					content.style.left=x;
+					content.style.top=y;
+					px=x;
+					py=y;
+				  }
+				  move(px,py);
+		  </script>
+</body>
+</html>

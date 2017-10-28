@@ -1,0 +1,29 @@
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>通过函数创建对象</title>
+</head>
+<body>
+        <h2>通过函数创建对象</h2>
+	<script>
+		//定义了一个函数
+		function npc(){
+			document.write("正在ganma<br>");
+		}
+		var p1= new npc();//创建一个新的npc
+		//为p1添加属性
+		p1.hp=100;
+		p1.act=99;
+		//为p1添加方法
+		 p1.move=function(){
+		        document.write("正在移动<br>");
+		}
+		 p1.fire=function(){
+		         document.write("正在开火<br>");
+		}
+		alert(p1.hp);
+		p1.move();
+		p1.fire();
+	</script>
+</body>
+</html>

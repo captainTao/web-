@@ -1,0 +1,72 @@
+<html>
+<head>
+      <meta charset="utf-8">
+      <title>实现Tab切换鲜果</title>
+	  <style type="text/css">
+	  #card{
+            width:300px;
+            height:200px;			
+	  }
+	  #title{
+	         width:100%;
+			 height:25px;
+			 line-height:25px;
+	  }
+	  #title a{
+	          margin:0px;
+			  padding:0px;
+			  border:2px solid yellow;
+			  width:80px;
+			  color:green;
+			  line-height:25px;
+	  }
+	  #content{
+	          width:100%;
+			  height:175px;
+			  background:#7A7FB6;
+	  }
+	  #title .act{
+	          border: 2px solid red;
+	  }
+	   
+	  
+	  </style>
+</head>
+<body>
+       <div id="card">
+	          <div id="title">
+			  <a href="javascript:show(1)" class="act">HTML</a>
+			  <a href="javascript:show(2)">CSS</a>
+			  <a href="javascript:show(3)">Javascript</a>
+			  </div>
+			  <div id="content">
+			         <div id="div1">
+					     <ul>
+						       <li>段落标签</li>
+							   <li>表格标签</li>
+							   <li>文本标签</li>
+						 </ul>
+					 </div>
+					 <div id="div2" style="display:none;">css是层叠样式表</div>
+					 <div di="div3" style="display:none;">javascript是一种脚本语言</div>
+			  </div>
+	   </div>
+	   <script>
+	       function show(num){
+		         var title=document.getElementsByTagName("a");
+				 var content=document.getElementById("content").getElementsByTagName("div");
+				for(var n=0;n<content.length;n++){
+				     if(n==num-1){
+					 content[n].style.display="block";
+					 title[n].className="act";
+					 }else
+					{ 
+					title[n].className="";
+					content[n].style.display="none";
+					}
+			     }
+		       }
+	      
+	   </script>
+</body>
+</html>

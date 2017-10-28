@@ -1,0 +1,49 @@
+<html>
+<head>
+           <meta charset="utf-8">
+		   <title>定时器对象</title>
+</head>
+<body>
+             <input type="button" value="计时开始" onclick="count();">
+			 <input type="button" value="停止计时" onclick="stop();">
+			 <input type="button" value="图片消失" onclick="dis();"><br><br>
+		<!-- 	 Note:图片消失的效果，break用法没弄好、 -->
+			 <div id="img">
+			     <img src="糖水西施.jpg" width="200px" height="300px">
+			 </div>
+			 <div id="num"></div>
+			 <script>
+			      var n=0;
+				  var t=null;
+				  var tf=5;
+			      function count(){
+				    n++;
+					//获取对象
+					document.getElementById("num").innerHTML="计数: "+n;
+					t=setTimeout("count();",1000);//1000ms后调用自己
+				    }
+					function stop(){
+					      clearTimeout(t);
+					}
+					function dis(){
+					    tf--;
+ 					    clearTimeout(t);//如果有计时，则清除计时
+						if (tf<=0){
+						//document.getElementsByTagName("div").innerHTML="";
+						//document.getElementById("num").innerHTML="";
+						document.getElementById("img").innerHTML="";
+						document.getElementById("num").innerHTML="";
+						//break;//跳出循环
+						//exit(2);//跳出程序
+						return;//跳出函数
+						}
+						else{
+						document.getElementById("num").innerHTML="还有"+tf+"s后图片消失";
+						//return();
+						//if(tf!=0){
+						setTimeout("dis()",1000);
+					}
+					}
+			 </script>
+</body>
+</html>

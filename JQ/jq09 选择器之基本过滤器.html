@@ -1,0 +1,40 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>基本过滤器使用</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <h3>HTML5最佳学习路线图</h3>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>CSS3</li>
+            <li>HTML5新增标签</li>
+            <li>HTML5Canvas</li>
+            <li>jQuery</li>
+            <li>BootStrap</li>
+        </ul>
+        <table>
+            <tr><td>HTML</td></tr>
+            <tr><td>CSS</td></tr>
+            <tr><td>JavaScript</td></tr>
+            <tr><td>CSS3</td></tr>
+            <tr><td>HTML5新增标签</td></tr>
+        </table>
+        <script>
+           $(function(){
+              // $("li").css("color","#afafaf"); 
+              // $("li:first").css("color","red"); 
+              // $("li:last").css("color","green");
+              $("li:odd").css("color","blue");
+              //$("li:eq(3)").css("color","red");
+              //实现表格的隔行变色
+              // $("tr:odd").css("background-color","#7f7f7f");
+              // $("tr:even").css("background-color","#afafaf"); 
+           });
+        </script>
+    </body>
+</html>

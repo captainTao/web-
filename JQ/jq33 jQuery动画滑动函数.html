@@ -1,0 +1,40 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>滑动动画</title>
+        <style type="text/css">
+          input{
+              width:30%;
+              height:80px;
+          }
+          div{
+              width:100px;
+              height:100px;
+              background-color:#7f7f7f;
+          }
+          
+        </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="btdown" type="button" value="向下滑动">
+        <input id="btup" type="button" value="向上滑动">
+        <input id="bttoggle" type="button" value="切换">
+        <div>
+        </div>
+        <script>
+        $(function(){
+           $("#btdown").click(function(){
+               $("div").slideDown(300);
+           }); 
+           $("#btup").click(function(){
+               $("div").slideUp(500);
+           });
+           $("#bttoggle").click(function(){
+              $("div").slideToggle(); 
+           });
+        });
+        </script>
+    </body>
+</html>

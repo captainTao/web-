@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>cookie编程</title>
+    </head>
+    <body>
+        <input type="button" value="保存数据" onclick="saveCookie('us','aaa',3)"><br>
+        <input type="button" value="读取数据" onclick="alert(getCookie('us'));">
+    <script>
+    function saveCookie(cname,cvalue,exdays)
+    {
+        var d=new Date();//获取当前时间
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));//转换为毫秒
+        var expires="expires="+d.toGMTString();
+        document.cookie=cname+"="+cvalue+";"+expires;//
+    }
+    function getCookie(cname)
+    {
+        var name=cname+"=";
+        var ca=document.cookie.split(";");
+        for(var i=0;i<ca.length;i++)
+        {
+            var c=ca[i].trim(); //str.trim()是去掉字符串左右两边的空格
+            if(c.indexOf(cname)==0)
+            {
+                return c.substring(name.length,c.length);
+            }
+        }
+    }
+    //下面为去左右空格，左空格，右空格函数
+/*    String.prototype.trim=function(){
+　　    return this.replace(/(^\s*)|(\s*$)/g, "");
+　　 }
+　　 String.prototype.ltrim=function(){
+　　    return this.replace(/(^\s*)/g,"");
+　　 }
+　　 String.prototype.rtrim=function(){
+　　    return this.replace(/(\s*$)/g,"");
+　　 }*/
+    </script>
+    </body>
+    
+</html>

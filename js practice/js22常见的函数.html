@@ -1,0 +1,30 @@
+<html>
+<head>
+         <meta charset="utf-8">
+		 <title>js常见函数</title>
+</head>
+<body>
+         <h1>常用的系统函数</h1>
+         <script>
+		     var str="33.5";
+			 document.write(str+"<br>");
+			 //取整数
+			 document.write(parseInt(str)+"<br>");
+			 //eval执行一个表达式
+			 document.write(eval("3+5*4-2")+"<br>");
+			 function test(){
+			       var sum=0;
+				   for(var i=0;i<arguments.length;i++){
+				       sum+=arguments[i];
+				      }
+					  return sum;
+			       }
+				  //调用函数
+				  var s=test(11,22,33,55);
+				  document.write("求和的结果="+s+"<br>");
+			//判断结果为非空
+			var ss
+			document.write(isNaN(ss));
+		 </script>
+</body>
+</html>

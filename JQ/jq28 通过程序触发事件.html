@@ -1,0 +1,32 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>触发事件</title>
+        <style type="text/css">
+          input{
+              width:49%;
+              height:80px;
+          }
+        </style>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input id="bt01" type="button" value="添加">
+        <input id="bt02" type="button" value="模拟单击"><br>
+        <ul id="u1">
+        </ul>
+        <script>
+          $(function(){
+             $("#bt01").click(function(){
+                 $("<li>").html("我来了").appendTo($("#u1"));
+             }) ;
+             $("#bt02").click(function(){
+                 //模拟点击bt01
+                 //对象       触发    事件
+                  $("#bt01").trigger("click");
+             });
+          });
+        </script>
+    </body>
+</html>

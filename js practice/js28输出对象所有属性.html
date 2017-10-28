@@ -1,0 +1,35 @@
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>输出对象所有属性.</title>
+</head>
+<body>
+        <h2>输出对象所有属性.</h2>
+	<script>
+		var s="";
+		for(s in document){
+		//alert(s);
+		document.write("document."+s+"="+document[s]+"<br>");
+		}
+		/* var s="";
+		for(s in Date){
+		alert(s);
+		document.write("date."+s+"="+Date[s]+"<br>");
+		}*/
+		var ok=new function(){
+		     this.name=100;
+			 this.hp=300;
+			 this.act=100;
+			 this.money=10;
+			 this.move=function(){
+			     document.write("正在移动");
+			 }
+		}
+		var s="";
+		for(s in ok){
+		//alert(s);
+		document.write("OK."+s+"="+ok[s]+"<br>");
+		}
+	</script>
+</body>
+</html>

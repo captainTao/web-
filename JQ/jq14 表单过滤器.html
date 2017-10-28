@@ -1,0 +1,24 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单过滤器</title>
+        <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        姓名<input type="text" value=""><br>
+        性别<input type="radio" value="1" name="sex"><tt>男</tt>
+            <input type="radio" value="2" name="sex"><tt>女</tt><br>
+            <input type="button" value="获取">
+            <script>
+            $(function(){
+               $(":button").css({"width":"100%","height":"80px"});
+               $(":button").click(function(){
+                   
+                  alert($(":text").val()); 
+                  alert($(":radio:checked").val());
+               });
+            });
+            </script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>第一个JQuery程序</title>
+     <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <input type="button" value="test" id="bt01">
+        <script>
+        $(document).ready(function(){
+           alert("文档加载完成");
+           $("#bt01").click(function(){
+              $("#bt01").hide();//隐藏 
+           });
+        });
+        </script>
+    </body>
+</html>
