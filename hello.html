@@ -33,7 +33,14 @@ loop(-1:会一直滚动下去)
 <meta name="description" content="IT html css"> 
 <meta name="Author" content="姓名"> 
 <meta name="Robots" content="all|none|index|noindex|follow|nofollow">  //意义参考onenote
-
+<!-- 
+设定为all：文件将被检索，且页面上的链接可以被查询； 
+设定为none：文件将不被检索，且页面上的链接不可以被查询； 
+设定为index：文件将被检索； 
+设定为follow：页面上的链接可以被查询； 
+设定为noindex：文件将不被检索，但页面上的链接可以被查询； 
+设定为nofollow：文件将不被检索，页面上的链接可以被查询 
+-->
 
 删除线标签
 <del></del>     <s></s>   工作里尽量使用del
@@ -121,7 +128,7 @@ cellpadding = "2" 内容到边框的距离
 
 <textarea cols="100" rows="30">...</textarea>
 
-//type='image',图片标签
+// type='image',图片标签,图像形式的提交按钮；
 <input type="image" name="" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3586370282,3183710070&fm=27&gp=0.jpg">
 
 
@@ -133,6 +140,29 @@ html5表单控件：
 <input type="number" name="">  // 数字控件
 <input type="range" name="" max="100" step="5" value="20"/> //滑块控件；
 
+
+字符集（charset）:
+utf-8是目前最常用的字符集编码方式，常用的字符集编码方式还有gbk和gb2312
+gb2312 简单中文
+GBK包含全部中文字符  繁体
+BIG5   繁体中文
+UTF-8则包含全世界所有国家需要用到的字符
+
+
+<sup>上标</sup>   <sub>下标</sub>
+
+<link rel="stylesheet" href="1.css">    <!--设置外链样式表-->
+<link rel="icon" href="1.icon">   <!--设置icon图标-->
+
+<fieldset>
+     <legend>健康信息</legend><br>
+	  身高：<input type="text"/>
+	  体重：<input type="text"/>
+	  三围：<input type="text"/>
+</fieldset>
+
+
+ <img src="地址" title="鼠标滑过显示" alt=“图片不存在显示”/>
 
 
 
