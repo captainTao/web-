@@ -21,7 +21,18 @@ loop(-1:会一直滚动下去)
 <marquee behavior="slide" direction="up" height="10px" bgcolor="orange"><img src="swk.jpg" alt=""></marquee> 
 
 音乐标签：
-<embed src = '1.mp3' hidden='true'>
+<embed src="1.mp3" hidden="true" autostart="true" loop="true">
+
+
+网页重定向：
+<meta http-equiv="refresh" content="2; https://www.baidu.com/">  
+// content中2表示：2s后刷新
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="HTML超文本标记语言"> 
+<meta name="description" content="IT html css"> 
+<meta name="Author" content="姓名"> 
+<meta name="Robots" content="all|none|index|noindex|follow|nofollow">  //意义参考onenote
 
 
 删除线标签
@@ -30,7 +41,16 @@ loop(-1:会一直滚动下去)
 下划线标签：
 <ins></ins>   <u></u>    工作里尽量ins
 
+加粗
+<strong></strong>  <b></b>   工作里尽量strong
+
+斜体：
+<em></em>    <i></i>  工作里尽量em
+
 target="_self"(默认)   target="_blank"(新页面)
+
+cellspacing = "2" 默认值为2 单元格间距
+cellpadding = "2" 内容到边框的距离
 
 
 锚链接：
@@ -45,9 +65,74 @@ target="_self"(默认)   target="_blank"(新页面)
 </ol>
 
 <ul>
-	<li type="value"></li>
+	<li type="value"></li>  // type:disc(默认),square,circle(空心圆圈)
 	<li></li>
 </ul>
 
-type:disc(默认),square,circle(空心圆圈)
+<dl>  //自定义列表
+    <dt></dt>
+    <dd><</dd>
+<dl>
+
+带有标题<caption>的表格如下：
+<table border="6">
+	<caption>我的标题</caption>
+		<tr>
+		  <th>垂直表头1</th>  // 表头
+		  <td>200</td>
+		  <td>300</td>
+		</tr>
+		<tr>
+		  <th>垂直表头2</hd>
+		  <td>500</td>
+		  <td>600</td>
+		</tr>
+</table>
+
+<table>
+	<thead></thead>   头部
+	<tbody></tbody>   主体
+	<tfoot></tfoot>  底部
+</table>
+
+
+表格中：跨行用<th colspan="2"></th>
+       跨列用<th rowspan="2"></th>
+
+<input type="text" name="" value="123" maxlength="6" readonly="readonly" disabled="disabled">  //maxlength, readonly, disabled
+<input type="" name="" checked="checked">  //checked
+
+<select multiple="multiple">   //multiple
+	<option>option1</option>
+	<option selected="selected">option2</option>  //selected
+</select>
+
+
+<optgroup label="北京市">  // label：分组名称
+	<option>朝阳区</option>
+	<option>昌平区</option>
+	<option>怀柔区</option>
+</optgroup>
+<optgroup label="成都市">  //optgroup：对下拉列表进行分组
+	<option>高新区</option>
+	<option>锦江区</option>
+	<option>天府新区</option>
+</optgroup>
+
+<textarea cols="100" rows="30">...</textarea>
+
+//type='image',图片标签
+<input type="image" name="" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3586370282,3183710070&fm=27&gp=0.jpg">
+
+
+html5表单控件：
+<input type="url" name="">
+<input type="email" name="">
+<input type="time" name="">
+<input type="date" name="">
+<input type="number" name="">  // 数字控件
+<input type="range" name="" max="100" step="5" value="20"/> //滑块控件；
+
+
+
 
