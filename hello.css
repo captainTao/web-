@@ -25,7 +25,7 @@ escape('宋体')
 Font-style:设置文字的斜体。
 Italic   斜体
 normal  正常
-line-height   行高
+line-height   行高  // 行高=文字大小+上边距+下边距
 
 font的连写：
 文字大小和字体不能缺少，其余跟需求写；
@@ -61,3 +61,100 @@ div>p{
 	color: orange;
 	font-size: 30px;
 }
+
+
+/***********************************/
+元素之间的转换：
+
+Display: inline			    将元素转化为行内元素
+Display：inline-block	    将元素转化行内块元素
+Display: block				将元素转化为块元素
+
+
+1.块元素
+Div,h1-h6,p.....
+特点：
+※独占一行
+※可以设置宽高
+※宽度是父集元素的宽度（嵌套关系）
+
+
+2.行内元素
+a,span,i,strong,em........
+特点：
+※所有的行内元素在一行上显示
+※不能设置宽高
+※宽度就是元素内容宽度
+
+3.行内块元素
+Img,input
+特点:
+※能设置宽高
+※在一行上显示
+
+/***********************************/
+css伪类：
+a:link{}
+a:visited{}
+a:hover{}|
+a:active{}
+:focus{}
+
+p:first-child{}
+
+/***********************************/
+text-decoration: None|underline|line-through
+text-indent:1em; 文字的缩进距离
+/*比如给每一行的列表前面添加一个图片的时候*/
+
+div{
+	background-color: #ffffff;
+
+	background-image: url("../png");  /*设置背景图片一定要设置宽度和高度*/
+	width: 800px;
+	height: 600px;
+	background-repeat: repeat|repeat-x|repeat-y|no-repeat;
+	background-position: 30px 40px; /*第一个值是水平方向，第二个是垂直方向*/
+	background-position: top right; /*只写一个值时，另外一个值默认居中*/
+	background-attachment: scroll|fixed; /*设置背景是否滚动*/
+}
+
+ul{
+	list-style: none; /*去掉列表前的显示方式*/
+}
+
+/***********************************/
+样式优先级：
+
+行内样式 > 页内样式 > 外部引用样式 > 浏览器默认样式
+important > 内联 > ID > 伪类|类 | 属性选择  > 标签  > 伪对象 >  通配符 > 继承
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#con{
+		color: pink;
+		font-size:100px;
+		}
+		
+	.box{
+		color:green;
+		font-size: 60px;
+		}
+
+	div{
+		color:red !important; /*!important的优先级是最高的 > 内联 > id > class >标签*/
+		font-size:60px !important;
+	}	
+	</style>
+</head>
+<body>
+	<div class="box" id="con" style="font-size:12px; color:yellow;">14期威武</div>
+</body>
+</html>
+
+
+

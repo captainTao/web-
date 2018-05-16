@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<!-- 
+Display: inline			    将元素转化为行内元素
+Display：inline-block	    将元素转化行内块元素
+Display: block				将元素转化为块元素 
+
+Display: none				元素不会被展示	
+
+
+1.块元素
+Div,h1-h6,p.....
+特点：
+※独占一行
+※可以设置宽高
+※宽度是父集元素的宽度（嵌套关系）
+
+
+2.行内元素
+a,span,i,strong,em........
+特点：
+※所有的行内元素在一行上显示
+※不能设置宽高
+※宽度就是元素内容宽度
+
+3.行内块元素
+Img,input
+特点:
+※能设置宽高
+※在一行上显示
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+			a{
+				width:67px;
+				height:32px;
+				background-image:url(110.png);
+				background-repeat:no-repeat;
+				display:inline-block;  /*对于非块级元素需要转换为块级元素才能显示，这儿的值就不能用inline*/
+			}
+
+			a:hover{
+				background-image:url(110.png);
+				background-position:bottom;
+			}
+			p{
+				width:67px;
+				height:32px;
+				background-image:url(110.png);/*对于块级元素就不需要转换就能显示*/
+			/*	background-repeat:no-repeat;
+				display:block;*/
+			}
+        </style>
+    </head>
+    <body>
+    	<div>
+    		<h3>行内元素元素显示：</h3>
+    		 <a href="#"></a>
+    	</div>
+    	<div>
+    		<h3>块级别元素显示：</h3>
+    		 <p href = "#"></p>
+    	</div>
+        
+        
+    </body>
+</html>
