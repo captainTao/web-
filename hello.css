@@ -1,0 +1,63 @@
+css样式：
+/////////////////////////////////////////////////////////
+
+
+设置颜色：
+div{
+	color:#00ff00;
+	color:rgb(255,255,30);
+	backgound-color:rgba(255,0,0,0.5);  /*a为透明度*/
+}
+
+
+*{属性:值;}  /*  *代表所有标签，那么会给所有标签加上这个样式 */
+
+
+font-size
+font-family:微软雅黑;   // 直接写中文名字
+font-family:Microsoft YaHei; // 写英文名字， 或者unicode编码
+
+console控制台获取unicode
+escape('宋体')
+"%u5B8B%u4F53"
+
+
+Font-style:设置文字的斜体。
+Italic   斜体
+normal  正常
+line-height   行高
+
+font的连写：
+文字大小和字体不能缺少，其余跟需求写；
+
+{font: font-style font-weight  font-size/line-height  font-family;}
+.p-weight{
+	font:italic 700 40px/80px 微软雅黑;
+}
+
+
+/***********************************/
+1.交集选择器：（中间不能有空格）
+h3.class{
+	color: orange;
+	font-size: 10px;
+}
+
+2.父与子连写：（中间有空格，包含关系）无隔代限制
+/*两个或者两个以上的选择器写在一起；
+  必须是包含关系，父在前，子在后；
+*/
+.father #son1 a {font-size: 30px;}
+
+
+3.父子标签：(包含关系，必须是父与子，与JQ一致)
+div>p{
+	color: green;
+}
+
+
+4.不同的选择器写在一起：（并集选择器）
+.one, .two, span{
+	color: orange;
+	font-size: 30px;
+}
