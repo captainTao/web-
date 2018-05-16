@@ -25,7 +25,7 @@ escape('宋体')
 Font-style:设置文字的斜体。
 Italic   斜体
 normal  正常
-line-height   行高  // 行高=文字大小+上边距+下边距
+line-height   行高  // 行高=文字大小+上边距+下边距,value可以为：40px|2em|120%|2
 
 font的连写：
 文字大小和字体不能缺少，其余跟需求写；
@@ -156,5 +156,16 @@ important > 内联 > ID > 伪类|类 | 属性选择  > 标签  > 伪对象 >  �
 </body>
 </html>
 
+/***********************************/
+padding，margin
+padding:内边距
+margin:外边距
+1.都有后缀可以带:left, right, top, bottom;
+2.也可以直接带 1(所有距离一样)/ 2（上下，左右）/4（上，右，下，左；顺时针）个参数：
+#div1{
+	padding-left: 10px;
+	margin-right: 20px;
+	overflow: hidden; //给外边的大盒子设置溢出的时候，隐藏
+}
 
 
