@@ -115,8 +115,13 @@ p:first-child{}
 
 /***********************************/
 text-decoration: None|underline|line-through
-text-indent:1em; 文字的缩进距离
+text-index:1em; 文字的缩进距离
 /*比如给每一行的列表前面添加一个图片的时候*/
+ul li{
+	 list-style: none; /*清除列表前字符显示*/
+	 background:url(li.gif) no-repeat  left 4px;  /*或者常用left center； 或者直接用px: 9px 7px*/
+     text-indent:1em;
+}
 
 // 背景样式：
 div{
@@ -177,7 +182,7 @@ margin:外边距
 #div1{
 	padding-left: 10px;
 	margin-right: 20px;
-	overflow: hidden; //给外边的大盒子设置溢出的时候，隐藏
+	overflow: hidden; //给外边的大盒子设置溢出的时候，隐藏,是对大盒子写此属性
 }
 
 border-collapse: collapse; //设置表格边框合并；可以去掉单元格之间的间隙；
@@ -208,3 +213,73 @@ input[class="username"]{
 /***********************************/
 question:
 1.在大的盒子中化一个小盒子？
+嵌套div，写好每个div的margin,size;
+
+/***********************************/
+#div3{
+	float: left|right|both;
+	clear: both; /*清除浮动的不良影响*/
+	overflow: hidden|scroll|auto|visible;
+}
+
+
+绝对定位：
+/***********************************/
+#div4{
+	position: absolute;
+}
+
+特点
+※ 给元素设置绝对定位，从浏览器左上角出发设置位置。
+※ 给元素设置了绝对定位，元素会不占位置（脱标）
+※ 当盒子发生嵌套关系时，如果父集元素没有设置定位，子盒子设置了绝对定位并赋值，子盒子的位置从浏览器左上角出发。
+※ 当盒子发生嵌套关系时，如果父集元素设置了绝对定位，子盒子设置了绝对定位并赋值，子盒子的位置从父集元素左上角出发。
+※ 绝对定位会将行内元素，转换为行内块。
+
+
+相对定位：
+/***********************************/
+#div4{
+	position: absolute;
+}
+
+特点：
+※ 给元素设置了相对定位，位置是从自身位置出发。
+※ 给元素设置了相对定位，还占据原来的位置（不脱标）。
+※ 子绝父相（工作中使用最多），子元素绝对定位，父元素相对定位。  // 子绝父相
+※ 给元素设置相对定位，不能将行内元素转换为行内块元素。
+
+
+
+固定定位
+/***********************************/
+#div4{
+	position: fixed;
+}
+
+特点:
+※ 固定定位不占据原来的位置，会脱标。
+※ 给元素设置固定定位之后，元素位置从浏览器左上角出发。
+※ 可以将行内元素转换为行内块元素。
+
+
+#div5{
+	position: static;  /*静态定位，标准方式*/
+}
+
+清除浮动的方式
+/***********************************/
+1：给父容器设置高度
+2：通过设置clear:left | right  | both  
+3：给父容器设置 overflow:hidden 
+4：通过伪元素  
+.clearfix:after{
+       content:"";
+       height:0; line-height:0;
+       visibily:hidden;
+       clear:both;
+       display:block;
+  }
+.clearfix{
+  	 zoom:1    　　　为了兼容IE浏览器
+ }
