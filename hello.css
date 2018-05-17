@@ -27,6 +27,10 @@ Italic   斜体
 normal  正常
 line-height   行高  // 行高=文字大小+上边距+下边距,value可以为：40px|2em|120%|2
 
+浏览器默认
+line-height:18px;
+font-size:16px;
+
 font的连写：
 文字大小和字体不能缺少，其余跟需求写；
 
@@ -72,7 +76,7 @@ Display: block				将元素转化为块元素
 
 
 1.块元素
-Div,h1-h6,p.....
+Div,h1-h6,p,ol,ul,dl,table,address,blockquote,form.....
 特点：
 ※独占一行
 ※可以设置宽高
@@ -80,14 +84,21 @@ Div,h1-h6,p.....
 
 
 2.行内元素
-a,span,i,strong,em........
+a,span,i,strong,em,br,q,var,cite,code,label,pre,kbd,samp,dfn........
+
+<p><cite>The Scream</cite> by Edward Munch. Painted in 1893.</p>// cite是引用标签，引用文献之类的，会以斜体展示出来；
+<dfn>定义项目</dfn><br>
+<code>一段电脑代码</code><br>
+<samp>计算机样本</samp><br>
+<kbd>键盘输入</kbd><br>
+<var>变量</var>  // 变量标签
 特点：
 ※所有的行内元素在一行上显示
 ※不能设置宽高
 ※宽度就是元素内容宽度
 
 3.行内块元素
-Img,input
+img,input
 特点:
 ※能设置宽高
 ※在一行上显示
@@ -98,7 +109,7 @@ a:link{}
 a:visited{}
 a:hover{}|
 a:active{}
-:focus{}
+a:focus{} /*获取焦点*/
 
 p:first-child{}
 
@@ -107,6 +118,7 @@ text-decoration: None|underline|line-through
 text-indent:1em; 文字的缩进距离
 /*比如给每一行的列表前面添加一个图片的时候*/
 
+// 背景样式：
 div{
 	background-color: #ffffff;
 
@@ -115,12 +127,12 @@ div{
 	height: 600px;
 	background-repeat: repeat|repeat-x|repeat-y|no-repeat;
 	background-position: 30px 40px; /*第一个值是水平方向，第二个是垂直方向*/
-	background-position: top right; /*只写一个值时，另外一个值默认居中*/
+	background-position: top right; /*设置背景图从何处开始展示；只写一个值时，另外一个值默认居中*/
 	background-attachment: scroll|fixed; /*设置背景是否滚动*/
 }
 
 ul{
-	list-style: none; /*去掉列表前的显示方式*/
+	list-style: none; /*去掉列表前的原点显示*/
 }
 
 /***********************************/
@@ -168,4 +180,31 @@ margin:外边距
 	overflow: hidden; //给外边的大盒子设置溢出的时候，隐藏
 }
 
+border-collapse: collapse; //设置表格边框合并；可以去掉单元格之间的间隙；
 
+table{
+	 width:300px;
+	 height:300px;
+	 border:1px solid red;
+	 border-collapse:collapse;  /* 合并单元格, */除此之外还可以用cellspacing
+	}
+
+<table cellpadding="0" cellspacing="0"> // cellpadding和cellspacing是table的属性，不是样式；所以在style中写无效；
+
+.list li{
+	border-bottom:1px dashed #666666; /*设置每个选项的下划线为虚线*/类似还有border-right,border-top,border-left
+}
+
+input[class="username"]{
+	 border:#979090 dashed 1px;
+	 background-color:#C0BFE8;	 
+	 outline-style:none;  /* 去掉外边框轮廓线 */
+}
+
+*{  /*作用于所有：*/
+	 margin:0;
+	 padding:0;
+}
+/***********************************/
+question:
+1.在大的盒子中化一个小盒子？
