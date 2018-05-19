@@ -23,7 +23,64 @@ c.margin-bottom为负值不会产生位移，会减少自身的供css读取的�
 d.对文档的影响就是，后面的文字会自动补位，紧贴元素之后；
 e.对浮动元素的影响：会移动其位置；
 应用：
-a.双飞翼布局
+双飞翼：
+referto : https://www.jianshu.com/p/549aaa5fabaa
+
+
+
+flex布局：
+/*****************************************/
+http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
+---------------------
+.box{
+  display: flex;
+}
+.box{
+  display: inline-flex; /* 行内元素也可以使用 */
+}
+.box{
+  display: -webkit-flex; /* Safari webkit内核的浏览器许加前缀*/
+  display: flex;
+}
+---------------------
+容器属性：
+flex-direction
+.box {
+	flex-direction: row | row-reverse | column | column-reverse;
+}
+flex-wrap
+.box{
+	flex-wrap: nowrap | wrap | wrap-reverse;
+}
+flex-flow
+.box{
+	flex-flow: <flex-direction> || <flex-wrap>;  /*默认为row nowrap*/
+}
+
+
+justify-content
+.box{
+	justify-content: flex-start | flex-end | center | space-between | space-around;  /*主轴对齐方式*/
+}
+align-items
+.box{
+	align-items: flex-start | flex-end | center | baseline | stretch;  /*交叉轴对齐方式*/
+}
+align-content /*多轴对齐方式，如果只有一根轴线，此属性不生效*/
+.box{
+	align-content: flex-start | flex-end | center | space-between | space-around |stretch;  
+}
+---------------------
+项目属性：
+
+order: <integer>;    /*排序，默认0，越小越前*/
+flex-grow: <number>;      /*放大，默认0，都为1则等分，为2则大一倍*/
+flex-shrink: <number>;       /*缩小，默认1，如果空间不足，该项目将缩小*/
+flex-basis: <length> | auto;      /*分配占据主轴的空间，默认auto*/
+flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]   /*默认0 1 auto; 快捷值：auto(1 1 auto) none(0 0 auto)*/
+align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对齐，默认auto*/
+
+
 
 css样式：
 /////////////////////////////////////////////////////////
@@ -373,7 +430,7 @@ question:
 双飞翼布局：
 /***********************************************/
 <div class="main">
-            <div class="main-content">main content</div>
+     <div class="main-content">main content</div>
 </div>
 <div class="left">left</div>
 <div class="right">right</div>
