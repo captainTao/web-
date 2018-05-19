@@ -1,3 +1,30 @@
+question:
+1.margin-left和left的区别？
+a.left/right/bottom/top生效的前提是必须设置父容器position:absolute或relative
+b.如果父容器没有设置postion，则会一直往上找，如果没找到就不生效；
+c.而margin-left就会以父容器为基准，不管是否设置了postion;
+
+2.position几个参数的用法？
+a.都是通过left,right,bottom,top来定位
+b.absolute:相对于static定位以外的第一个父元素定位；
+c.fix:相对于浏览器窗口定位，如漂浮的广告；
+d.relatiive:相对于正常位置定位；
+e.static:默认值
+f.inherit:继承父元素值
+g.sticky:粘性定位
+
+3.float:中清除浮动参数的意义？
+clear:both;  // 图像的左右测均不允许出现浮动元素；
+
+4.margin参数为负数的用法：
+a.当元素不存在width属性或者（width：auto）的时候，负margin-left会增加元素的宽度
+b.margin-top为负值不会增加高度，只会产生向上位移
+c.margin-bottom为负值不会产生位移，会减少自身的供css读取的高度
+d.对文档的影响就是，后面的文字会自动补位，紧贴元素之后；
+e.对浮动元素的影响：会移动其位置；
+应用：
+a.双飞翼布局
+
 css样式：
 /////////////////////////////////////////////////////////
 
@@ -285,8 +312,8 @@ question:
 /***********************************/
 1：给父容器设置高度
 2：通过设置clear:left | right  | both  
-3：给父容器设置 overflow:hidden 
-4：通过伪元素  
+3：给父容器设置 overflow:hidden   
+4：通过伪元素清除浮动： 
 .clearfix:after{
        content:"";
        height:0; line-height:0;
@@ -297,3 +324,87 @@ question:
 .clearfix{
   	 zoom:1    　　　为了兼容IE浏览器
  }
+
+ 设置定位的盒子居中对齐的步骤：
+ 1.设置父盒子为相对定位
+ 2.设置子盒子left为父盒子的宽度一半
+ 3.设置子盒子左边距为自己宽度的一半
+
+ margin:0 auto;只能让在标准流的盒子居中
+ .father{
+ 	width: 700px;
+ 	height: 300px;
+ 	background-color: pink;
+ 	margin: 0 auto;
+ 	position: relative;
+ }
+ .son{
+ 	width: 400px;
+ 	height: 100px;
+ 	background-color: green;
+ 	position: absolute;
+ 	
+ 	left: 50%;
+ 	margin-left: -200px;/*自己宽度的一半*/
+ 	bottom: 0;
+ }
+
+
+ 设置盒子浏览器居中：
+ .absolute{
+    position: absolute;
+    top:50%;
+    left:50%;
+    height: 200px;
+    width: 200px;
+    background-color: #ccc;
+    margin-top: -100px;   // 如果不知道其高度和宽度，用：transform: translate3d(-50%,-50%,0); 
+    margin-left: -100px;
+    /*
+	  transform: translate3d(-50%,-50%,0);
+    */
+}
+<div class="absolute"></div>
+/*使用translate3d可以开启GPU加速，就不用cpu去从新计算所有点素位置，
+开启GPU加速后，GPU自动将这个元素放在一个新的“层”，直接偏移这个“层”来提高渲染速度（个人理解，若有错误欢迎指正）。*/
+
+
+
+双飞翼布局：
+/***********************************************/
+<div class="main">
+            <div class="main-content">main content</div>
+</div>
+<div class="left">left</div>
+<div class="right">right</div>
+
+
+	*{
+        margin:0;
+        padding: 0
+    }
+    .main{
+        float: left;
+        width: 100%;
+
+    }
+    .main .main-content{
+        margin: 0 210px;
+        background-color: rgba(33, 114, 214, 0.8);
+        height: 500px
+    }
+    .left{
+        width: 200px;
+        float: left;
+        background-color: rgba(255, 82, 0, 0.8);
+        margin-left: -100%;
+        height: 200px
+
+    }
+    .right{
+        width: 200px;
+        height: 200px;
+        margin-left: -200px;
+        float: left;
+        background-color: rgba(90, 243, 151, 0.8);
+    }
