@@ -465,3 +465,34 @@ question:
         float: left;
         background-color: rgba(90, 243, 151, 0.8);
     }
+
+
+/***********************************************/
+/*设置盒子左外边距为auto，将盒子冲到右边*/
+<div class="father">
+	<div class="son"></div>
+</div>
+
+		.father{
+			width: 500px;
+			height: 500px;
+			background:red;
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			background: green;			
+			/*设置盒子左外边距为auto，将盒子冲到右边*/
+			margin-left:auto;
+		}
+
+img{
+	vertical-align: middle;/*图片和文字垂直居中对齐*/
+}
+
+
+#div3{
+	display: none | visible; /*隐藏了之后会从布局中消失*/
+	visibility: hidden;  /*隐藏了之后不会从布局中消失*/
+}
+
