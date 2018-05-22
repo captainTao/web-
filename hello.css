@@ -150,7 +150,23 @@ div>p{
 	font-size: 30px;
 }
 
-
+5.属性选择器：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		input[type][id]{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" value="123">
+	<input type="button" value="提交" id="id1">
+</body>
+</html>
 /***********************************/
 元素之间的转换：
 
