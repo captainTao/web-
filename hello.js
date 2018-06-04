@@ -1500,7 +1500,7 @@ console.log(n);
 
 涉及到异步代码，无法在调用时捕获，原因就是在捕获的当时，回调函数并未执行；
 
-// 如下： 调用setTimeout()的时候，没有抛出异常，要不哭哦printTime()的错误，需要在外层捕获；
+// 如下： 调用setTimeout()的时候，没有抛出异常，要捕获printTime()的错误，需要在外层捕获；
 function printTime() {
     throw new Error();
 }
