@@ -1,0 +1,47 @@
+
+
+小程序：
+-----------------------
+mina平台
+1.渲染快，多线程；js为单线程
+2.动画能力差
+3.微信平台，能分享好友
+4.包不能超过2M（分包，插件）
+5.内存限制为10M
+6.框架基础库随微信发布而更新
+7.微信与操作系统的兼容问题(图片)
+8.ios 10以下不支持ES6,flex-box
+
+
+vscode 插件： 
+1.sublime
+2.vscode
+
+
+js: em, px, rem;
+微信css样式
+
+width:750rpx;
+
+程序绑定：
+this.setData
+
+
+----------------------
+下节预习：
+css3 / flex - box
+组件使用
+
+小程序API:
+https://developers.weixin.qq.com/miniprogram/dev/api/
+
+小程序的开发社区：
+https://developers.weixin.qq.com/
+
+flex-box:
+http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+
+flex-box官方文档：
+https://developers.weixin.qq.com/ebook?action=get_post_info&token=935589521&volumn=1&lang=zh_CN&book=miniprogram&docid=00080e799303986b0086e605f5680a
+
+官方教程：https://developers.weixin.qq.com/miniprogram/dev/index.html

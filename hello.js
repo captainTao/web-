@@ -154,7 +154,7 @@ class PrimaryStudent extends Student {  //继承用extend
 
 
 ////////////////////////////////////////////////////////////
-浏览器对象：
+浏览器对象：BOM
 /************************************************/
 // 获取浏览器窗口的大小：（除去工具栏，菜单栏，状态栏）
 'use strict';
@@ -213,7 +213,8 @@ if (confirm('重新加载当前页' + location.href + '?')) {
 
 
 
-document
+document:DOM
+----------------------------
 document对象表示当前页面。
 document的title属性是从HTML文档中的<title>xxx</title>读取的，但是可以动态改变
 document.title = '努力学习JavaScript!';  // 这是title
