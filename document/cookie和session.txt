@@ -1,5 +1,7 @@
-session关闭浏览器就没有了,
-session分为localstorage和sessionstorage,
+
+Pls refer to link: https://www.cnblogs.com/cencenyue/p/7604651.html
+
+webstorage分为localstorage和sessionstorage,
 localstorage是可以永久存储的;
 
 cookie是客户端方案：一般是关闭浏览器就消失，但若设置了过期时间，会保存在硬盘上，下次在过期时间内仍然有效，且cookie可以在不同浏览器进程中共享；
