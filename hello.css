@@ -42,6 +42,10 @@ http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
   display: -webkit-flex; /* Safari webkit内核的浏览器许加前缀*/
   display: flex;
 }
+div{
+    display: flex;
+    align-items:center;
+}
 ---------------------
 容器属性：
 flex-direction
@@ -62,7 +66,7 @@ justify-content
 .box{
 	justify-content: flex-start | flex-end | center | space-between | space-around;  /*主轴对齐方式*/
 }
-align-items
+align-items   // 这个只能用于flex布局中
 .box{
 	align-items: flex-start | flex-end | center | baseline | stretch;  /*交叉轴对齐方式*/
 }
@@ -157,7 +161,7 @@ div>p{
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style type="text/css">
-		input[type][id]{
+		input[type][id=id1]{    /*input为标签，后面括号为属性*/
 			color:red;
 		}
 	</style>
@@ -310,9 +314,10 @@ input[class="username"]{
 	 margin:0;
 	 padding:0;
 }
+
 /***********************************/
 question:
-1.在大的盒子中化一个小盒子？
+1.在大的盒子中画一个小盒子？
 嵌套div，写好每个div的margin,size;
 
 /***********************************/
@@ -445,16 +450,20 @@ question:
 
 双飞翼布局：
 /***********************************************/
-<div class="main">
-     <div class="main-content">main content</div>
-</div>
-<div class="left">left</div>
-<div class="right">right</div>
-
-
+<html>
+ <head>
+          <meta charset="utf-8">
+          <title>test</title>
+<style>
 	*{
         margin:0;
         padding: 0
+    }
+    .container{
+        width: 800px;
+        height: 400px;
+        margin-left: 300px;
+        border:1px solid #8470FF;
     }
     .main{
         float: left;
@@ -463,13 +472,13 @@ question:
     }
     .main .main-content{
         margin: 0 210px;
-        background-color: rgba(33, 114, 214, 0.8);
-        height: 500px
+        background-color: yellow;
+        height: 300px
     }
     .left{
         width: 200px;
         float: left;
-        background-color: rgba(255, 82, 0, 0.8);
+        background-color: green;
         margin-left: -100%;
         height: 200px
 
@@ -479,9 +488,21 @@ question:
         height: 200px;
         margin-left: -200px;
         float: left;
-        background-color: rgba(90, 243, 151, 0.8);
+        background-color: blue;
     }
 
+    </style>
+ </head>
+<body>
+<div class="container">
+    <div class="main">
+            <div class="main-content">main content</div>
+    </div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+</div>
+</body>
+</html>  
 
 /***********************************************/
 /*设置盒子左外边距为auto，将盒子冲到右边*/
