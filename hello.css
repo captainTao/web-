@@ -8,10 +8,13 @@ c.而margin-left就会以父容器为基准，不管是否设置了postion;
 a.都是通过left,right,bottom,top来定位
 b.absolute:相对于static定位以外的第一个父元素定位；
 c.fix:相对于浏览器窗口定位，如漂浮的广告；
-d.relatiive:相对于正常位置定位；
+d.relative:相对于正常位置定位；
 e.static:默认值
 f.inherit:继承父元素值
 g.sticky:粘性定位
+
+https://blog.csdn.net/bymyself11/article/details/52055806
+（父级元素的属性必须为relative,而父级内部的元素某个位置最好用absolute,因为不受父级元素padding的影响；当然也可以用relative）
 
 3.float:中清除浮动参数的意义？
 clear:both;  // 图像的左右测均不允许出现浮动元素；
@@ -26,6 +29,8 @@ e.对浮动元素的影响：会移动其位置；
 双飞翼：
 referto : https://www.jianshu.com/p/549aaa5fabaa
 
+
+网页服务器的端口一般为80
 
 
 flex布局：
@@ -282,12 +287,17 @@ padding，margin
 padding:内边距
 margin:外边距
 1.都有后缀可以带:left, right, top, bottom;
-2.也可以直接带 1(所有距离一样)/ 2（上下，左右）/4（上，右，下，左；顺时针）个参数：
+2.也可以直接带 1(所有距离一样)/ 2（上下，左右）/ 3(上，左右，下) / 4（上，右，下，左；顺时针）个参数：
 #div1{
 	padding-left: 10px;
 	margin-right: 20px;
 	overflow: hidden; //给外边的大盒子设置溢出的时候，隐藏,是对大盒子写此属性
 }
+
+margin: 20px;（上、下、左、右各20px。）
+margin: 20px 40px;（上、下20px；左、右40px。）
+margin: 20px 40px 60px;（上20px；左、右40px；下60px。）
+margin: 20px 40px 60px 80px;（上20px；右40px；下60px；左80px。）
 
 border-collapse: collapse; //设置表格边框合并；可以去掉单元格之间的间隙；
 
