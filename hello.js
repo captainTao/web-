@@ -15,7 +15,11 @@ true
 
 /[^\s]{3,10}/.test(s);
 true
-// 面向对象编程
+
+
+//////////////////////////////////////////////////////////////////
+
+// 面向对象编程：
 
 
 //类名的第一个字母要大写，以便区分普通函数：
@@ -159,7 +163,7 @@ class PrimaryStudent extends Student {  //继承用extend
 }
 
 
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// BOM操作
 浏览器对象：BOM
 /************************************************/
 // 获取浏览器窗口的大小：（除去工具栏，菜单栏，状态栏）
@@ -237,7 +241,7 @@ forward()
 任何情况，你都不应该使用history这个对象了。
 
 
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////// DOM操作
 DOM方法操作：
 /************************************************/
 
@@ -306,7 +310,7 @@ p.style.paddingTop = '2em';
 
 
 ///***********************************插入：
-1.appendChild
+1. appendChild
 // 相当于移动了
 <!-- HTML结构 -->
 <p id="js">JavaScript</p>
@@ -362,6 +366,7 @@ document.getElementsByTagName('head')[0].appendChild(d);
 
 
 3.insertBefore
+
 parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
 
 
@@ -420,8 +425,8 @@ removed === self; // true
 
 
 
-////////////////////////////////////////////////////////////
-操作表单：
+//////////////////////////////////////////////////////////// 操作表单：
+
 /************************************************/
 
 获取值：
@@ -502,7 +507,7 @@ function checkForm() {
 
 
 
-////////----<input type="hidden">的用法：
+////////////////////////----<input type="hidden">的用法：MD5 password
 
 // 
 <!-- HTML -->
@@ -1517,5 +1522,180 @@ try {
     console.log('done');
 } catch (e) {
     console.log('error');
+}
+
+
+
+
+
+/////////////////////////////////////// new start 2018.11.21 ////////////////////////////////////
+
+
+NaN
+null,undefined
+var
+``
+动态，静态语言
+use strict的优点：var申明的变量不是全局变量
+\x表示16进制
+\u表示unicode
+
+// ------------------------字符串
+
+var name = '小明';
+var age = 20;
+var message = '你好, ' + name + ', 你今年' + age + '岁了!';
+alert(message);
+// ES6
+var name = '小明';
+var age = 20;
+var message = `你好, ${name}, 你今年${age}岁了!`;  //注意外面是反斜点
+alert(message);
+
+var s = 'Hello, world!';
+s.length; // 13
+s[0]; // 'H'
+s[6]; // ' '
+s[7]; // 'w'
+s[12]; // '!'
+s[13]; // undefined 超出范围的索引不会报错，但一律返回undefined  ，，，，跟python有点像
+
+var s = 'Test';
+s[0] = 'X';
+alert(s); // s仍然为'Test'   ，，，，，，字符串不可变，same as oc.
+
+'a'.toUpperCase()//对大小写敏感
+'A'.toLowerCase()
+
+s.indexOf('world'); // 返回7
+s.indexOf('World'); // 没有找到指定的子串，返回-1
+
+
+var s = 'hello, world'
+s.substring(0, 5); // 从索引0开始到5（不包括5），返回'hello'
+s.substring(7); // 从索引7开始到结束，返回'world'
+
+var a = 'abdb'
+a.slice(0,3)//"abd",这个同样可以用用于数组,，字符串；类似于切片,,,substring效果与slice等价，不包括后面的数，两个参数都是索引
+
+
+slice 可以用于数组，和字符串,类似python中的切片，可以用负数
+splice 用于数组
+substring 用于字符串
+
+
+// ------------------------字符和数字的互转：
+parseInt('3')
+//3
+String(3)
+//"3"
+Number('3')
+//3
+'8'-0
+//8
+
+// 字符串转为number类型，-0或者-'0'
+> s
+'1234455'
+> s-'0'
+1234455
+> s-0
+1234455
+
+// number转为字符串类型，+'0'
+> typeof(3+0)
+'number'
+> typeof(3+'0')
+'string'
+> 3+'0'
+'30'
+
+trim():移除前导空格、尾随空格和行终止符的原始字符串;IE9以下的版本没有trim()方法
+' a hh \n'.trim()
+"a hh"
+
+// 把一个Array中的空字符串删掉，可以这么写：
+'use strict';
+var arr = ['A', '', 'B', null, undefined, 'C', '  '];
+var r = arr.filter(function (s) {
+    return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
+});
+r; // ['A', 'B', 'C']
+
+toString()
+arr=[1,2,3,4,5]
+arr.toString()//"1,2,3,4,5";用于数组
+s='1234678ageg'
+s.toString()//"1234678ageg";用于字符串
+
+
+> s
+'1234455'
+> s.split('')
+[ '1', '2', '3', '4', '4', '5', '5' ]
+
+> b=[1,2,3,4,5]
+[ 1, 2, 3, 4, 5 ]
+> b.join('')
+'12345'
+
+// ------------------------数组：
+
+var c =new Array()
+var c =new Array(1,2,3)
+d=[4,5,6]
+
+var arr = [1, 2, 3];
+arr.length; // 3
+arr.length = 6;
+arr; // arr变为[1, 2, 3, undefined, undefined, undefined]
+arr.length = 2;
+arr; // arr变为[1, 2]
+
+
+var arr=[10,20,30,'xyz']
+arr.indexOf('10')//元素10的索引0，与字符串保持一致
+var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];//slice方法对应字符串的substring()
+arr.slice(0,3) //从索引0开始，到索引3结束，但不包括索引3: ['A', 'B', 'C']
+arr.slice(3)//从索引3开始到结束: ['D', 'E', 'F', 'G']
+
+
+push和pop（末尾）
+unshift和shift（开头）
+sort()
+reverse()
+concat()
+join()
+
+
+// ------------------------对象, if , while ：
+delete xiaoming.school
+'toString' in xiaoming
+xiaoming.hasOwnProperty('toString')
+
+条件语句加括号
+JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true
+
+var height = parseFloat(prompt('请输入身高(m):'));
+var weight = parseFloat(prompt('请输入体重(kg):'));
+
+退出条件用break
+
+for ..in 
+for (var key in o) {    //用于对象属性
+    if (o.hasOwnProperty(key)) {
+        alert(key); // 'name', 'age', 'city'
+    }
+}
+
+var a = ['A', 'B', 'C'];  //用书数组
+for (var i in a) {    //对应元素用of
+    alert(i); // '0', '1', '2'
+    alert(a[i]); // 'A', 'B', 'C'
+}
+
+var a = '1234456';  //用于字符串
+for(var i of a){
+    console.log(i);
 }
 
