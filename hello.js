@@ -1699,3 +1699,49 @@ for(var i of a){
     console.log(i);
 }
 
+typeof
+包装对象
+parseInt,parseFloat
+Number(),Boolean()
+typeof 123; // 'number'
+typeof NaN; // 'number'
+typeof 'str'; // 'string'
+typeof true; // 'boolean'
+typeof undefined; // 'undefined'
+typeof Math.abs; // 'function'
+
+typeof null; // 'object'
+typeof []; // 'object'
+
+typeof {}; // 'object'
+
+typeof返回的是字符串
+判断Array要使用Array.isArray(arr)；
+判断null请使用myVar === null；
+判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
+函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
+
+任何对象都有toString()方法吗？null和undefined就没有！
+123.toString(); // SyntaxError
+123..toString(); // '123', 注意是两个点！
+(123).toString(); // '123'
+
+
+//下面为去左右空格，左空格，右空格函数, js中需要定义这几个函数
+String.prototype.trim=function(){
+   return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.ltrim=function(){
+   return this.replace(/(^\s*)/g,"");
+}
+String.prototype.rtrim=function(){
+   return this.replace(/(\s*$)/g,"");
+}
+
+//json字符串转obj:
+var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
+eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
+
+
+//obj转json字符串：
+JSON.stringify(jsonobj);
