@@ -12,7 +12,7 @@
 </head>
 <body>
            <h2>DOM编程设置样式隐藏与显示</h2>
-		   <div id="div1">此容器内，设置此DIV内容的显示与隐藏，你点击如下的按钮试试效果呢</div>
+		   <div id="div1" style="height: 200px; width:400px">此容器内，设置此DIV内容的显示与隐藏，你点击如下的按钮试试效果呢</div>
 		   <a href="javascript:show();">显示</a>
 		   <a href="javascript:hidden();">隐藏</a>
 		   <input type="button" onclick="witch();" value="显示/隐藏">
@@ -27,7 +27,7 @@
 			 }
 			 // function witch(){
 			 //    var content=document.getElementById("div1");
-				// alert(content.style.visibility);
+				// console.log(content.style.visibility);
 				// if (content.style.visibility=="visible"){
 				//     content.style.visibility="hidden";
 				// 	}
@@ -35,11 +35,11 @@
 				//     content.style.visibility="visible";
 				// 	}	
 				
-			 //}
+			 // }
 			 //为什么不能用上面这种方法呢？-----因为第一次获取得到的值为空，执行了else里面的内容
 			  function witch(){
 			    var content=document.getElementById("div1");
-				//alert(content.style.visibility);
+				console.log(content.style.visibility);
 				if (content.style.visibility=="hidden"){
 				    content.style.visibility="visible";
 					}

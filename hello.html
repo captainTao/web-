@@ -173,8 +173,8 @@ UTF-8则包含全世界所有国家需要用到的字符
 <hr/>  
 
 /////////////////////////////////////////////////////////
-
-JSON处理：
+-----------------------------------------------------------
+js57 JSON处理：
 <html>
 <head>
        <meta charset="utf-8">
@@ -211,3 +211,95 @@ JSON处理：
 </body>
 </html>
 
+-----------------------------------------------------------
+Js58 ajax编程
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX</title>
+    </head>
+    <body>
+        手机号 ：<input type="text" id="mobile"><br>
+        <input id="bt01" type="button" value="查询">
+    <script>
+    var xmlHttp;
+    function geturl()
+    {
+        //创建请求对象
+        createXMLHttpRequest();
+        //发送请求
+        var url="http://www.h5edu.cn/Public/weixin/test01.php";
+        var param="tel="+document.getElementById("mobile").value;
+        send(url,"get",param);
+        //调用回调函数处理返回结果 
+    }
+    //创建请求对象封装
+    function createXMLHttpRequest() 
+    {
+        if(window.ActiveXObject)
+        {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP"); //微软浏览器
+        }else{
+            xmlHttp=new XMLHttpRequest();  //google,safari浏览器，手机浏览器
+        }
+    }
+    //发送网络请求封装
+    function send(url,method,param)
+    {xmlHttp.open(method,url,true);
+     xmlHttp.onreadystatechange=callback;//设置回调
+     xmlHttp.send(param);
+    }
+    //回调函数封装
+    function callback()
+    {
+        var result;
+        if(xmlHttp.readyState==4)
+        {
+            if(xmlHttp.status==200)//返回状态码
+            {
+                result=xmlHttp.responseText;
+                alert(result);
+            }
+        }
+    }
+    document.getElementById("bt01").onclick=geturl;
+    </script>
+    </body>
+</html>
+
+-----------------------------------------------------------
+Js59 cookie编程
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>cookie编程</title>
+    </head>
+    <body>
+        <input type="button" value="保存数据" onclick="saveCookie('us','aaa',3)"><br>
+        <input type="button" value="读取数据" onclick="alert(getCookie('us'));">
+    <script>
+    function saveCookie(cname,cvalue,exdays)
+    {
+        var d=new Date();//获取当前时间
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));//转换为毫秒
+        var expires="expires="+d.toGMTString();
+        document.cookie=cname+"="+cvalue+";"+expires;//
+    }
+    function getCookie(cname)
+    {
+        var name=cname+"=";
+        var ca=document.cookie.split(";");
+        for(var i=0;i<ca.length;i++)
+        {
+            var c=ca[i].trim(); //str.trim()是去掉字符串左右两边的空格
+            if(c.indexOf(cname)==0)
+            {
+                return c.substring(name.length,c.length);
+            }
+        }
+    }
+    </script>
+    </body>
+    
+</html>

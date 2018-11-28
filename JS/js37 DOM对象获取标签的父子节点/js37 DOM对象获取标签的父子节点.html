@@ -6,7 +6,7 @@
 <body>
           <div id="div1"><img src=1.jpg width=200px;height=200px;></div>
 		  <input type="button" value="添加节点" onclick="add();" >
-		
+		  <input type="button" value="删除节点" onclick="reduce();" >
 		  <script>
 		        function add(){
 				var newimg=document.createElement("img");
@@ -16,15 +16,11 @@
 				var  meinv=document.getElementById("div1");
 				meinv.appendChild(newimg);
 				}
-				/*function reduce(){
+				function reduce(){
 				     var meinv=document.getElementById("div1");
-					 var newing=document.createElement("img");
-					   newimg.src="1.jpg";
-					   newimg.style.width="200px";
-					   newimg.style.height="200px";
-					 meinv.appendChild(newimg);
-					 meinv.removeChild(newing);
-				}*/
+				     var mm =document.getElementsByTagName("img");
+					 meinv.removeChild(mm[0]);
+				}
 		  </script>
 <body>
 </html>

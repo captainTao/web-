@@ -24,6 +24,8 @@
 				     	if(loop){
 				     	num=(num+1)%3;
 				     	img.src=pics[num];
+				     	console.log(num);
+				     	// return num; // 这个return不需要居然也可以，貌似setInterval存储了执行结果？？？
 				     	}
 				     }
 				     function over() {

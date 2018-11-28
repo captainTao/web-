@@ -16,8 +16,12 @@ true
 /[^\s]{3,10}/.test(s);
 true
 
+arguments?
+isNaN?
+toMD5 is not defined?
+设置cookie.
 
-//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
 
 // 面向对象编程：
 
@@ -114,6 +118,11 @@ Student.prototype.hello = function () {
     alert('Hello, ' + this.name + '!');
 };
 
+//或者如下这样写：
+function alterview(){
+    ....
+}
+Student.prototype.hello = alterview;
 // 按照约定，构造函数首字母应当大写，而普通函数首字母应当小写，这样，一些语法检查工具如jslint将可以帮你检测到漏写的new。
 
 
@@ -163,7 +172,7 @@ class PrimaryStudent extends Student {  //继承用extend
 }
 
 
-//////////////////////////////////////////////////////////// BOM操作
+////////////////////////////////////////////////////////////////////////////////////// BOM操作
 浏览器对象：BOM
 /************************************************/
 // 获取浏览器窗口的大小：（除去工具栏，菜单栏，状态栏）
@@ -233,15 +242,14 @@ document.cookie; //读取当前页面的cookie
 为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly
 
 
-
-history
+history:
 back()
 forward()
 新手开始设计Web页面时喜欢在登录页登录成功时调用history.back()，试图回到登录前的页面。这是一种错误的方法。
 任何情况，你都不应该使用history这个对象了。
 
 
-//////////////////////////////////////////////////////////// DOM操作
+///////////////////////////////////////////////////////////////////////////////////// DOM操作
 DOM方法操作：
 /************************************************/
 
@@ -308,6 +316,16 @@ p.style.color = '#ff0000';
 p.style.fontSize = '20px';  //js不能识别font-size,这儿用驼峰命名法
 p.style.paddingTop = '2em';
 
+//document.getElementById(id).attribute=new value
+
+document.getElementById("p1").innerHTML="New text!";
+document.getElementById("image").src="landscape.jpg";
+
+
+//document.getElementById(id).style.property=new style
+
+document.getElementById("p2").style.color="blue";
+
 
 ///***********************************插入：
 1. appendChild
@@ -355,6 +373,19 @@ list.appendChild(haskell);
     <p id="scheme">Scheme</p>
     <p id="haskell">Haskell</p>
 </div>
+
+//用createTextNode也能创建？
+<div id="div1">
+<p id="p1">这是一个段落</p>
+<p id="p2">这是另一个段落</p>
+</div>
+<script>
+var para=document.createElement("p");
+var node=document.createTextNode("这是新段落。");
+para.appendChild(node);
+    var element=document.getElementById("div1");
+element.appendChild(para);
+</script>
 
 
 // 举个例子，下面的代码动态创建了一个<style>节点，然后把它添加到<head>节点的末尾，这样就动态地给文档添加了新的CSS定义：
@@ -1580,9 +1611,11 @@ a.slice(0,3)//"abd",这个同样可以用用于数组,，字符串；类似于�
 
 
 slice 可以用于数组，和字符串,类似python中的切片，可以用负数
-splice 用于数组
+splice 用于数组,arrayObject.splice(index,howmany,item1,.....,itemX);
 substring 用于字符串
 
+name.charAt(n)获取name定义的字符串的第n个字符；
+name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
 
 // ------------------------字符和数字的互转：
 parseInt('3')
@@ -1678,6 +1711,7 @@ JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值�
 
 var height = parseFloat(prompt('请输入身高(m):'));
 var weight = parseFloat(prompt('请输入体重(kg):'));
+var userinput = window.prompt('商品价格')；
 
 退出条件用break
 
@@ -1726,6 +1760,11 @@ typeof返回的是字符串
 123..toString(); // '123', 注意是两个点！
 (123).toString(); // '123'
 
+Array.prototype.show = function (){
+    for (var i = 0; i < this.length; i++) {
+        document.write(this[i]+"<br>");
+    }
+}
 
 //下面为去左右空格，左空格，右空格函数, js中需要定义这几个函数
 String.prototype.trim=function(){
@@ -1738,10 +1777,147 @@ String.prototype.rtrim=function(){
    return this.replace(/(\s*$)/g,"");
 }
 
+String.prototype.qu=function (){var char=this.replace(/\s+/g,"");}
+去除所有空格:   
+str=str.replace(/\s+/g,"");       
+去除两头空格:   
+str=str.replace(/^\s+|\s+$/g,"");
+去除左空格：
+str=str.replace( /^\s*/, '');
+去除右空格：
+str=str.replace(/(\s*$)/g, "");
+
+outerHTML、innerText不是W3C标准
+
+
+setTimeout(fun,1000);
+clearTimeout()
+
+t=setTimeout("count();",1000);//1000ms后调用自己
+clearTimeout(t);
+
+t1=setInterval("start();",1000);//间隔1000ms调用start();
+//看样子setInterval执行function时，会每次把function中执行的结果存储起来。。。
+//所以function中也不需要写return对应的值..
+clearInterval(t1);
+
+onclick,ondbclick,oncontextmenu,onfocus,onblur：
+
+outerHTML、innerText不是W3C标准
+
 //json字符串转obj:
 var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
 eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
 
+JSON.parse();
+JSON.parse('{"name":"小明","age":14}', function (key, value) {
+    // 把number * 2:
+    if (key === 'name') {
+        return value + '同学';
+    }
+    return value;
+}); // Object {name: '小明同学', age: 14}
 
 //obj转json字符串：
 JSON.stringify(jsonobj);
+
+JSON.stringify(xiaoming, ['name', 'skills'], '  '); // 第二个参数为过滤，第三个为格式化；
+toJSON:精准化控制序列化
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp'],
+    toJSON: function () {
+        return { // 只输出name和age，并且改变了key：
+            'Name': this.name,
+            'Age': this.age
+        };
+    }
+};
+
+regExp.test()
+'a,b;; c  d'.split(/[\s\,\;]+/);
+var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分
+re.exec('010-12345'); // ['010-12345', '010', '12345']
+re.exec('010 12345'); // null
+
+贪婪匹配？
+全局搜索？
+
+
+function test(){
+   var sum=0;
+   for(var i=0;i<arguments.length;i++){
+       sum+=arguments[i];
+      }
+      return sum;
+}
+
+<a href="javascript:selectAll();">全选</a> 
+// BOM设置显示隐藏
+document.getElementById("content").style.visibility="visible" //通过样式
+document.getElementById("div1").style.display=type; //通过display
+style.overflow
+style.left/top
+bt01.onclick=function(){}
+oncontextmenu,onclick,mouserover,mouseon,mouseout.
+event.KeyCode
+case中用||不生效？
+
+function fun()
+{
+       var cx=event.clientX;    //相对于当前标签的X坐标
+       var cy=event.clientY;
+       var sx=event.screenX;   //相对于屏幕的X坐标
+       var sy=event.screenY;
+       var msg="clientX="+cx+" clientY="+cy+" screenX="+sx+" screenY="+sy;
+       div.innerHTML=msg;     //设置div里面的内容
+       window.status=msg;      //设置状态条内容
+       window.document.title=msg;  //设置当前文档的标题
+       img.style.top=cy+10;
+       img.style.left=cx+10;
+}
+
+移动端图片跟随效果：
+ontouchstart,ontouchmove,ontouchend
+var touch = e.touches[0];
+<script>
+      var con=document.getElementById("content");
+      var img=document.getElementById("img1");
+      con.ontouchstart=function(e){
+           var touch=e.touches[0];  //参数e是返回用户点的坐标
+           var x=touch.clientX;
+           var y=touch.clientY;
+           img.style.left=x;
+           img.style.top=y;
+      }
+      con.ontouchmove=function(e){
+           e.preventDefault();  //把缺省的事件给屏蔽掉,否在会在微信里面发生滚动，这是H5里面都会有这句代码
+           var touch=e.touches[0];//返回第一次触摸点的坐标
+           var x=touch.clientX;
+           var y=touch.clientY;
+           img.style.left=x;
+           img.style.top=y;
+      }
+      con.ontouchend=function(e){
+            var touch=e.touches[0];
+            img.style.left=0;
+            img.style.top=0;
+      }
+</script>
+
+onblur, onfocus
+var us=document.f1.username.value
+document.f1.password.focus();
+var cityindex=document.forms[0].city.selectedIndex;
+
+//打开一个新窗口
+open("http://news.baidu.com/");
+//关闭窗口
+close();
+document.bgColor=s; //设置dom背景颜色
+window.location.href="https://www.baidu.com/"; // window可以省略不写；

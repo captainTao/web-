@@ -8,16 +8,16 @@
 		 <form id="f2" name="f1" action="http://www.baidu.com/index.php" method="post" onsubmit="return check();">
 		            用户名<input type="text" name="username" onblur="endus();" value="手机/邮箱/用户名" onfocus="befinput();" ><br>
 					密&nbsp码<input id="secret" type="text" name="password"  value="密码" onfocus="beinput();"><br>
-					&nbsp&nbsp&nbsp<input type="submit" value="登录">
+					&nbsp&nbsp&nbsp<input type="submit" value="登录"> <!-- 一般不用value,用placeholder-->
 		 </form>
 		 <script>
 		 //让用户名获取焦点
 		 //document.f1.username.focus();
 		 //当密码输入框丢失焦点执行
 		 function endus(){
-		    var us=document.f1.username.value
+		     var us=document.f1.username.value
 			 if(us==""||us.replace(/(^\s*)|(\s*$)/g, "")==""){//输入为空，或者为空格；
-			   document.f1.username.focus();
+			   document.f1.password.focus();
 			   alert("你输入的用户名为空或为空白，请重新输入");
 			 }
 		 }
