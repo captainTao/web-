@@ -173,8 +173,22 @@ class PrimaryStudent extends Student {  //继承用extend
 
 
 ////////////////////////////////////////////////////////////////////////////////////// BOM操作
-浏览器对象：BOM
+浏览器对象：BOM  //+-----Browser Object Model
 /************************************************/
+
+
+                             window
+                                |
+    +-------------------------------------------------+
+    |          |          |             |             |
+location    document    history      screen        status
+
+
+window : alert, prompt, setTimeout, open, close
+location: href
+document: ...
+
+
 // 获取浏览器窗口的大小：（除去工具栏，菜单栏，状态栏）
 'use strict';
 // 可以调整浏览器窗口大小试试:
@@ -205,6 +219,15 @@ screen.width：屏幕宽度，以像素为单位；
 screen.height：屏幕高度，以像素为单位；
 screen.colorDepth：返回颜色位数，如8、16、24。
 
+screen.availWidth
+screen.availHeight
+screen.width
+screen.height
+screen.colorDepth
+screen.pixelDepth
+screen.availLeft
+screen.availTop
+screen.orientation
 
 location
 location对象表示当前页面的URL信息。例如，一个完整的URL：
@@ -247,7 +270,14 @@ back()
 forward()
 新手开始设计Web页面时喜欢在登录页登录成功时调用history.back()，试图回到登录前的页面。这是一种错误的方法。
 任何情况，你都不应该使用history这个对象了。
-
+history.length
+history.scrollRestoration
+history.state
+history.go
+history.back
+history.forward
+history.pushState
+history.replaceState
 
 ///////////////////////////////////////////////////////////////////////////////////// DOM操作
 DOM方法操作：

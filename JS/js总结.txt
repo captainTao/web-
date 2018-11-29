@@ -86,7 +86,7 @@ js总结
 				        }
 				Array.prototype.show=print;	//为数组添加新的函数；
 				menu.show();//输出menu的所有函数
-16.  name.charAt(n)获取name定义的字符串的第n个字符；
+16.   name.charAt(n)获取name定义的字符串的第n个字符；
        name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
 	   name.toUpperCase();会把字符全部转换成大写字符；
 	   name.toLowerCase();会把字符全部转换成小写字符；
@@ -104,7 +104,7 @@ js总结
 18.执行表达式：eval函数
     document.write(eval("3+3*4-5"));	
 	判断ss的值为非空。document.write(isNaN(ss));	 
-19.  1,创建对象-通过函数
+19. 1.创建对象-通过函数
          function npc(){
 		 }
 		 var n1=new npc();
@@ -113,14 +113,14 @@ js总结
 		 n1.move=function(){
 		 .......
 		 }
-		 2.创建对象-通过object,  缺点：使用多个对象时需要对多个对象进行定义。
+	 2.创建对象-通过object,  缺点：使用多个对象时需要对多个对象进行定义。
 		 var npc1=new Object();
 		 npc1.hp=100;
 		 npc1.act=33;
 		 npc1.move=function(){
 		 ......
 		 }
-		 3.创建对象-通过函数封装
+	 3.创建对象-通过函数封装
          function createPlayer(){
 		 var p1=new Object();
 		 p1.hp=100;
@@ -129,7 +129,7 @@ js总结
 		 return p1;
 		 }		
          var p=createPlayer();
-		 4,创建对象-直接通过函数封装对象
+	 4.创建对象-直接通过函数封装对象
 		 function Player(hp,name,act)
 		 {
 		     this.name=n;
@@ -157,26 +157,6 @@ js总结
         window history location...	 
 21.document.getElementById
      document.getElementsByName
-	 document.getElementsByTagName
+	   document.getElementsByTagName
         		 
 
-
-
-
-<html>
-<head>
-    <meta charset="utf-8">
-     <title>js函数调用</title>
-</head>
-<body>
-       <input type="button" value="test1" onclick="alert('讨厌');">      
-	   <input type="button" value="test2" onclick="fun();">
-	   <script>
-	      function fun()
-		   {
-		        document.write("hahaha");
-				alert('我来了');
-		   }
-	   </script>
-</body>
-</html>
