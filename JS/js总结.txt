@@ -159,4 +159,120 @@ js总结
      document.getElementsByName
 	   document.getElementsByTagName
         		 
+	   innerHTML, outerHTML, innerText, outerText
+
+22.div框的显示和隐藏：
+     content.style.visibility="hidden/visible"
+     content.style.display="block/none"
+	 content.style.overflow="hidden/visible/scroll/auto"
+
+23.只要定位一个节点对象，就可以获得这个节点的父节点，子节点，同胞节点；
+    -----------------------------------
+	parentNode 获取父节点
+	childNodes 获取所有子节点
+	firstChild 获取第一个子节点
+	lastChild 获取最后一个子节点
+	nextSibling 获取下一个同胞节点
+	previousSibling 获取上一个同胞节点
+	--------------------------------------
+	找到节点对象后，
+	用.nodeType可以获取节点的类型
+	                    如果得到的结果为1：元素， 2：属性， 3,：文本， 8：注释， 9：文档
+	    .nodeName: 节点名称-------#text，  div
+		.nodeValue:节点值
+	---------------------------------------
+	动态创建节点
+	var obj=document.creatElement("img");
+	objdiv.appendChild(obj);
+	节点对象.appendChild(节点对象);           //在后面添加
+    objdiv.insertBefore(obj);                         //在前面添加
+    objdiv.removeChild(obj);                       //动态删除	-----eg:弹幕的删除
+	
+23.     事件源，                      事件                                     事件处理函数
+          <a></a>                   	onclick点击
+		                            	ondblclick双击
+                                     	oncontextmenu文本菜单，右击
+ 
+                                       onmouseover
+									   onmouseout
+									   onmousedown
+									   onmousemove
+									键盘
+									   keypress
+									   keyup
+									   keydown
+									文档
+									     load
+									     unload
+										beforeunload
+								    表单
+										focus焦点
+										blur丢失焦点
+									触摸屏，移动端的事件
+									ontouchstart
+									ontouchmove
+									ontouchend
+
+24. 定时用：setTimeout(fun,1000),   停止计时用：clearTimeout(task)
+         : setInterval(fun,1000),          ：cleraInterval(task)
+	 setTimeout:在某个时间以后执行一个函数（只执行一次）
+	 setInterval:让程序每隔一定时间来调用函数1次
+
+25.空格
+JavaScript 会忽略多余的空格。您可以向脚本添加空格，来提高其可读性。下面的两行代码是等效的：
+var name="Hello";
+var name = "Hello";
+
+26.对代码行进行折行
+您可以在文本字符串中使用反斜杠对代码行进行换行。下面的例子会正确地显示：
+document.write("Hello \
+World!");
+不过，您不能像这样折行：
+document.write \
+("Hello World!");
+
+27.创建 JavaScript 对象
+本例创建名为 "person" 的对象，并为其添加了四个属性：
+实例
+person=new Object();
+person.firstname="Bill";
+person.lastname="Gates";
+person.age=56;
+person.eyecolor="blue";
+
+
+28.JavaScript 算术运算符
+
+算术运算符用于执行变量与/或值之间的算术运算。
+给定 y=5，下面的表格解释了这些算术运算符：
+运算符	描述	例子	结果
++	加	x=y+2	x=7
+-	减	x=y-2	x=3
+*	乘	x=y*2	x=10
+/	除	x=y/2	x=2.5
+%	求余数 (保留整数)	x=y%2	x=1
+++	累加	x=++y	x=6
+--	递减	x=--y	x=4
+JavaScript 赋值运算符
+赋值运算符用于给 JavaScript 变量赋值。
+给定 x=10 和 y=5，下面的表格解释了赋值运算符：
+运算符	例子	等价于	结果
+=	x=y	 	x=5
++=	x+=y	x=x+y	x=15
+-=	x-=y	x=x-y	x=5
+*=	x*=y	x=x*y	x=50
+/=	x/=y	x=x/y	x=2
+%=	x%=y	x=x%y	x=0
+
+
+
+29.用于字符串的 + 运算符
+
+
+30.条件运算符
+variablename=(condition)?value1:value2 
+
+条件的嵌套：
+使用 if....else if...else 语句来选择多个代码块之一来执行。
+
 

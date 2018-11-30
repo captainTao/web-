@@ -21,6 +21,9 @@ isNaN?
 toMD5 is not defined?
 设置cookie.
 
+贪婪匹配？
+全局搜索？
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 // 面向对象编程：
@@ -29,7 +32,7 @@ toMD5 is not defined?
 //类名的第一个字母要大写，以便区分普通函数：
 
 /************************************************/
-// 1.通过现成对象创建：
+1.通过现成对象创建：
 // obj.__proto__在低版本中的IE不支持
 var robot = {
     name: 'Robot',
@@ -51,7 +54,7 @@ var xiaoming = {
     name: '小明'
 };
 
-xiaoming.__proto__ = Student; // 小明从student中继承下来
+xiaoming.__proto__ = Student; // 小明从student中继承下来,集成的一种写法：xiaoming.__proto__ === Student;
 // obj.__proto__在低版本中的IE不支持
 
 xiaoming.name; // '小明'
@@ -60,7 +63,7 @@ xiaoming.run(); // 小明 is running...
 
 /************************************************/
 
-// 2.Object.create()
+2.Object.create()
 // 方法可以传入一个原型对象，并创建一个基于该原型的新对象，但是新对象什么属性都没有
 // 原型对象:
 var Student = {
@@ -85,7 +88,7 @@ xiaoming.__proto__ === Student; // true
 
 /************************************************/
 
-// 3.构造函数：new, 不需要return this
+3.构造函数：new, 不需要return this
 
 function Student(name) {
     this.name = name;
@@ -218,16 +221,9 @@ screen对象表示屏幕的信息，常用的属性有：
 screen.width：屏幕宽度，以像素为单位；
 screen.height：屏幕高度，以像素为单位；
 screen.colorDepth：返回颜色位数，如8、16、24。
-
-screen.availWidth
-screen.availHeight
-screen.width
-screen.height
-screen.colorDepth
-screen.pixelDepth
-screen.availLeft
-screen.availTop
+screen.pixelDepth:色彩深度, 大于8
 screen.orientation
+
 
 location
 location对象表示当前页面的URL信息。例如，一个完整的URL：
@@ -235,8 +231,6 @@ location对象表示当前页面的URL信息。例如，一个完整的URL：
 //------http://www.example.com:8080/path/index.html?a=1&b=2#TOP
 
 可以用location.href获取。
-
-
 要获得URL各个部分的值，可以这么写：
 location.protocol; // 'http'
 location.host; // 'www.example.com'
@@ -270,14 +264,6 @@ back()
 forward()
 新手开始设计Web页面时喜欢在登录页登录成功时调用history.back()，试图回到登录前的页面。这是一种错误的方法。
 任何情况，你都不应该使用history这个对象了。
-history.length
-history.scrollRestoration
-history.state
-history.go
-history.back
-history.forward
-history.pushState
-history.replaceState
 
 ///////////////////////////////////////////////////////////////////////////////////// DOM操作
 DOM方法操作：
@@ -1508,6 +1494,7 @@ $('xx').highlight({
 插件函数最后要return this;以支持链式调用；
 插件函数要有默认值，绑定在$.fn.<pluginName>.defaults上；
 用户在调用时可传入设定值以便覆盖默认值。
+
 /////////////////////////////////////// JQuery----end ////////////////////////////////////
 
 
@@ -1588,9 +1575,160 @@ try {
 
 
 
-
 /////////////////////////////////////// new start 2018.11.21 ////////////////////////////////////
 
+cookie编程：
+// refer:https://www.cnblogs.com/Darren_code/archive/2011/11/24/Cookie.html
+---------------------------------
+document.cookie = "username=Darren;path=/;domain=qq.com"  //同域名之间访问，/问放跟目录下
+document.cookie = "username=Darren;secure" // 设置为secure时，是https传输
+
+<html>
+<head></head>
+<body onLoad="checkCookie()">
+</body>
+<script type="text/javascript">
+
+function setCookie(c_name,value,expiredays){
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate()+expiredays);
+    document.cookie=c_name+ "=" +escape(value)+ ((expiredays==null) ? "" : "; expires="+exdate.toGMTString());
+    console.log(document.cookie);
+}
+
+function getCookie(c_name){
+    if (document.cookie.length>0){ 
+        c_start=document.cookie.indexOf(c_name + "=");
+        if (c_start!=-1){ 
+            c_start=c_start + c_name.length+1 ;
+            c_end=document.cookie.indexOf(";",c_start);
+            if (c_end==-1) {
+              c_end=document.cookie.length;
+            }
+            return unescape(document.cookie.substring(c_start,c_end));
+          } 
+      }else{
+        return "";
+      }    
+}
+
+function checkCookie(){
+  username=getCookie('username')
+  if (username!=null && username!=""){
+    alert('Welcome again '+username+'!');
+  }else {
+    username=prompt('Please enter your name:',"");
+    if (username!=null && username!=""){
+      setCookie('username',username,365);
+    }
+  }
+}
+
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+}
+</script>
+</html>
+/*
+refer:https://blog.csdn.net/l1028386804/article/details/51691035
++-----------------------------------------------------
+//设置cookie
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+//获取cookie
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+//清除cookie  
+function clearCookie(name) {  
+    setCookie(name, "", -1);  
+}  
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
+checkCookie(); 
++-----------------------------------------------------
+*/
+
+
+ajax编程
++-----------------------------------------------------------
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX</title>
+    </head>
+    <body>
+        手机号 ：<input type="text" id="mobile"><br>
+        <input id="bt01" type="button" value="查询">
+    <script>
+    var xmlHttp;
+    function geturl()
+    {
+        //创建请求对象
+        createXMLHttpRequest();
+        //发送请求
+        var url="http://www.h5edu.cn/Public/weixin/test01.php";
+        var param="tel="+document.getElementById("mobile").value;
+        send(url,"get",param);
+        //调用回调函数处理返回结果 
+    }
+    //创建请求对象封装
+    function createXMLHttpRequest() 
+    {
+        if(window.ActiveXObject)
+        {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP"); //微软浏览器
+        }else{
+            xmlHttp=new XMLHttpRequest();  //google,safari浏览器，手机浏览器
+        }
+    }
+    //发送网络请求封装
+    function send(url,method,param)
+    {xmlHttp.open(method,url,true);
+     xmlHttp.onreadystatechange=callback;//设置回调
+     xmlHttp.send(param);
+    }
+    //回调函数封装
+    function callback()
+    {
+        var result;
+        if(xmlHttp.readyState==4)
+        {
+            if(xmlHttp.status==200)//返回状态码
+            {
+                result=xmlHttp.responseText;
+                alert(result);
+            }
+        }
+    }
+    document.getElementById("bt01").onclick=geturl;
+    </script>
+    </body>
+</html>
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 NaN
 null,undefined
@@ -1601,7 +1739,7 @@ use strict的优点：var申明的变量不是全局变量
 \x表示16进制
 \u表示unicode
 
-// ------------------------字符串
++----------------------------------------------------------字符串String:
 
 var name = '小明';
 var age = 20;
@@ -1647,7 +1785,9 @@ substring 用于字符串
 name.charAt(n)获取name定义的字符串的第n个字符；
 name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
 
-// ------------------------字符和数字的互转：
+
+
++-----------------------------------------------------------------字符和数字的互转：
 parseInt('3')
 //3
 String(3)
@@ -1702,11 +1842,12 @@ s.toString()//"1234678ageg";用于字符串
 > b.join('')
 '12345'
 
-// ------------------------数组：
++-----------------------------------------------------------------数组Array：
 
 var c =new Array()
 var c =new Array(1,2,3)
-d=[4,5,6]
+var d=[4,5,6]
+var f=[[],[],[]];
 
 var arr = [1, 2, 3];
 arr.length; // 3
@@ -1729,9 +1870,13 @@ sort()
 reverse()
 concat()
 join()
+splice()
+
+arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
 
 
-// ------------------------对象, if , while ：
++-----------------------------------------------------------------对象object, if , while ：
+
 delete xiaoming.school
 'toString' in xiaoming
 xiaoming.hasOwnProperty('toString')
@@ -1763,6 +1908,8 @@ for(var i of a){
     console.log(i);
 }
 
+
++-----------------------------------------------------------------typeof,prototype,setInterval:
 typeof
 包装对象
 parseInt,parseFloat
@@ -1835,9 +1982,13 @@ onclick,ondbclick,oncontextmenu,onfocus,onblur：
 
 outerHTML、innerText不是W3C标准
 
+
++-----------------------------------------------------------------JSON .parse() .stringify() regExp
+
 //json字符串转obj:
 var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
 eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
+
 
 JSON.parse();
 JSON.parse('{"name":"小明","age":14}', function (key, value) {
@@ -1870,13 +2021,16 @@ var xiaoming = {
 };
 
 regExp.test()
-'a,b;; c  d'.split(/[\s\,\;]+/);
-var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分
+'a,b;; c  d'.split(/[\s\,\;]+/); //正则分割
+
+var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分组
 re.exec('010-12345'); // ['010-12345', '010', '12345']
 re.exec('010 12345'); // null
 
-贪婪匹配？
-全局搜索？
+Date.parse('2015-06-24T19:49:22.875+08:00');
+var d = new Date(1435146562875);
+d.toLocaleString(); 
+d.toUTCString(); 
 
 
 function test(){
@@ -1893,9 +2047,20 @@ document.getElementById("content").style.visibility="visible" //通过样式
 document.getElementById("div1").style.display=type; //通过display
 style.overflow
 style.left/top
+
 bt01.onclick=function(){}
-oncontextmenu,onclick,mouserover,mouseon,mouseout.
+
+oncontextmenu, onclick, onmouserover, onmouseout, onmouseup, onmousedown.
+onload, onunload, beforeunload
+onchange
+onreadystatechange
+onfocus, onblur
+
+ontouchstart, ontouchmove, ontouchend
+keyup, keypress, keydown
+
 event.KeyCode
+
 case中用||不生效？
 
 function fun()
@@ -1951,3 +2116,53 @@ open("http://news.baidu.com/");
 close();
 document.bgColor=s; //设置dom背景颜色
 window.location.href="https://www.baidu.com/"; // window可以省略不写；
+
+
+test.call(dog); //call函数的使用
+-----------------------
+<html>  
+<head>  
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+  <script type="text/javascript" language="javascript">  
+      
+    var dog = {  //dog相当于一个obj;
+      name: "kaka",
+      age: 23
+    };  
+    function test() {  
+       window.alert(this.name);  
+    }   
+   test.call(dog); //等价于dog.test();  
+    
+  </script>  
+</head>  
+<body>  
+</body>  
+</html> 
+
+
+\ 可以折行
+
+显示/隐藏：
+content.style.visibility="hidden/visible"
+content.style.display="block/none"
+content.style.overflow="hidden/visible/scroll/auto"
+
+
+parentNode 获取父节点
+childNodes 获取所有子节点
+firstChild 获取第一个子节点
+lastChild 获取最后一个子节点
+nextSibling 获取下一个同胞节点
+previousSibling 获取上一个同胞节点
+
+.nodeName
+.nodeValue
+
+document.getElementById()
+document.getElementsByTagName()
+document.getElementsByClassName()
+
+var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,parsefloat
+var userinput=window.prompt("请输入商品价格","");
+
