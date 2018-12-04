@@ -17,12 +17,18 @@ true
 true
 
 arguments?
-isNaN?
+isNaN? not a Number
+INfinity;无限大
+
 toMD5 is not defined?
 设置cookie.
 
 贪婪匹配？
 全局搜索？
+
+.toString
+String(xx)
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1797,13 +1803,16 @@ Number('3')
 '8'-0
 //8
 
-// 字符串转为number类型，-0或者-'0'
+// 字符串转为number类型，-0或者-'0',或者*1
 > s
 '1234455'
 > s-'0'
 1234455
 > s-0
 1234455
+
+typeof("23252"*1)
+"number"
 
 // number转为字符串类型，+'0'
 > typeof(3+0)
@@ -1830,7 +1839,7 @@ arr=[1,2,3,4,5]
 arr.toString()//"1,2,3,4,5";用于数组
 s='1234678ageg'
 s.toString()//"1234678ageg";用于字符串
-
+String(3) // "3"
 
 > s
 '1234455'
@@ -1878,8 +1887,8 @@ arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
 +-----------------------------------------------------------------对象object, if , while ：
 
 delete xiaoming.school
-'toString' in xiaoming
-xiaoming.hasOwnProperty('toString')
+'toString' in xiaoming   // true
+xiaoming.hasOwnProperty('toString') //false
 
 条件语句加括号
 JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true
@@ -2020,6 +2029,8 @@ var xiaoming = {
     }
 };
 
+
+//g,i,m;
 regExp.test()
 'a,b;; c  d'.split(/[\s\,\;]+/); //正则分割
 
@@ -2031,6 +2042,13 @@ Date.parse('2015-06-24T19:49:22.875+08:00');
 var d = new Date(1435146562875);
 d.toLocaleString(); 
 d.toUTCString(); 
+
+// 获取时间戳，世界各地的时间戳是一致的；Date.now()获取的是时间戳
+if (Date.now) {
+    alert(Date.now()); // 老版本IE没有now()方法
+} else {
+    alert(new Date().getTime());
+}
 
 
 function test(){
@@ -2166,3 +2184,55 @@ document.getElementsByClassName()
 var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,parsefloat
 var userinput=window.prompt("请输入商品价格","");
 
+
+===========================================
+
+练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
+解答：
+// 关键点是在map中用字符串做数字运算达到隐式转型，这里用 x-0
+// x*1也可以，但是会被评论吞掉，x+0不行，会被进行字符串连接
+function stingToint(s){
+    return s.split('').map(x => x-0).reduce((x,y) => x*10 + y);
+}
+
+练习:请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+解答：
+// 先都小写，然后首字母大写，用正则表达式更简洁
+function normolize(arr){
+    return arr.map(x => x.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())); // 这个L什么鬼？L通前面的x
+}
+
+
+str.replace():
+------------------------
+name = "Doe, John";
+name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"); 
+// "John Doe"
+
+name = '"a", "b"';
+name.replace(/"([^"]*)"/g, "'$1'"); 
+// "'a', 'b'"
+
+name = 'aAV BbD cfGGc';
+uw=name.replace(/\b\w+\b/g, function(word){
+  return word.substring(0,1).toUpperCase()+word.substring(1).toLowerCase();}
+  );
+// "Aav Bbd Cfggc"
+
+
+练习：小明希望利用map()把字符串变成整数，他写的代码很简洁：
+解答：
+// parseInt(value,index)，放map中下标从0自增，导致后面NaN（廖老师给的参考链接有详细说明），修正如下：
+'use strict';
+var arr = ['1', '2', '3'];
+var r;
+r = arr.map(Number);//用arr.map(parseInt)的结果为：1, NaN, NaN
+
+
+----------------------------------
+函数内部声明变量的时候，一定要用var，不用的话，实际声明了一个全局变量
+function f1(){
+    n=999;
+}
+f1();
+alert(n); // 999
