@@ -139,12 +139,12 @@ js总结
 			 this.move=function(){....}
 		 }
 		 var p3=new Player("小王",4,5,6);
-		 5,对对象的成员，属性进行输出；
+	 5,对对象的成员，属性进行输出；
 		 var pro="";
 		 for(pro in object){
 		   document.write("..........");
 		   }
-		 6,prototype也可以扩展对象的功能
+	 6,prototype也可以扩展对象的功能
 20.DOM编程Document Object Model 文档对象模型
      <html>
 	 <head></head>

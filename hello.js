@@ -29,6 +29,10 @@ toMD5 is not defined?
 .toString
 String(xx)
 
+obj.__proto__在低版本中的IE不支持
+
+Babel（https://babeljs.io/）可以转换 ES6中的class为prototype型的传统代码；
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,7 +51,7 @@ var robot = {
         console.log(this.name + ' is running...');
     }
 };
-
+// 赋值robot到student
 var Student = {
     name: 'Robot',
     height: 1.2,
@@ -61,6 +65,7 @@ var xiaoming = {
 };
 
 xiaoming.__proto__ = Student; // 小明从student中继承下来,集成的一种写法：xiaoming.__proto__ === Student;
+
 // obj.__proto__在低版本中的IE不支持
 
 xiaoming.name; // '小明'
@@ -68,6 +73,10 @@ xiaoming.run(); // 小明 is running...
 
 
 /************************************************/
+
+// 通过函数使用object.creat()
+arr ----> Array.prototype ----> Object.prototype ----> null
+foo ----> Function.prototype ----> Object.prototype ----> null
 
 2.Object.create()
 // 方法可以传入一个原型对象，并创建一个基于该原型的新对象，但是新对象什么属性都没有
@@ -85,7 +94,7 @@ function createStudent(name) {
     var s = Object.create(Student);
     // 初始化新对象:
     s.name = name;
-    return s;
+    return s;  //通过函数创建的对象需要返回对象；而通过构造函数，就不要return 对象
 }
 
 var xiaoming = createStudent('小明');
@@ -151,16 +160,51 @@ function createStudent(props) {
 
 /************************************************/
 
+JavaScript的原型继承实现方式就是：
 
+1.定义新的构造函数，并在内部用call()调用希望“继承”的构造函数，并绑定this；
+2.借助中间函数F实现原型链继承，最好通过封装的inherits函数完成；
+3.继续在新的构造函数的原型上定义新方法。
+
+function inherits(Child, Parent) {
+    var F = function () {};
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+}
+
+function Student(props) {
+    this.name = props.name || 'Unnamed';
+}
+
+Student.prototype.hello = function () {
+    alert('Hello, ' + this.name + '!');
+}
+
+function PrimaryStudent(props) {
+    Student.call(this, props);
+    this.grade = props.grade || 1;
+}
+
+// 实现原型继承链:
+inherits(PrimaryStudent, Student);
+
+// 绑定其他方法到PrimaryStudent原型:
+PrimaryStudent.prototype.getGrade = function () {
+    return this.grade;
+};
+
+//+---------------------------------------------
 // class 继承：ES6才支持
 
-/*class不能普及用，现在用还早了点，因为不是所有的主流浏览器都支持ES6的class。如果一定要现在就用上，就需要一个工具把class代码转换为传统的prototype代码，可以试试Babel这个工具。*/
+/*class不能普及用，现在用还早了点，因为不是所有的主流浏览器都支持ES6的class。
+如果一定要现在就用上，就需要一个工具把class代码转换为传统的prototype代码，可以试试Babel（https://babeljs.io/）这个工具。*/
 class Student {
     constructor(name) {
         this.name = name;
     }
 
-    hello() {
+    hello() {  //注意这儿没有function;
         alert('Hello, ' + this.name + '!');
     }
 }
@@ -168,7 +212,7 @@ class Student {
 var xiaoming = new Student('小明');
 xiaoming.hello();
 
-
+//+---------------------------------------------
 class PrimaryStudent extends Student {  //继承用extend
     constructor(name, grade) {
         super(name); // 记得用super调用父类的构造方法!
@@ -1932,7 +1976,6 @@ typeof Math.abs; // 'function'
 
 typeof null; // 'object'
 typeof []; // 'object'
-
 typeof {}; // 'object'
 
 typeof返回的是字符串
@@ -1942,6 +1985,7 @@ typeof返回的是字符串
 函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
 
 任何对象都有toString()方法吗？null和undefined就没有！
+// number.toString()
 123.toString(); // SyntaxError
 123..toString(); // '123', 注意是两个点！
 (123).toString(); // '123'
@@ -2038,16 +2082,17 @@ var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分组
 re.exec('010-12345'); // ['010-12345', '010', '12345']
 re.exec('010 12345'); // null
 
-Date.parse('2015-06-24T19:49:22.875+08:00');
-var d = new Date(1435146562875);
-d.toLocaleString(); 
-d.toUTCString(); 
+Date.parse('2015-06-24T19:49:22.875+08:00'); //1435146562875
+var d = new Date(1435146562875); //Wed Jun 24 2015 19:49:22 GMT+0800 (中国标准时间) {}
+d.toLocaleString();  // "2018/12/5 下午3:10:49"
+d.toUTCString();  // "Wed, 05 Dec 2018 07:10:49 GMT"
+
 
 // 获取时间戳，世界各地的时间戳是一致的；Date.now()获取的是时间戳
 if (Date.now) {
     alert(Date.now()); // 老版本IE没有now()方法
 } else {
-    alert(new Date().getTime());
+    alert(new Date().getTime()); //1543994245316
 }
 
 
