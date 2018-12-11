@@ -32,6 +32,25 @@ referto : https://www.jianshu.com/p/549aaa5fabaa
 
 网页服务器的端口一般为80
 
++-----------------------------------------------------------------------------
+
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+<style type="text/css">
+    table,tr,td{
+        border: 1px solid green;
+        border-collapse:collapse;/*I am anotation*/
+    }
+</style>
+
+<h1 style="color:pink">内联样式</h1>
+<h6 style="color:green; margin-left:10px">welcome to the www.h5.cn</h6>
+
+<div style="border:3px solid green"></div>
+
+<table width = "400px" height = "100px" bgcolor="green" align="center" cellspacing="1"></table>
++-----------------------------------------------------------------------------
+
 
 flex布局：
 /*****************************************/
@@ -176,6 +195,7 @@ div>p{
 	<input type="button" value="提交" id="id1">
 </body>
 </html>
+
 /***********************************/
 元素之间的转换：
 

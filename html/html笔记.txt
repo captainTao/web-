@@ -7,49 +7,10 @@
         }
     </style>
 
-js格式：
-<html>
-    <head>
-	    <meta charset="utf-8">
-	    <title>我的第一个js程序</title>
-	    <script>
-            document.write("hello, hello!!!<br>");
-			document.write("captain-wanghaitao is handsome.<br>");
-        </script>
-    </head>
-	
-    <body>
-          <script>
-            document.write("h5edu good<br>");
-         </script>
-    </body>
-	
-    <script>
-           document.write("endend....<br>");
-    </script>
-</html>
 
 
 
 
-"测试网页"html
-<html>
-   <head>
-   <meta charset="utf-8">
-    <title>我的测试网页</title>
-   </head>
-    <body>
-	  <!标题标签>
-	  <h1>一级标签</h1>
-	  <h2>二级标签</h2>
-	  <h3>三级标签</h3>
-	  <h6>六级标签</h6>
-	  <!段落标签>
-	  <p>hello,美女，你好！！</p>
-	  <p>出任CEO</p>
-	  赢取人生的巅峰，奋发图强。<br>oh,yeah!
-    </body>
-</html>
 
 课程笔记：
 <br>：换行 <p>：换行隔一列

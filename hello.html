@@ -1,4 +1,4 @@
-<!--
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -6,9 +6,33 @@
 	<title>Document</title>
 </head>
 
--->
-
 HTML称为超文本标记语言
+
+网页重定向：
+<meta http-equiv="refresh" content="2; https://www.baidu.com/">  // content中2表示：2s后刷新
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="HTML超文本标记语言,Java培训,Android培训,安卓培训,PHP培训"> 
+<meta name="description" content="IT html css"> 
+<meta name="Author" content="姓名"> 
+<meta name="Robots" content="all|none|index|noindex|follow|nofollow">  //定义被爬虫的内容，意义参考onenote
+<base href="" target="_blank">  <!-- 默认用新页面打开 -->// base 设置整体链接的打开状态
+<!-- 
+设定为all：文件将被检索，且页面上的链接可以被查询； 
+设定为none：文件将不被检索，且页面上的链接不可以被查询； 
+设定为index：文件将被检索； 
+设定为follow：页面上的链接可以被查询； 
+设定为noindex：文件将不被检索，但页面上的链接可以被查询； 
+设定为nofollow：文件将不被检索，页面上的链接可以被查询 
+-->
+<link rel="stylesheet" href="1.css">    <!--设置外链样式表-->
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="icon" href="1.icon">   <!--设置icon图标-->
+
+<img src="swk.jpg" alt="">
+<input type="image" src="reg.jpg">
+
+<h1 style="color:pink">内联样式</h1>
+<h6 style="color:green; margin-left:10px">welcome to the www.h5.cn</h6>
 
 
 <marquee></marquee> ：用来插入一段滚动的文字或图片
@@ -22,28 +46,10 @@ scrolldelay, scrollamount,
 hspace(水平距离),vspace(垂直距离)
 <marquee behavior="slide" direction="up" height="10px" bgcolor="orange"><img src="swk.jpg" alt=""></marquee> 
 
-音乐标签：
+页面背景音乐标签：
 <embed src="1.mp3" hidden="true" autostart="true" loop="true">
 
 
-网页重定向：
-<meta http-equiv="refresh" content="2; https://www.baidu.com/">  
-// content中2表示：2s后刷新
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<meta name="keywords" content="HTML超文本标记语言"> 
-<meta name="description" content="IT html css"> 
-<meta name="Author" content="姓名"> 
-<meta name="Robots" content="all|none|index|noindex|follow|nofollow">  //意义参考onenote
-<base href="" target="_blank">  <!-- 默认用新页面打开 -->
-<!-- 
-设定为all：文件将被检索，且页面上的链接可以被查询； 
-设定为none：文件将不被检索，且页面上的链接不可以被查询； 
-设定为index：文件将被检索； 
-设定为follow：页面上的链接可以被查询； 
-设定为noindex：文件将不被检索，但页面上的链接可以被查询； 
-设定为nofollow：文件将不被检索，页面上的链接可以被查询 
--->
 
 删除线标签
 <del></del>     <s></s>   工作里尽量使用del
@@ -59,15 +65,24 @@ hspace(水平距离),vspace(垂直距离)
 
 target="_self"(默认)   target="_blank"(新页面)
 
-cellspacing = "2" 默认值为2 单元格间距
-cellpadding = "2" 内容到边框的距离
-
 
 锚链接：
+<div id = "top"></div>>
 <a href="#top"></a>  回到顶部，给每一个div部分打上一个id;
 
 <a href="#"></a> 空连接
 <a href="1.rar">下载</a> 可以做下载功能，但不推荐
+
+<a href="chun.html">春意绵绵</a>  //网页的跳转也用href
+<li><a href="#" title="张艺谋酬劳250万">铁道部千万天价宣传片调查：张艺谋酬劳250万</a></li>  <!--  title为鼠标滑动显示 -->
+
+<font color="red" size="5">这是被影响的格式</font>
+
+<img src="地址" title="鼠标滑过显示" alt=“图片不存在显示”/>
+
+<!-- 水平线标签 -->
+<hr/>  
+
 
 <ol>
 	<li type="value1", start = "value2"></li>
@@ -79,10 +94,20 @@ cellpadding = "2" 内容到边框的距离
 	<li></li>
 </ul>
 
-<dl>  //自定义列表
-    <dt></dt>
-    <dd><</dd>
+//自定义列表
+<dl> 
+    <dt>title</dt>
+    <dd>item</dd>
+    <dd>item</dd>
 <dl>
+
+
+table属性：
+单元格间距：
+cellspacing = "2" 默认值为2 单元格间距
+cellpadding = "2" 内容到边框的距离
+align: left|center|right  如果放到tr,td里面则是内容对齐，放在table里面，则是表格对齐方式
+bgcolor = "red"
 
 带有标题<caption>的表格如下：
 <table border="6">
@@ -108,16 +133,40 @@ cellpadding = "2" 内容到边框的距离
 
 表格中：跨行用<th colspan="2"></th>
        跨列用<th rowspan="2"></th>
+<!-- 注意：用跨行跨列的时候，其他行的列都会受影响： -->
+<table border="1" bordercolor="red" width="300" height="300">
+ <tr>
+     <td colspan="3"></td>
+     <!-- <td></td>
+     <td></td> -->
+ </tr>
+ <tr>
+     <td align="center"> 张三</td>
+     <td></td>
+     <td rowspan="2"></td> <!-- 它会影响下一列少一个td -->
+ </tr>
+ <tr>
+     <td></td>
+     <td></td>
+     <!-- <td></td> -->
+ </tr>
+</table>
 
+
+<!-- 表单 -->
+<form action="1.php" method="post"></form> //action:把文件提交给谁处理
+
+//表单控制：
 <input type="text" name="" value="123" maxlength="6" readonly="readonly" disabled="disabled">  //maxlength, readonly, disabled, size(正整数，控件显示的宽度)
+
 <input type="" name="" checked="checked">  //checked
 
-<select multiple="multiple">   //multiple
+<select multiple="multiple">   //设置下拉为多选项multiple
 	<option>option1</option>
 	<option selected="selected">option2</option>  //selected
 </select>
 
-
+<select>
 <optgroup label="北京市">  // label：分组名称
 	<option>朝阳区</option>
 	<option>昌平区</option>
@@ -128,12 +177,35 @@ cellpadding = "2" 内容到边框的距离
 	<option>锦江区</option>
 	<option>天府新区</option>
 </optgroup>
+</select>
 
 <textarea cols="100" rows="30">...</textarea>
 
 
 // type='image',图片标签,图像形式的提交按钮；
 <input type="image" name="" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3586370282,3183710070&fm=27&gp=0.jpg">
+
+
+<form action="form_action.asp" method="get"> 
+
+<!-- 表单元素"input type括号后面都需要/" -->      
+<input type="text"/>文本框
+<input type="password"/>密码框
+        
+<input type="radio">单选框
+<input type="radio" name="sex"/>男<br>
+<input type="radio" name="sex"/>女<br>
+<input type="radio" name="sex1" id="1"/><label for="1">男</label><br>
+<input type="radio" name="sex2" id="2"/><label for="2">女</label><br>
+   
+<input type="checkbox">复选框
+<input type="checkbox" name="fuxuan"/>bike<br>
+<input type="checkbox" name="fuxuan" checked="checked"/>car<br>
+
+<input type="file" name="">
+<input type="submit" name="">
+<input type="button" name="">
+<input type="reset" name="">
 
 html5表单控件：
 <input type="url" name="">
@@ -143,7 +215,8 @@ html5表单控件：
 <input type="number" name="">  // 数字控件
 <input type="range" name="" max="100" step="5" value="20"/> //滑块控件；
 
-
+<button>戳我一下试试,嘿嘿！</button>
+<font size="1" color="red"></font>
 字符集（charset）:
 utf-8是目前最常用的字符集编码方式，常用的字符集编码方式还有gbk和gb2312
 gb2312 简单中文
@@ -155,9 +228,6 @@ UTF-8则包含全世界所有国家需要用到的字符
 <sup>上标</sup>   <sub>下标</sub>
 2<sup>3</sup>  h<sub>2</sub>0
 
-<link rel="stylesheet" href="1.css">    <!--设置外链样式表-->
-<link rel="icon" href="1.icon">   <!--设置icon图标-->
-
 <fieldset>
      <legend>健康信息</legend><br>
 	  身高：<input type="text"/>
@@ -165,14 +235,72 @@ UTF-8则包含全世界所有国家需要用到的字符
 	  三围：<input type="text"/>
 </fieldset>
 
+<!-- 注释：由于链接的目标匹配 iframe 的名称，所以链接会在 iframe 中打开 -->
+<iframe src="http://www.h5edu.cn" name="iframe_a" width="400px",height="200px"> </iframe>
+<p><a href="http://www.9miaoedu.com/college/" target="iframe_a">九秒教育</a></p>
 
- <img src="地址" title="鼠标滑过显示" alt=“图片不存在显示”/>
-<li><a href="#" title="张艺谋酬劳250万">铁道部千万天价宣传片调查：张艺谋酬劳250万</a></li>  <!--  title为鼠标滑动显示 -->
+<!-- 用frameset来进行布局 -->
+<frameset rows="25%,50%,25%">
+       <frame src="daohang.html" noresize="noresize">
+       <frame src="test2.html" name="showframe">
+           <frameset cols="50%,50%">
+               <frame src="test1.html">
+               <frame src="test3.html">
+           </frameset>
+</frameset> 
+<!-- 不能将frameset和body标签同时使用！ -->
 
-<!-- 水平线标签 -->
-<hr/>  
+note:
+1：尽可能少的使用无语义的标签div和span；
+2：在语义不明显时，既可以使用div或者p时，尽量用p, 因为p在默认情况下有上下间距，对兼容特殊终端有利；
+3：不要使用纯样式标签，如：b、font、u等，改用css设置。
+4：需要强调的文本，可以包含在strong或者em标签中strong默认样式是加粗（不要用b），em是斜体（不用i）；
 
-/////////////////////////////////////////////////////////
+
+
+<!-- 设置表格细线： -->
+
+NO.1
++----------------------------------
+<style type="text/css">
+    table,tr,td{
+        border: 1px solid green;
+        border-collapse:collapse;/*换成cellpacing = "0px"效果有点不一样*/
+    }
+</style>
+<table width = "400px" height = "100px" align="center"> <!-- cellspacing="0px" -->
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+NO.2
++----------------------------------
+<table width = "400px" height = "100px" bgcolor="green" align="center" cellspacing="1"> <!-- cellspacing默认为2px -->
+    <tr bgcolor="white">
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr bgcolor="white">
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
 -----------------------------------------------------------
 js57 JSON处理：
 <html>
