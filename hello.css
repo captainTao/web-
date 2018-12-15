@@ -39,7 +39,7 @@ referto : https://www.jianshu.com/p/549aaa5fabaa
 <style type="text/css">
     table,tr,td{
         border: 1px solid green;
-        border-collapse:collapse;/*I am anotation*/
+        border-collapse:collapse;/*I am annotation*/
     }
 </style>
 
@@ -111,7 +111,7 @@ align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对
 
 
 css样式：
-/////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 
 设置颜色：
@@ -125,7 +125,8 @@ div{
 *{属性:值;}  /*  *代表所有标签，那么会给所有标签加上这个样式 */
 
 
-font-size
+font-size:  浏览器默认为16px;
+line-height: 默认为18px;
 font-family:微软雅黑;   // 直接写中文名字
 font-family:Microsoft YaHei; // 写英文名字， 或者unicode编码
 
@@ -135,7 +136,7 @@ escape('宋体')
 
 
 Font-style:设置文字的斜体。
-Italic   斜体
+Italic   斜体s
 normal  正常
 line-height   行高  // 行高=文字大小+上边距+下边距,value可以为：40px|2em|120%|2
 
@@ -146,13 +147,14 @@ font-size:16px;
 font的连写：
 文字大小和字体不能缺少，其余跟需求写；
 
-{font: font-style font-weight  font-size/line-height  font-family;}
+{font: font-style font-weight:(bold/normal);  font-size/line-height  font-family;}
 .p-weight{
 	font:italic 700 40px/80px 微软雅黑;
 }
 
 
 /***********************************/
+/*属性选择器*/
 1.交集选择器：（中间不能有空格）
 h3.class{
 	color: orange;
@@ -203,6 +205,7 @@ Display: inline			    将元素转化为行内元素
 Display：inline-block	    将元素转化行内块元素
 Display: block				将元素转化为块元素
 
+Dispaly: none;
 
 1.块元素
 Div,h1-h6,p,ol,ul,dl,table,address,blockquote,form.....
@@ -253,20 +256,30 @@ ul li{
 }
 
 // 背景样式：
-div{
-	background-color: #ffffff;
 
+div{
+	background-color: #ffffff;  /*背景颜色会影响到padding，但不会影响到margin; border也是包括了padding*/
 	background-image: url("../png");  /*设置背景图片一定要设置宽度和高度*/
 	width: 800px;
 	height: 600px;
 	background-repeat: repeat|repeat-x|repeat-y|no-repeat;
-	background-position: 30px 40px; /*第一个值是水平方向，第二个是垂直方向*/
+	background-position: 30px 40px; /*第一个值是水平方向，第二个是垂直方向*/center cnter/ top right/ 
 	background-position: top right; /*设置背景图从何处开始展示；只写一个值时，另外一个值默认居中*/
 	background-attachment: scroll|fixed; /*设置背景是否滚动*/
 }
+比如设置search框中的图标，可以设置background: url("serch.jpg") no-repeat right ;
+
 
 ul{
 	list-style: none; /*去掉列表前的原点显示*/
+}
+
+设置li项目前面的图标：
+li{ 
+	/*清除列表项符号*/
+	list-style: none;
+	background: url("li.gif") no-repeat left center;
+	text-indent:1em;
 }
 
 /***********************************/
@@ -274,6 +287,10 @@ ul{
 
 行内样式 > 页内样式 > 外部引用样式 > 浏览器默认样式
 important > 内联 > ID > 伪类|类 | 属性选择  > 标签  > 伪对象 >  通配符 > 继承
+
+
+继承：文字颜色，文字大小，字体，行高，字体相关
+不能继承： <a href=..></a> <h1></h1>，边框，外内边距，盒子相关属性
 
 <!DOCTYPE html>
 <html lang="en">
@@ -318,6 +335,13 @@ margin: 20px;（上、下、左、右各20px。）
 margin: 20px 40px;（上、下20px；左、右40px。）
 margin: 20px 40px 60px;（上20px；左、右40px；下60px。）
 margin: 20px 40px 60px 80px;（上20px；右40px；下60px；左80px。）
+
+border:
+border-width
+border-style
+border-color
+border-right,border-top,border-left,border-bottom
+
 
 border-collapse: collapse; //设置表格边框合并；可以去掉单元格之间的间隙；
 

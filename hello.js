@@ -844,6 +844,10 @@ $(function () {
     // init...
 });
 
+$(function(){
+    $('.box p').html('this is JQ modified content!').css('background-color','green');
+});
+    
 JQ 过滤器（Filter）
 过滤器一般不单独使用，它通常附加在选择器上，帮助我们更精确地定位元素。观察过滤器的效果：
 /*

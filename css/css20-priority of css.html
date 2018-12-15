@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The priority of CSS</title>
+	<style type="text/css">
+	   p.son{      /*--3--*/   
+			font-size: 120px;
+			color: yellow;
+		}
+		p{        /*--5--*/   
+			font-size:30px;
+			color:red;
+		}
+		.father .son{    /*--2--*/       
+			font-size:50px;
+			color: pink;
+		}
+		.son{        /*--3--*/   
+			font-size: 60px;
+			color: blue;
+		}
+		.father #baby{   /*--1--*/
+			font-size:12px;
+			color: orange;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="father">
+		<p class="son" id="baby">14期威武</p>
+	</div>
+</body>
+</html>
