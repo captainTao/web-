@@ -32,6 +32,16 @@ referto : https://www.jianshu.com/p/549aaa5fabaa
 
 网页服务器的端口一般为80
 
+5.在大的盒子中画一个小盒子？
+嵌套div，写好每个div的margin,size;
+
+6.设置不可见
+visiblity:hidden;  元素隐藏占位置
+display:none; 元素隐藏不占位置
+overflow:hidden; 将超出部分的元素隐藏
+
+7.css网络优化，精灵图，滑动门，ement快捷键
+
 +-----------------------------------------------------------------------------
 
 <link rel="stylesheet" type="text/css" href="mystyle.css">
@@ -52,73 +62,17 @@ referto : https://www.jianshu.com/p/549aaa5fabaa
 +-----------------------------------------------------------------------------
 
 
-flex布局：
-/*****************************************/
-http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
----------------------
-.box{
-  display: flex;
-}
-.box{
-  display: inline-flex; /* 行内元素也可以使用 */
-}
-.box{
-  display: -webkit-flex; /* Safari webkit内核的浏览器许加前缀*/
-  display: flex;
-}
-div{
-    display: flex;
-    align-items:center;
-}
----------------------
-容器属性：
-flex-direction
-.box {
-	flex-direction: row | row-reverse | column | column-reverse;
-}
-flex-wrap
-.box{
-	flex-wrap: nowrap | wrap | wrap-reverse;
-}
-flex-flow
-.box{
-	flex-flow: <flex-direction> || <flex-wrap>;  /*默认为row nowrap*/
-}
-
-
-justify-content
-.box{
-	justify-content: flex-start | flex-end | center | space-between | space-around;  /*主轴对齐方式*/
-}
-align-items   // 这个只能用于flex布局中
-.box{
-	align-items: flex-start | flex-end | center | baseline | stretch;  /*交叉轴对齐方式*/
-}
-align-content /*多轴对齐方式，如果只有一根轴线，此属性不生效*/
-.box{
-	align-content: flex-start | flex-end | center | space-between | space-around |stretch;  
-}
----------------------
-项目属性：
-
-order: <integer>;    /*排序，默认0，越小越前*/
-flex-grow: <number>;      /*放大，默认0，都为1则等分，为2则大一倍*/
-flex-shrink: <number>;       /*缩小，默认1，如果空间不足，该项目将缩小*/
-flex-basis: <length> | auto;      /*分配占据主轴的空间，默认auto*/
-flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]   /*默认0 1 auto; 快捷值：auto(1 1 auto) none(0 0 auto)*/
-align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对齐，默认auto*/
-
-
 
 css样式：
-///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+font
+/***********************************/
 设置颜色：
 div{
 	color:#00ff00;
 	color:rgb(255,255,30);
-	backgound-color:rgba(255,0,0,0.5);  /*a为透明度*/
+	background-color:rgba(255,0,0,0.5);  /*a为透明度*/
 }
 
 
@@ -153,8 +107,8 @@ font的连写：
 }
 
 
+属性选择器
 /***********************************/
-/*属性选择器*/
 1.交集选择器：（中间不能有空格）
 h3.class{
 	color: orange;
@@ -198,9 +152,9 @@ div>p{
 </body>
 </html>
 
-/***********************************/
-元素之间的转换：
 
+元素之间的转换：
+/***********************************/
 Display: inline			    将元素转化为行内元素
 Display：inline-block	    将元素转化行内块元素
 Display: block				将元素转化为块元素
@@ -235,8 +189,15 @@ img,input
 ※能设置宽高
 ※在一行上显示
 
+
+css规范
 /***********************************/
+1.行内元素尽量里面包含行类元素
+2.有些块元素不能包含其他块级元素，比如p,h中不能包含div
+
+
 css伪类：
+/***********************************/
 a:link{}
 a:visited{}
 a:hover{}|
@@ -245,6 +206,8 @@ a:focus{} /*获取焦点*/
 
 p:first-child{}
 
+
+background
 /***********************************/
 text-decoration: None|underline|line-through
 text-index:1em; 文字的缩进距离
@@ -262,7 +225,7 @@ div{
 	background-image: url("../png");  /*设置背景图片一定要设置宽度和高度*/
 	width: 800px;
 	height: 600px;
-	background-repeat: repeat|repeat-x|repeat-y|no-repeat;
+	background-repeat: repeat|repeat-x|repeat-y|no-repeat; /*默认值为repeat*/
 	background-position: 30px 40px; /*第一个值是水平方向，第二个是垂直方向*/center cnter/ top right/ 
 	background-position: top right; /*设置背景图从何处开始展示；只写一个值时，另外一个值默认居中*/
 	background-attachment: scroll|fixed; /*设置背景是否滚动*/
@@ -282,8 +245,9 @@ li{
 	text-indent:1em;
 }
 
-/***********************************/
+
 样式优先级：
+/***********************************/
 
 行内样式 > 页内样式 > 外部引用样式 > 浏览器默认样式
 important > 内联 > ID > 伪类|类 | 属性选择  > 标签  > 伪对象 >  通配符 > 继承
@@ -319,8 +283,9 @@ important > 内联 > ID > 伪类|类 | 属性选择  > 标签  > 伪对象 >  �
 </body>
 </html>
 
+
+padding，margin,border
 /***********************************/
-padding，margin
 padding:内边距
 margin:外边距
 1.都有后缀可以带:left, right, top, bottom;
@@ -336,9 +301,19 @@ margin: 20px 40px;（上、下20px；左、右40px。）
 margin: 20px 40px 60px;（上20px；左、右40px；下60px。）
 margin: 20px 40px 60px 80px;（上20px；右40px；下60px；左80px。）
 
+
+margin-left:auto 让盒子左侧充满
+margin-right:auto 让盒子右侧充满
+margin:0 auto
+
+
+vertical-align:middle 让行内，行内块元素设置垂直距离
+vertical-align:middle  常与 display:inline-block 配合使用， 表格对此属性最敏感
+
+
 border:
 border-width
-border-style
+border-style:solid,dotted,dashed,..
 border-color
 border-right,border-top,border-left,border-bottom
 
@@ -369,76 +344,23 @@ input[class="username"]{
 	 padding:0;
 }
 
-/***********************************/
-question:
-1.在大的盒子中画一个小盒子？
-嵌套div，写好每个div的margin,size;
 
+
+float
 /***********************************/
 #div3{
 	float: left|right|both;
 	clear: both; /*清除浮动的不良影响*/
-	overflow: hidden|scroll|auto|visible;
+	overflow: hidden|scroll|auto|visible;  /*对父元素框设置*/
 }
 
+浮动的特点：
+1：浮动找浮动，不浮动找不浮动
+2：浮动只影响后面的元素
+3：浮动以元素顶部为基准对齐
+4：浮动可是实现模式转换（span 设置浮动可以设置宽高）
+5：让块级元素在一行显示
 
-绝对定位：
-/***********************************/
-#div4{
-	position: absolute;
-}
-
-特点
-※ 给元素设置绝对定位，从浏览器左上角出发设置位置。
-※ 给元素设置了绝对定位，元素会不占位置（脱标）
-※ 当盒子发生嵌套关系时，如果父集元素没有设置定位，子盒子设置了绝对定位并赋值，子盒子的位置从浏览器左上角出发。
-※ 当盒子发生嵌套关系时，如果父集元素设置了绝对定位，子盒子设置了绝对定位并赋值，子盒子的位置从父集元素左上角出发。
-※ 绝对定位会将行内元素，转换为行内块。
-
-
-相对定位：
-/***********************************/
-#div4{
-	position: relative;
-}
-
-特点：
-※ 给元素设置了相对定位，位置是从自身位置出发。
-※ 给元素设置了相对定位，还占据原来的位置（不脱标）。
-※ 子绝父相（工作中使用最多），子元素绝对定位，父元素相对定位。  /*子绝父相*/ 
-※ 给元素设置相对定位，不能将行内元素转换为行内块元素。
-
-
-
-固定定位
-/***********************************/
-#div4{
-	position: fixed;   //网站中悬浮的广告
-}
-
-特点:
-※ 固定定位不占据原来的位置，会脱标。
-※ 给元素设置固定定位之后，元素位置从浏览器左上角出发。
-※ 可以将行内元素转换为行内块元素。
-.nav{
-	position: fixed;
-	top:0;
-}
-.ad1{
-	position: fixed;
-	left:0;
-	top:65px;
-}
-.ad2{
-	position: fixed;
-	right:0;
-	top:65px;
-}
-
-
-#div5{
-	position: static;  /*静态定位，标准方式, 默认此选项*/
-}
 
 清除浮动的方式
 /***********************************/
@@ -446,23 +368,28 @@ question:
 2：通过设置clear:left | right  | both  
 3：给父容器设置 overflow:hidden   
 4：通过伪元素清除浮动： 
-.clearfix:after{
+.clearfix:after{    /*调用的时候用class="clearfix"*/
        content:"";
-       height:0; line-height:0;
+       display:block;
+       height:0; 
+       line-height:0;
        visibily:hidden;
        clear:both;
-       display:block;
   }
 .clearfix{
   	 zoom:1    　　　为了兼容IE浏览器
  }
 
+
  设置定位的盒子居中对齐的步骤：
+ /***********************************/
  1.设置父盒子为相对定位
  2.设置子盒子left为父盒子的宽度一半
  3.设置子盒子左边距为自己宽度的一半
 
+note:
  margin:0 auto;只能让在标准流的盒子居中
+
  .father{
  	width: 700px;
  	height: 300px;
@@ -501,6 +428,125 @@ question:
 开启GPU加速后，GPU自动将这个元素放在一个新的“层”，直接偏移这个“层”来提高渲染速度（个人理解，若有错误欢迎指正）。*/
 
 
+
+定位方向：
+/***********************************/
+left, top, bottom, right
+
+
+静态定位：
+/***********************************/
+#div{
+	position: static;  ----这个是默认值，标准流
+}
+
+
+绝对定位：
+/***********************************/
+#div4{
+	position: absolute;
+}
+
+特点
+※ 给元素设置绝对定位，从浏览器左上角出发设置位置。
+※ 给元素设置了绝对定位，元素会不占位置（脱标）
+※ 当盒子发生嵌套关系时，如果父集元素没有设置定位，子盒子设置了绝对定位并赋值，子盒子的位置从浏览器左上角出发。
+※ 当盒子发生嵌套关系时，如果父集元素设置了绝对定位，子盒子设置了绝对定位并赋值，子盒子的位置从父集元素左上角出发。
+※ 绝对定位会将行内元素，转换为行内块。
+
+
+相对定位：
+/***********************************/
+#div4{
+	position: relative;
+}
+
+特点：
+※ 给元素设置了相对定位，位置是从自身位置出发。
+※ 给元素设置了相对定位，还占据原来的位置（不脱标）。
+※ 子绝父相（工作中使用最多），子元素绝对定位，父元素相对定位。  /*子绝父相*/ 
+※ 给元素设置相对定位，不能将行内元素转换为行内块元素。
+
+
+
+固定定位
+/***********************************/
+#div4{
+	position: fixed;   //网站中悬浮的广告,导航栏
+}
+
+特点:
+※ 固定定位不占据原来的位置，会脱标。
+※ 给元素设置固定定位之后，元素位置从浏览器左上角出发。
+※ 可以将行内元素转换为行内块元素。（不推荐，推荐使用display:inline-block;）
+.nav{
+	position: fixed;
+	top:0;
+}
+.ad1{
+	position: fixed;
+	left:0;
+	top:65px;
+}
+.ad2{
+	position: fixed;
+	right:0;
+	top:65px;
+}
+
+
+#div5{
+	position: static;  /*静态定位，标准方式, 默认此选项*/
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+CSS初始化
+腾讯：
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+body{font:12px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline} 
+em{font-style:normal} 
+li{list-style:none} 
+img{border:0;vertical-align:middle} 
+table{border-collapse:collapse;border-spacing:0} 
+p{word-wrap:break-word} 
+
+
+新浪：
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
+body{background:#fff;color:#333;font-size:12px; margin-top:5px;font-family:"SimSun","宋体","Arial Narrow";}
+ul,ol{list-style-type:none;} 
+select,input,img,select{vertical-align:middle;} 
+a{text-decoration:none;} 
+a:link{color:#009;} 
+a:visited{color:#800080;} 
+a:hover,a:active,a:focus{color:#c00;text-decoration:underline;} 
+
+淘宝：
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; } 
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; } 
+h1, h2, h3, h4, h5, h6{ font-size:100%; } 
+address, cite, dfn, em, var { font-style:normal; } 
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; } 
+small{ font-size:12px; } 
+ul, ol { list-style:none; } 
+a { text-decoration:none; } 
+a:hover { text-decoration:underline; } 
+sup { vertical-align:text-top; } 
+sub{ vertical-align:text-bottom; } 
+legend { color:#000; } 
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; } 
+table { border-collapse:collapse; border-spacing:0; }
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
 
 双飞翼布局：
 /***********************************************/
@@ -586,4 +632,63 @@ img{
 	display: none | visible; /*隐藏了之后会从布局中消失*/
 	visibility: hidden;  /*隐藏了之后不会从布局中消失*/
 }
+
+
+
+
+flex布局：
+/*****************************************/
+http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
+---------------------
+.box{
+  display: flex;
+}
+.box{
+  display: inline-flex; /* 行内元素也可以使用 */
+}
+.box{
+  display: -webkit-flex; /* Safari webkit内核的浏览器许加前缀*/
+  display: flex;
+}
+div{
+    display: flex;
+    align-items:center;
+}
+---------------------
+容器属性：
+flex-direction
+.box {
+	flex-direction: row | row-reverse | column | column-reverse;
+}
+flex-wrap
+.box{
+	flex-wrap: nowrap | wrap | wrap-reverse;
+}
+flex-flow
+.box{
+	flex-flow: <flex-direction> || <flex-wrap>;  /*默认为row nowrap*/
+}
+
+
+justify-content
+.box{
+	justify-content: flex-start | flex-end | center | space-between | space-around;  /*主轴对齐方式*/
+}
+align-items   // 这个只能用于flex布局中
+.box{
+	align-items: flex-start | flex-end | center | baseline | stretch;  /*交叉轴对齐方式*/
+}
+align-content /*多轴对齐方式，如果只有一根轴线，此属性不生效*/
+.box{
+	align-content: flex-start | flex-end | center | space-between | space-around |stretch;  
+}
+---------------------
+项目属性：
+
+order: <integer>;    /*排序，默认0，越小越前*/
+flex-grow: <number>;      /*放大，默认0，都为1则等分，为2则大一倍*/
+flex-shrink: <number>;       /*缩小，默认1，如果空间不足，该项目将缩小*/
+flex-basis: <length> | auto;      /*分配占据主轴的空间，默认auto*/
+flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]   /*默认0 1 auto; 快捷值：auto(1 1 auto) none(0 0 auto)*/
+align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对齐，默认auto*/
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+<style type="text/css">
+	.father{
+		width: 400px;
+		height: 300px;
+		background-color: yellow;
+		top:50px;
+		left: 50px;
+		position: relative;
+	}
+	.son{
+		width: 200px;
+		height: 200px;
+		background-color: orange;
+		top:50px;
+		left: 150px;
+		position: absolute;
+	}
+</style>
+</head>
+<body>
+
+<div class="father">
+	 <div class="son"></div>
+</div>
+
+</body>
+</html>
+
+<!-- 
+当父容器没有设置高度，里面的盒子没有设置浮动的情况下会将父容器的高度撑开。一旦父容器中的盒子设置浮动，脱离标准文档流，父容器立马没有高度，下面的盒子会跑到浮动的盒子下面。出现这种情况，我们需要清除浮动   ???-->
