@@ -7,8 +7,8 @@
 		width: 400px;
 		height: 300px;
 		background-color: yellow;
-		top:-50px;
-		left: 10px;
+		top:50px;
+		left: 40px;
 		position: fixed;
 		z-index: 20000;
 		/*display: none;*/
@@ -18,11 +18,11 @@
 		display: block;
 	}
 	.father:hover .son-span{
-		color: yellow
+		color: blue;
 	}
 	.son{
 		width: 200px;
-		height: 300px;
+		height: 500px;
 		background-color: green;
 		top:50px;
 		left: 150px;
@@ -31,10 +31,11 @@
 		position: absolute;
 	}
 	.son-span{
-		color: red
+		color: red;
+		display: block;
 	}
    .c1{
-   	width: 200px;
+   		width: 200px;
 		height: 200px;
 		background-color: orange;
    }
@@ -43,9 +44,8 @@
 <body>
 
 <div class="father">
-	<span class="son-span">sjsjs</span>
-	 <div class="son">
-	 	
+	 <span class="son-span">This is son span content.</span>
+	 <div class="son">	
 	 </div>
 </div>
 <div class="c1"></div>
@@ -53,4 +53,12 @@
 </html>
 
 <!-- 
-当父容器没有设置高度，里面的盒子没有设置浮动的情况下会将父容器的高度撑开。一旦父容器中的盒子设置浮动，脱离标准文档流，父容器立马没有高度，下面的盒子会跑到浮动的盒子下面。出现这种情况，我们需要清除浮动 -->
+
+1.fixed,absolute不占位置; static,relative占位置;
+2.display:none不占位置;visibility:hidden占位置;
+3.z-index可以排列层级关系
+4..class:hover #id可以指定class hover动作的时候，id的动作
+
+
+当父容器没有设置高度，里面的盒子没有设置浮动的情况下会将父容器的高度撑开。一旦父容器中的盒子设置浮动，脱离标准文档流，父容器立马没有高度，下面的盒子会跑到浮动的盒子下面。出现这种情况，我们需要清除浮动
+ -->

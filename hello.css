@@ -362,23 +362,14 @@ float
 5：让块级元素在一行显示
 
 
-清除浮动的方式
+清除浮动的方式 
 /***********************************/
-1：给父容器设置高度
-2：通过设置clear:left | right  | both  
-3：给父容器设置 overflow:hidden   
-4：通过伪元素清除浮动： 
-.clearfix:after{    /*调用的时候用class="clearfix"*/
-       content:"";
-       display:block;
-       height:0; 
-       line-height:0;
-       visibily:hidden;
-       clear:both;
-  }
-.clearfix{
-  	 zoom:1    　　　为了兼容IE浏览器
- }
+当父容器没有设置高度，里面的盒子没有设置浮动的情况下会将父容器的
+高度撑开。一旦父容器中的盒子设置浮动，脱离标准文档流，父容器立马没有高度，下面的盒子会跑到浮动的盒子下面。出现这种情况，我们需要清除浮动。
+1：给父容器设置高度 2：通过设置clear:left | right  | both   3：给父容器设置 overflow:hidden
+4：通过伪元素清除浮动：  .clearfix:after{    /*调用的时候用class="clearfix"*/ content:"";
+display:block;        height:0;         line-height:0; visibily:hidden;
+clear:both;   } .clearfix{      zoom:1    　　　为了兼容IE浏览器 }
 
 
  设置定位的盒子居中对齐的步骤：
@@ -433,6 +424,8 @@ note:
 /***********************************/
 left, top, bottom, right
 
+占位置：static, relative.
+不占位置：absolute, fixed
 
 静态定位：
 /***********************************/
