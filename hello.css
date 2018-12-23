@@ -221,7 +221,7 @@ ul li{
 // 背景样式：
 
 div{
-	background-color: #ffffff;  /*背景颜色会影响到padding，但不会影响到margin; border也是包括了padding*/
+	background-color: #ffffff;  /*背景颜色会影响到padding，也会影响到border. 但不会影响到margin; */
 	background-image: url("../png");  /*设置背景图片一定要设置宽度和高度*/
 	width: 800px;
 	height: 600px;
@@ -231,6 +231,11 @@ div{
 	background-attachment: scroll|fixed; /*设置背景是否滚动*/
 }
 比如设置search框中的图标，可以设置background: url("serch.jpg") no-repeat right ;
+
+设置精灵图： 
+backgroud:url("../png") -900px -300px;
+
+如果要设置两个背景，则设置一个span标签，设置a,span标签的背景
 
 
 ul{
@@ -309,14 +314,14 @@ margin:0 auto
 
 vertical-align:middle 让行内，行内块元素设置垂直距离
 vertical-align:middle  常与 display:inline-block 配合使用， 表格对此属性最敏感
-
+vertical-align:middle 只有在 display:inline-block/inline/table-cell才会生效
 
 border:
 border-width
 border-style:solid,dotted,dashed,..
 border-color
 border-right,border-top,border-left,border-bottom
-
+border:0 none; // 0是0像素，none是内存不渲染
 
 border-collapse: collapse; //设置表格边框合并；可以去掉单元格之间的间隙；
 
@@ -393,6 +398,7 @@ float
 
 note:
  margin:0 auto;只能让在标准流的盒子居中
+ 设置盒子左外边距为auto，将盒子冲到右边
 
  .father{
  	width: 700px;
@@ -555,6 +561,45 @@ table { border-collapse:collapse; border-spacing:0; }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+规避脱标流
+/***********************************************/
+/*设置盒子左外边距为auto，将盒子冲到右边*/
+<div class="father">
+	<div class="son"></div>
+</div>
+
+		.father{
+			width: 500px;
+			height: 500px;
+			background:red;
+		}
+		.son{
+			width: 100px;
+			height: 100px;
+			background: green;			
+			/*设置盒子左外边距为auto，将盒子冲到右边*/
+			margin-left:auto;
+		}
+
+<div class="father">
+	<div class="son"></div>
+</div>
+
+/***********************************************/
+img{
+	vertical-align: middle;/*图片和文字垂直居中对齐*/
+}
+<div class="box">
+	<img src="1.png" alt="">天太热了！hahhahhaha 
+</div>
+
+
+#div3{
+	display: none | visible; /*隐藏了之后会从布局中消失*/
+	visibility: hidden;  /*隐藏了之后不会从布局中消失*/
+}
+
+
 双飞翼布局：
 /***********************************************/
 <html>
@@ -610,36 +655,6 @@ table { border-collapse:collapse; border-spacing:0; }
 </div>
 </body>
 </html>  
-
-/***********************************************/
-/*设置盒子左外边距为auto，将盒子冲到右边*/
-<div class="father">
-	<div class="son"></div>
-</div>
-
-		.father{
-			width: 500px;
-			height: 500px;
-			background:red;
-		}
-		.son{
-			width: 100px;
-			height: 100px;
-			background: green;			
-			/*设置盒子左外边距为auto，将盒子冲到右边*/
-			margin-left:auto;
-		}
-
-img{
-	vertical-align: middle;/*图片和文字垂直居中对齐*/
-}
-
-
-#div3{
-	display: none | visible; /*隐藏了之后会从布局中消失*/
-	visibility: hidden;  /*隐藏了之后不会从布局中消失*/
-}
-
 
 
 
