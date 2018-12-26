@@ -162,7 +162,7 @@ Display: block				将元素转化为块元素
 Dispaly: none;
 
 1.块元素
-Div,h1-h6,p,ol,ul,dl,table,address,blockquote,form.....
+div,h1-h6,p,ol,ul,dl,table,address,blockquote,form.....
 特点：
 ※独占一行
 ※可以设置宽高
@@ -316,6 +316,8 @@ vertical-align:middle 让行内，行内块元素设置垂直距离
 vertical-align:middle  常与 display:inline-block 配合使用， 表格对此属性最敏感
 vertical-align:middle 只有在 display:inline-block/inline/table-cell才会生效
 
+让文字在一个div中居中，除了设置margin-top(文字如果用p标签无效，用div括起来)之外，还可以设置line-height跟div的高度保持一致；
+
 border:
 border-width
 border-style:solid,dotted,dashed,..
@@ -366,6 +368,10 @@ float
 4：浮动可是实现模式转换（span 设置浮动可以设置宽高）
 5：让块级元素在一行显示
 
+
+case1:要么都用float元素，这样下边部分就不存在脱靶；
+case2:用了float，要么设置了高度，则后面跟的就不会脱靶；
+case3:用了float元素的，都清除浮动clearfix，则就变成了有高度，不会脱靶。
 
 清除浮动的方式 
 /***********************************/
@@ -440,6 +446,8 @@ note:
 
 
 定位方向：
+(设置position之后才会生效)；
+不设置position就用margin来设置距离；
 /***********************************/
 left, top, bottom, right
 

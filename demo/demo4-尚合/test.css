@@ -1,0 +1,211 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "宋体","微软雅黑";
+	font-size: 12px;
+
+}
+input{
+	border: 0 none;
+	outline-style: none;
+
+}
+
+#header, #nav, #mainpic, #notifiction, #below, #footer, #bottom{
+	width: 980px;
+	margin: 0 auto;
+	position: relative;
+}
+#header{
+	width: 980px;
+	height: 39px;
+	margin: 30px auto;
+	
+}
+#logo{
+	width: 179px;
+	height: 39px;
+	display: inline-block;
+	float: left;
+}
+#search{
+	float: right;
+}
+#searchinput{
+	height: 30px;
+	width: 179px;
+	background: url("./images/search2.jpg") right center no-repeat;
+	border:1px solid #ECECEC;
+	background-position: 146px 0px;
+}
+#navbar{
+	width: 100%;
+	background:url("images/nav_bg.png");
+}
+#nav{
+	margin: 0 auto;
+	width: 980px;
+	height: 60px;
+}
+#nav ul li{
+	list-style: none;
+	float: left;
+	width: 145px;
+	height: 55px;
+	background: url("images/nav_bg-line.png") no-repeat right top;
+	text-align: center;
+	vertical-align: middle;
+}
+#nav ul li:hover{
+	color:#7CB609;
+}
+#nav li a {
+	display: inline-block;
+	text-align: center;
+	vertical-align: center;
+	padding-top: 15px;
+}
+.news, .support{
+	margin: 10px 23px;
+}
+.support p{
+	text-align: left;
+	margin-top: 20px;
+}
+.news ul li, .support ul li{
+	list-style: none;
+	text-align: left;
+	margin: 10px 0px;
+	border-bottom: 1px dashed #DCDCDC;
+
+}
+.support ul li{
+	border-bottom:none;
+	text-indent: 5px;
+	border-left:3px solid #7AB800; 
+}
+.news ul li a, .support ul li a{
+	display: inline-block;
+	color: black;
+	text-decoration: none;
+}
+.news ul li.first-news a{
+	color:red;
+}
+.news ul li a:hover, .support ul li a:hover{
+	color: #7CB609;
+}
+
+#mainpic{
+	background: url("images/banner.jpg");
+	width: 980px;
+	height: 597px;
+	margin: 0 auto;
+}
+#bnoti{
+	width: 100%;
+	background: #FBFBFB;
+	border-top:1px solid #EFEFEF;
+	border-bottom:1px solid #EFEFEF;
+	margin-bottom: 12px;
+	height: 29px;
+}
+
+#nleft, #nright{
+	display: inline-block;
+	margin-top: 7px; 
+}
+#nright{
+	float: right;
+}
+#below{
+	display: block;
+}
+.below{
+	position: relative;
+	text-align: center;
+	width: 318px;
+	height: 230px;
+	float:left;
+	border: 1px solid #E4E4E4;
+	margin-bottom: 20px;
+	margin-right: 10px; 
+}
+.right{
+	margin-right: 0px;
+}
+.news-pub{
+	width: 100%;
+	text-align: left;
+	margin: 20px 10px;
+}
+.news-pub img{
+	vertical-align: middle;
+	
+}
+.news-pub span{
+	color: #7AB800;
+}
+.pro-pic{
+	margin-top: 20px; 
+}
+.prepic{
+	position: absolute;
+	top: 114px;
+	left: 23px;
+}
+.nextpic{
+	position: absolute;
+	top: 114px;
+	right: 23px; 
+}
+.ffooter, .bbottom{
+	width: 100%;
+	/*float: left;  这儿不设置float的话，就用clearfix*/
+	background-color: #2D2D2D;
+	color: #C7C7C7;
+}
+/*
+case1:要么都用float元素，这样下边部分就不存在脱靶；
+case2:用了float，要么设置了高度，则后面跟的就不会脱靶；
+case3:用了float元素的，都清除浮动clearfix，则就变成了有高度，不会脱靶。
+*/
+#footer dl{
+	float: left;
+	width: 50px;
+	margin: 20px 0px;
+	margin-right: 20px; 
+	padding: 20px 0px;
+}
+#footer dt{
+	color: #707070;
+	margin-top: 20px;
+}
+#footer{
+	margin-bottom: 80px; 
+}
+.ffooter{
+	border-bottom: 1px dashed #414141;
+}
+#bottom{
+	text-align: center;
+	height: 60px;
+	/*margin: 20px auto;*/
+	line-height: 30px;
+	background: #2D2D2D;
+	padding: 20px 0;  /* 设置高度一般用padding，少用margin,且需要设置background color. */
+
+}
+.clearfix:after{
+	content:".";
+	display: block;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+	clear: both;
+}
+.clearfix{
+	zoom:1;
+}
