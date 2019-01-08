@@ -235,8 +235,15 @@ div{
 设置精灵图： 
 backgroud:url("../png") -900px -300px;
 
-如果要设置两个背景，则设置一个span标签，设置a,span标签的背景
+如果要设置两个背景，则多设置一个span标签，再分别设置a,span标签的背景;
+设置hover的背景
+li a:hover
+li a:hover span  
 
+<ul>
+    <li><a href=""><span></span></a></li>
+    <li><a href=""><span></span></a></li>
+</ul>
 
 ul{
 	list-style: none; /*去掉列表前的原点显示*/
@@ -398,6 +405,7 @@ case3:用了float元素的，都清除浮动clearfix，则就变成了有高度�
 
  设置定位的盒子居中对齐的步骤：
  /***********************************/
+ 水平和垂直均可以用这种方法
  1.设置父盒子为相对定位
  2.设置子盒子left为父盒子的宽度一半
  3.设置子盒子左边距为自己宽度的一半

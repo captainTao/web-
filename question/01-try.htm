@@ -4,20 +4,28 @@
 	<title>test</title>
 <style type="text/css">
 	.father{
-		width: 400px;
+		width: 500px;
 		height: 300px;
 		background-color: yellow;
-		top:50px;
-		left: 50px;
+		top:100px;
+		left: 100px;
 		position: relative;
 	}
 	.son{
-		width: 200px;
+		width: 240px;
 		height: 200px;
-		background-color: orange;
-		top:50px;
-		left: 150px;
 		position: absolute;
+		background-color: orange;
+		top:50%;
+		margin-top: -100px;
+		left: 50%;
+		margin-left: -120px;
+		border: 1px solid black;
+		display: inline-block;
+		/*float: left;*/
+	}
+	.son1{
+		background-color: green; 
 	}
 </style>
 </head>
@@ -25,6 +33,7 @@
 
 <div class="father">
 	 <div class="son"></div>
+	 <div class="son son1"></div>
 </div>
 
 </body>
