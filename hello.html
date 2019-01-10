@@ -28,6 +28,52 @@ HTML称为超文本标记语言
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 <link rel="icon" href="1.icon">   <!--设置icon图标-->
 
++- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - 
+网页细节规范：
+head区是指HTML代码的<head>和</head>之间的内容。 
+必须加入的标签 
+a)  公司版权注释  <!--- The site is designed by EHM,Inc 07/2005 --->
+b)  网页显示字符集 
+简体中文：<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb2312">
+繁体中文：<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+英 语：<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+c)  网页制作者信息  <META name="author" content="webmaster@maketown.com"> 
+d)  网站简介  <META NAME="DESCRIPTION" CONTENT="xxxxxxxxxxxxxxxxxxxxxxxxxx">
+e)  搜索关键字  <META NAME="keywords" CONTENT="xxxx,xxxx,xxx,xxxxx,xxxx,">
+f)  网页的css规范  <LINK href="../css/style.css" rel="stylesheet" type="text/css">
+g)  网页标题  <title>xxxxxxxxxxxxxxxxxx</title>
+
+可以选择加入的标签 
+a)  设定网页的到期时间。一旦网页过期，必须到服务器上重新调阅。 
+<META HTTP-EQUIV="expires" CONTENT="Wed, 26 Feb 1997 08：21：57 GMT"> 
+b)  禁止浏览器从本地机的缓存中调阅页面内容。 
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+c)  用来防止别人在框架里调用你的页面。
+<META HTTP-EQUIV="Window-target" CONTENT="_top">
+d)  自动跳转。
+<META HTTP-EQUIV="Refresh" CONTENT="5;URL=http：//www.yahoo.com">  5指时间停留5秒
+e)  网页搜索机器人向导。用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引。
+<META NAME="robots" CONTENT="none">
+CONTENT的参数有all,none,index,noindex,follow,nofollow。默认是all。 
+f)  收藏夹图标  <link rel = "Shortcut Icon" href="favicon.ico">
+g)  所有的javascript的调用尽量采取外部调用. 
+<SCRIPT LANGUAGE="JavaScript" SRC="script/xxxxx.js"></SCRIPT> 
+h)  附<body>标签： 
+<body>标签不属于head区，这里强调一下，为了保证浏览器的兼容性，必须设置页面背景<body bgcolor="#FFFFFF">
+
+1.在网页中中文应首选使用宋体。英文和数字首选使用verdana 和arial 两种字体。
+2.一般使用中文宋体的9pt 和11pt 或12px 和14.7px 这是经过优化的字号，黑体字或者宋体字加粗时，一般选用11pt 和14.7px 的字号比较合适。
+3.不用br来人工分段
+4.空白应该尽量使用 text-indent, padding, margin, hspace, vspace 以及透明的gif 图片来实现
+5.行距建议用百分比来定义，常用的两个行距的值是line-height:120%/150%. 
+6.缩进，p { text-indent: 2em; } 然后给每一段加上 <p> 标记，注意，一般情况下，请不要省略 </p> 结束标记 。
+7.在浏览器里，当我们点击空链接时，它会自动将当前页面重置到首端，从而影响用户正常的阅读内容，我们用代码“javascript:void(null)”代替原来的“#”标记
+js关闭a连接的跳转：
+<a href="javascript:;">context</a>
+<a href="javascript:void(0)">context</a>
+
++- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 <img src="swk.jpg" alt="">
 <input type="image" src="reg.jpg">
 

@@ -657,8 +657,8 @@ textarea {
     resize: none; /*防止多行文本框拖动*/
 }
 img {
-    border: 0;
-    vertical-align: middle; /* 去掉图片低测默认的3像素空白缝隙*/
+    border: 0; /* 去掉图片低测默认的3像素空白缝隙*/
+    vertical-align: middle;
 }
 
 table {
@@ -719,7 +719,6 @@ s, i, em {
 .hide {
     display: none
 }
-
 
 
 
