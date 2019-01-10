@@ -34,6 +34,10 @@ obj.__proto__在低版本中的IE不支持
 Babel（https://babeljs.io/）可以转换 ES6中的class为prototype型的传统代码；
 
 <script type="text/javascript" src="1.js"></script>
+
+js关闭a连接的跳转：
+<a href="javascript:;">context</a>
+<a href="javascript:void(0)">context</a>
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 // 面向对象编程：

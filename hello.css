@@ -388,7 +388,9 @@ case3:用了float元素的，都清除浮动clearfix，则就变成了有高度�
 1：给父容器设置高度
 2：通过设置clear:left | right  | both  
 3：给父容器设置 overflow:hidden   
-4：通过伪元素清除浮动： 
+4：通过伪元素清除浮动：
+
+单伪类元素标签法： 
 .clearfix:after{    /*调用的时候用class="clearfix"*/
        content:"";
        display:block;
@@ -401,6 +403,17 @@ case3:用了float元素的，都清除浮动clearfix，则就变成了有高度�
   	 zoom:1    　　　为了兼容IE浏览器
  }
 
+双伪类元素标签法：
+.clearfix:before, .clearfix:after {
+content: "";
+display: table;
+}
+.clearfix:after {
+clear: both;
+}
+.clearfix {
+zoom: 1;/*IE678*/
+}
 
 
  设置定位的盒子居中对齐的步骤：
@@ -529,6 +542,49 @@ left, top, bottom, right
 }
 
 
+.cursor{
+	cursor: pointer; /*手*/
+	cursor: move; /*四角箭头*/
+	cursor: text; /*文本广标*/
+	cursor: default; /*小箭头*/
+}
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+权重问题：
+left比right，权重高。有left又有right的时候，执行left的值。
+top比bottom，权重高。有top又有bottom的时候，执行top的值。
+
+半透明：
+opacity：0.4；   优点方便。缺点：里面的内容也会半透明。
+C3的技术来解决半透明：
+background: rgba(0,0,0,0.3);
+background: rgba(0,0,0, .3);
+
+定位问题：
+定位中，两个定位Static和relative不能给行内元素设置宽高，另外两个abosolute和fix可以。
+
+层级问题: （谁高）
+标准流盒子，低于浮动的盒子，浮动的盒子又低于定位的盒子。
+定位高于浮动，浮动高于标准流。（高低和占不占位置无关）（除去static之外）。
+
+用法：
+1、必须有定位。（除去static之外）。
+2、给定z-index的值为层级的值。（不给默认为0）
+（层级为0的盒子，也比标准流和浮动高。）
+（层级为负数的盒子，比标准流和浮动低。）
+（层级不取小数）
+（层级一样，后面的盒子比前面的层级高。）
+（浮动或者标准流的盒子，后面的盒子比前面的层级高。）
+
+定位中：abselute是不占位置的，relative是占位的。而层级的高低，是和占不占位置没有关系的。
+
+--------- positon/z-index=0;
+--------- float:left;
+--------- biaozhunliu
+--------- positon/z-index=-1;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 CSS初始化
@@ -571,6 +627,98 @@ fieldset, img { border:0; }
 button, input, select, textarea { font-size:100%; } 
 table { border-collapse:collapse; border-spacing:0; }
 
+京东：
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+    margin: 0;
+    padding: 0;
+}
+fieldset, img, input, button { 	/*fieldset组合表单中的相关元素*/
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+ul, ol {
+    list-style: none;/*清除列表风格*/
+}
+input {
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "宋体", "微软雅黑";
+}
+select, input {
+    vertical-align: middle;
+}
+select, input, textarea {
+    font-size: 12px;
+    margin: 0;
+}
+textarea {
+    resize: none; /*防止多行文本框拖动*/
+}
+img {
+    border: 0;
+    vertical-align: middle; /* 去掉图片低测默认的3像素空白缝隙*/
+}
+
+table {
+    border-collapse: collapse;/*合并外边线*/
+}
+body {
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";	/*宋体，Unicode，统一码*/
+    color: #666;
+    background: #fff
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1; /*IE/7/6*/
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+a:hover {
+    color: #C81623;
+}
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 100%;
+}
+s, i, em {				
+    font-style: normal;
+    text-decoration: none;
+}
+/*公共类*/
+.w {
+    /*版心 提取 */
+    width: 1210px;
+    margin: 0 auto;
+}
+.fl {
+    float: left
+}
+.fr {
+    float: right
+}
+.al {
+    text-align: left
+}
+.ac {
+    text-align: center
+}
+.ar {
+    text-align: right
+}
+.hide {
+    display: none
+}
 
 
 
