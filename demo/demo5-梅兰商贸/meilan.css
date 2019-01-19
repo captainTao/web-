@@ -3,6 +3,18 @@
 	padding: 0;
 	font-size: 12px;
 	font-family: "宋体", "微软雅黑";
+	border: 0 none;
+}
+img{
+	border: 0 none;
+}
+ul li{
+	list-style: none;
+	display: inline-block;
+}
+ul li a{
+	color: black;
+	text-decoration: none;
 }
 .clearfix:after{
 	display: block;
@@ -15,10 +27,9 @@
 .clearfix{
 	zoom:1;
 }
-.navigation, .search, .titleBar, .business, .constructionMateria, .chlidrenSeat, .artwork, .blogroll{
+.navigation, .search, .titleBar, .business, .constructionMateria, .childrenSeat, .artwork, .blogroll, .copyright{
 	width: 980px;
 	margin: 0 auto;
-	/*border: 1px solid green;*/
 }
 .navigationAll{
 	width: 100%;
@@ -37,7 +48,7 @@
 .right{
 	float: right;
 }
-.right ul li{
+.navigation ul li{
 	float: left;
 	list-style: none;
 	height: 26px;
@@ -46,7 +57,7 @@
 	text-align: right;
 	margin-left: 15px;
 }
-.right ul li a{
+.navigation ul li a{
 	text-decoration: none;
 	color: black;
 	display: inline-block;
@@ -93,9 +104,18 @@
 	/*font-size: 15px;*/
 }
 .navleft{
-	margin-top:10px; 
 	width: 200px;
 	background-color: #EBF0F6; 
+	display: inline-block;
+
+}
+.business{
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.navleft, .navcenter, .navright{
+	display: inline-block;
+	height: 212px;
 }
 .market{
 	padding-left: 20px; 
@@ -140,4 +160,187 @@
 }
 .icon6{
 	background: url("./images/icon_6.png") left center no-repeat;
+}
+.constructionMateria{
+	margin-bottom: 10px;
+}
+.title{
+	height: 34px;
+	line-height: 34px;
+	background: #EBF0F6;
+	border-top: 2px solid #C3D6E4;
+	padding-left: 22px;
+	font-weight: 14px;
+	margin-bottom: 10px;
+}
+.mtl, .imgborder, .mtr{
+	border:1px solid #D8D8D8;
+}
+.imgborder{
+	width: 90px;
+	height: 63px;
+	padding: 19px 5px 19px 5px;
+	margin-bottom: 15px;
+}
+.slidebt input[type=button]{
+	background: url("./images/buy.png");
+	width: 98px;
+	height: 26px;
+}
+.slidebarright{
+	margin-left: 10px;
+	width: 230px;
+	height: 145px;
+}
+.slidebarright p, .slidebarright span{
+	font-size: 14px;
+}
+.slidebarright .one{
+	height: 38px;
+	line-height: 38px;
+}
+.slidebarright .two{
+	height: 45px;
+}
+.slidebarright .three{
+	height: 41px;
+}
+.slidebarright span{
+	color: red;
+	font-weight: bold;
+}
+.mtlupleft {
+	width: 344px;
+	height: 150px;
+	margin: 10px 5px 10px 20px;
+}
+.mtl{
+	width: 740px;
+	height: 344px;
+}
+.mtitle{
+	border-bottom: 1px solid #DFE6F0;
+	padding-left: 15px;
+	background-color: #FBFBFB;
+	height: 28px;
+	line-height: 28px;
+}
+.mtr{
+	width: 230px;
+	height: 344px;
+}
+.mtr ul{
+	margin: 10px auto;
+}
+.mtr ul li{
+	list-style: none;
+	display: inline-block;
+	padding: 3px 15px;
+	margin-left: 10px;
+	background: url("./images/li_bg.png") no-repeat left;
+}
+.mtr ul li a {
+	text-decoration: none;
+	color: black;
+}
+.mtr ul li:hover a {
+	color: red;
+	text-decoration: underline;
+}
+.ctlti{
+	background: url("./images/et.png") no-repeat left;
+	text-align: right;
+	width: 742px;
+	border-bottom: 2px solid #01b0e7;
+}
+.ctlti a{
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+	color: #00b0e7;
+	line-height: 25px;
+	cursor: pointer;
+}
+.part{
+	border: 1px solid #CACACA;
+	width: 740px;
+	text-indent: 15px;
+}
+.part1{
+	text-align: center;
+	margin:5px 0px;
+	width: 180px;
+}
+.st1{
+	height: 43px;
+	margin-top: 10px;
+}
+.st2{
+	height: 24px;
+}
+.st3, .st4{
+	height: 24px;
+}
+.st3 del, .st4 span{
+	color: #990000;
+}
+.contentri{
+	width: 232px;
+	height: 311px;
+}
+.babycar{
+	border: 1px solid #CBCBCB;
+	margin:15px auto;
+}
+.childrenSeat, .artwork{
+	margin-bottom: 15px;
+}
+.lamp{
+	width: 200px;
+	margin: 10px 10px 0 10px;
+	color: #999;
+}
+.lamp img{
+	width: 101px;
+	height: 75px;
+	float: left;
+	padding-right: 5px;
+	vertical-align: middle;
+	padding-top: 5px;
+}
+.blogroll{
+	border-top: 1px solid #DDD;
+	border-bottom: 3px solid #097EC3;
+}
+.fflink{
+	padding: 30px 0 20px;
+}
+.text-flink{
+	height: 37px;
+	/*margin-top: 3.5px;*/
+}
+.blogroll ul li{
+	list-style: none;
+	display: inline-block;
+	padding: 0 5px;
+	margin-bottom: 10px;
+}
+.blogroll ul li a {
+	text-decoration: none;
+	color: black;
+}
+.blogroll ul li:hover a{
+	text-decoration: underline;
+	color: red;
+}
+.copyright{
+	text-align: center;
+}
+.copyright ul li{
+	margin: 20px auto;
+	padding: 0px 10px;
+	border-right: 1px solid #ccc;
+}
+.copyright p{
+	margin:10px auto;
 }
