@@ -553,6 +553,7 @@ left, top, bottom, right
 权重问题：
 left比right，权重高。有left又有right的时候，执行left的值。
 top比bottom，权重高。有top又有bottom的时候，执行top的值。
+IE9以下不支持H5C3....
 
 半透明：
 opacity：0.4；   优点方便。缺点：里面的内容也会半透明。

@@ -26,8 +26,6 @@ toMD5 is not defined?
 贪婪匹配？
 全局搜索？
 
-.toString
-String(xx)
 
 obj.__proto__在低版本中的IE不支持
 
@@ -39,10 +37,565 @@ js关闭a连接的跳转：
 <a href="javascript:;">context</a>
 <a href="javascript:void(0)">context</a>
 
+
+
 ////////////////////////////////////js基础////////////////////////////////////////////
 
+NaN
+isNaN()
+null,undefined
+备注：
+Undefined和任何数值计算为NaN;
+NaN 与任何值都不相等，包括 NaN 本身
+任何值和null运算，null可看做0运算。
+false、0 、“”、undefined 、null的bool为false
+console.log(undefined == null); //true
+字符串的+，-，
+
+typeof()查看类型
+转换成数字：
+Number() parseInt() parseFloat()
+转换成BOOl:
+Boolean()
+var b = !!"123";
+转换成字符串：
+toString(), String()
+null和undefined没有tostring方法
+逻辑与&&或||
+
+var
+``
+动态，静态语言
+use strict的优点：var申明的变量不是全局变量
+\x表示16进制
+\u表示unicode
+
+alert(), prompt(), confirm()
+console.log(), console.error(), console.warn()
+
+交换值：
+1.用temp,2.用两个数的和，差，或（具体可见hello.c的文件）
++----------------------------------------------------------结构
+if..else()
+a>b? a:b
+switch(num){
+    case a:
+        break;
+    case b:
+        break;
+    default:
+        statement
+}
+for ()
+while()
+do..wihle()
+function(){alert("hell")} 匿名函数
+无穷大：console.log(1/0);  Infinity
+无穷小：console.log(-1/0); -Infinity
+console.log(Number.MAX_VALUE);
+console.log(Number.MIN_VALUE);
++----------------------------------------------------------字符串String:
+
+var name = '小明';
+var age = 20;
+var message = '你好, ' + name + ', 你今年' + age + '岁了!';
+alert(message);
+// ES6
+var name = '小明';
+var age = 20;
+var message = `你好, ${name}, 你今年${age}岁了!`;  //注意外面是反斜点
+alert(message);
+
+var s = 'Hello, world!';
+s.length; // 13
+s[0]; // 'H'
+s[6]; // ' '
+s[7]; // 'w'
+s[12]; // '!'
+s[13]; // undefined 超出范围的索引不会报错，但一律返回undefined  ，，，，跟python有点像
+
+var s = 'Test';
+s[0] = 'X';
+alert(s); // s仍然为'Test'   ，，，，，，字符串不可变，same as oc.
+
+'a'.toUpperCase()//对大小写敏感
+'A'.toLowerCase()
+
+s.indexOf('world'); // 返回7
+s.indexOf('World'); // 没有找到指定的子串，返回-1
 
 
+var s = 'hello, world'
+s.substring(0, 5); // 从索引0开始到5（不包括5），返回'hello'
+s.substring(7); // 从索引7开始到结束，返回'world'
+
+var a = 'abdb'
+a.slice(0,3)//"abd",这个同样可以用用于数组,，字符串；类似于切片,,,substring效果与slice等价，不包括后面的数，两个参数都是索引
+
+
+slice 可以用于数组，和字符串,类似python中的切片，可以用负数
+splice 用于数组,arrayObject.splice(index,howmany,item1,.....,itemX);
+substring 用于字符串
+
+name.charAt(n)获取name定义的字符串的第n个字符；
+name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
+
+
+
++-----------------------------------------------------------------字符和数字的互转：
+parseInt('3')
+//3
+String(3)
+//"3"
+Number('3')
+//3
+'8'-0
+//8
+
+
+// 字符串转为number类型，-0或者-'0',或者*1，/1
+> s
+'1234455'
+> s-'0'
+1234455
+> s-0
+1234455
+
+typeof("23252"*1)
+"number"
+
+// number转为字符串类型，+'0'
+> typeof(3+0)
+'number'
+> typeof(3+'0')
+'string'
+> 3+'0'
+'30'
+
+trim():移除前导空格、尾随空格和行终止符的原始字符串;IE9以下的版本没有trim()方法
+' a hh \n'.trim()
+"a hh"
+
+// 把一个Array中的空字符串删掉，可以这么写：
+'use strict';
+var arr = ['A', '', 'B', null, undefined, 'C', '  '];
+var r = arr.filter(function (s) {
+    return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
+});
+r; // ['A', 'B', 'C']
+
+toString()
+arr=[1,2,3,4,5]
+arr.toString()//"1,2,3,4,5";用于数组
+s='1234678ageg'
+s.toString()//"1234678ageg";用于字符串
+String(3) // "3"
+
+> s
+'1234455'
+> s.split('')
+[ '1', '2', '3', '4', '4', '5', '5' ]
+
+> b=[1,2,3,4,5]
+[ 1, 2, 3, 4, 5 ]
+> b.join('')
+'12345'
+
++-----------------------------------------------------------------数组Array：
+
+var c =new Array()
+var c =new Array(1,2,3)
+var d=[4,5,6]
+var f=[[],[],[]];
+
+var arr = [1, 2, 3];
+arr.length; // 3
+arr.length = 6;
+arr; // arr变为[1, 2, 3, undefined, undefined, undefined]
+arr.length = 2;
+arr; // arr变为[1, 2]
+
+
+var arr=[10,20,30,'xyz']
+arr.indexOf('10')//元素10的索引0，与字符串保持一致
+var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];//slice方法对应字符串的substring()
+arr.slice(0,3) //从索引0开始，到索引3结束，但不包括索引3: ['A', 'B', 'C']
+arr.slice(3)//从索引3开始到结束: ['D', 'E', 'F', 'G']
+
+
+push和pop（末尾）
+unshift和shift（开头）
+sort()
+reverse()
+concat()
+join()
+splice()
+
+arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
+
+
++-----------------------------------------------------------------对象object, if , while ：
+
+delete xiaoming.school
+'toString' in xiaoming   // true
+xiaoming.hasOwnProperty('toString') //false
+
+条件语句加括号
+JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true
+
+var height = parseFloat(prompt('请输入身高(m):'));
+var weight = parseFloat(prompt('请输入体重(kg):'));
+var userinput = window.prompt('商品价格')；
+
+退出条件用break
+
+for ..in 
+for (var key in o) {    //用于对象属性
+    if (o.hasOwnProperty(key)) {
+        alert(key); // 'name', 'age', 'city'
+    }
+}
+
+var a = ['A', 'B', 'C'];  //用书数组
+for (var i in a) {    //对应元素用of
+    alert(i); // '0', '1', '2'
+    alert(a[i]); // 'A', 'B', 'C'
+}
+
+var a = '1234456';  //用于字符串
+for(var i of a){
+    console.log(i);
+}
+
+
++-----------------------------------------------------------------typeof,prototype,setInterval:
+typeof
+包装对象
+parseInt,parseFloat
+Number(),Boolean()
+typeof 123; // 'number'
+typeof NaN; // 'number'
+typeof 'str'; // 'string'
+typeof true; // 'boolean'
+typeof undefined; // 'undefined'
+typeof Math.abs; // 'function'
+
+typeof null; // 'object'
+typeof []; // 'object'
+typeof {}; // 'object'
+
+typeof返回的是字符串
+判断Array要使用Array.isArray(arr)；
+判断null请使用myVar === null；
+判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
+函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
+
+任何对象都有toString()方法吗？null和undefined就没有！
+// number.toString()
+123.toString(); // SyntaxError
+123..toString(); // '123', 注意是两个点！
+(123).toString(); // '123'
+
+Array.prototype.show = function (){
+    for (var i = 0; i < this.length; i++) {
+        document.write(this[i]+"<br>");
+    }
+}
+
+//下面为去左右空格，左空格，右空格函数, js中需要定义这几个函数
+String.prototype.trim=function(){
+   return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+String.prototype.ltrim=function(){
+   return this.replace(/(^\s*)/g,"");
+}
+String.prototype.rtrim=function(){
+   return this.replace(/(\s*$)/g,"");
+}
+
+String.prototype.qu=function (){var char=this.replace(/\s+/g,"");}
+去除所有空格:   
+str=str.replace(/\s+/g,"");       
+去除两头空格:   
+str=str.replace(/^\s+|\s+$/g,"");
+去除左空格：
+str=str.replace( /^\s*/, '');
+去除右空格：
+str=str.replace(/(\s*$)/g, "");
+
+outerHTML、innerText不是W3C标准
+
+
+setTimeout(fun,1000);
+clearTimeout()
+
+t=setTimeout("count();",1000);//1000ms后调用自己
+clearTimeout(t);
+
+t1=setInterval("start();",1000);//间隔1000ms调用start();
+//看样子setInterval执行function时，会每次把function中执行的结果存储起来。。。
+//所以function中也不需要写return对应的值..
+clearInterval(t1);
+
+onclick,ondbclick,oncontextmenu,onfocus,onblur：
+
+outerHTML、innerText不是W3C标准
+
+
++-----------------------------------------------------------------JSON .parse() .stringify() regExp
+
+//json字符串转obj:
+var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
+eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
+
+
+JSON.parse();
+JSON.parse('{"name":"小明","age":14}', function (key, value) {
+    // 把number * 2:
+    if (key === 'name') {
+        return value + '同学';
+    }
+    return value;
+}); // Object {name: '小明同学', age: 14}
+
+//obj转json字符串：
+JSON.stringify(jsonobj);
+
+JSON.stringify(xiaoming, ['name', 'skills'], '  '); // 第二个参数为过滤，第三个为格式化；
+toJSON:精准化控制序列化
+var xiaoming = {
+    name: '小明',
+    age: 14,
+    gender: true,
+    height: 1.65,
+    grade: null,
+    'middle-school': '\"W3C\" Middle School',
+    skills: ['JavaScript', 'Java', 'Python', 'Lisp'],
+    toJSON: function () {
+        return { // 只输出name和age，并且改变了key：
+            'Name': this.name,
+            'Age': this.age
+        };
+    }
+};
+
+
+//g,i,m;
+regExp.test()
+'a,b;; c  d'.split(/[\s\,\;]+/); //正则分割
+
+var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分组
+re.exec('010-12345'); // ['010-12345', '010', '12345']
+re.exec('010 12345'); // null
+
+Date.parse('2015-06-24T19:49:22.875+08:00'); //1435146562875
+var d = new Date(1435146562875); //Wed Jun 24 2015 19:49:22 GMT+0800 (中国标准时间) {}
+d.toLocaleString();  // "2018/12/5 下午3:10:49"
+d.toUTCString();  // "Wed, 05 Dec 2018 07:10:49 GMT"
+
+
+// 获取时间戳，世界各地的时间戳是一致的；Date.now()获取的是时间戳
+if (Date.now) {
+    alert(Date.now()); // 老版本IE没有now()方法
+} else {
+    alert(new Date().getTime()); //1543994245316
+}
+
+
+function test(){
+   var sum=0;
+   for(var i=0;i<arguments.length;i++){
+       sum+=arguments[i];
+      }
+      return sum;
+}
+
+<a href="javascript:selectAll();">全选</a> 
+// BOM设置显示隐藏
+document.getElementById("content").style.visibility="visible" //通过样式
+document.getElementById("div1").style.display=type; //通过display
+style.overflow
+style.left/top
+
+bt01.onclick=function(){}
+
+oncontextmenu, onclick, onmouserover, onmouseout, onmouseup, onmousedown.
+onload, onunload, beforeunload
+onchange
+onreadystatechange
+onfocus, onblur
+
+ontouchstart, ontouchmove, ontouchend
+keyup, keypress, keydown
+
+event.KeyCode
+
+case中用||不生效？
+
+function fun()
+{
+       var cx=event.clientX;    //相对于当前标签的X坐标
+       var cy=event.clientY;
+       var sx=event.screenX;   //相对于屏幕的X坐标
+       var sy=event.screenY;
+       var msg="clientX="+cx+" clientY="+cy+" screenX="+sx+" screenY="+sy;
+       div.innerHTML=msg;     //设置div里面的内容
+       window.status=msg;      //设置状态条内容
+       window.document.title=msg;  //设置当前文档的标题
+       img.style.top=cy+10;
+       img.style.left=cx+10;
+}
+
+移动端图片跟随效果：
+ontouchstart,ontouchmove,ontouchend
+var touch = e.touches[0];
+<script>
+      var con=document.getElementById("content");
+      var img=document.getElementById("img1");
+      con.ontouchstart=function(e){
+           var touch=e.touches[0];  //参数e是返回用户点的坐标
+           var x=touch.clientX;
+           var y=touch.clientY;
+           img.style.left=x;
+           img.style.top=y;
+      }
+      con.ontouchmove=function(e){
+           e.preventDefault();  //把缺省的事件给屏蔽掉,否在会在微信里面发生滚动，这是H5里面都会有这句代码
+           var touch=e.touches[0];//返回第一次触摸点的坐标
+           var x=touch.clientX;
+           var y=touch.clientY;
+           img.style.left=x;
+           img.style.top=y;
+      }
+      con.ontouchend=function(e){
+            var touch=e.touches[0];
+            img.style.left=0;
+            img.style.top=0;
+      }
+</script>
+
+onblur, onfocus
+var us=document.f1.username.value
+document.f1.password.focus();
+var cityindex=document.forms[0].city.selectedIndex;
+
+//打开一个新窗口
+open("http://news.baidu.com/");
+//关闭窗口
+close();
+document.bgColor=s; //设置dom背景颜色
+window.location.href="https://www.baidu.com/"; // window可以省略不写；
+
+
+test.call(dog); //call函数的使用
+-----------------------
+<html>  
+<head>  
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+  <script type="text/javascript" language="javascript">  
+      
+    var dog = {  //dog相当于一个obj;
+      name: "kaka",
+      age: 23
+    };  
+    function test() {  
+       window.alert(this.name);  
+    }   
+   test.call(dog); //等价于dog.test();  
+    
+  </script>  
+</head>  
+<body>  
+</body>  
+</html> 
+
+
+\ 可以折行
+
+显示/隐藏：
+content.style.visibility="hidden/visible"
+content.style.display="block/none"
+content.style.overflow="hidden/visible/scroll/auto"
+
+
+parentNode 获取父节点
+childNodes 获取所有子节点
+firstChild 获取第一个子节点
+lastChild 获取最后一个子节点
+nextSibling 获取下一个同胞节点
+previousSibling 获取上一个同胞节点
+
+.nodeName
+.nodeValue
+
+document.getElementById()
+document.getElementsByTagName()
+document.getElementsByClassName()
+
+var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,parsefloat
+var userinput=window.prompt("请输入商品价格","");
+
+
+===========================================
+
+练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
+解答：
+// 关键点是在map中用字符串做数字运算达到隐式转型，这里用 x-0
+// x*1也可以，但是会被评论吞掉，x+0不行，会被进行字符串连接
+function stingToint(s){
+    return s.split('').map(x => x-0).reduce((x,y) => x*10 + y);
+}
+
+练习:请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+解答：
+// 先都小写，然后首字母大写，用正则表达式更简洁
+function normolize(arr){
+    return arr.map(x => x.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())); // 这个L什么鬼？L通前面的x
+}
+
+
+str.replace():
+------------------------
+name = "Doe, John";
+name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"); 
+// "John Doe"
+
+name = '"a", "b"';
+name.replace(/"([^"]*)"/g, "'$1'"); 
+// "'a', 'b'"
+
+name = 'aAV BbD cfGGc';
+uw=name.replace(/\b\w+\b/g, function(word){
+  return word.substring(0,1).toUpperCase()+word.substring(1).toLowerCase();}
+  );
+// "Aav Bbd Cfggc"
+
+
+练习：小明希望利用map()把字符串变成整数，他写的代码很简洁：
+解答：
+// parseInt(value,index)，放map中下标从0自增，导致后面NaN（廖老师给的参考链接有详细说明），修正如下：
+'use strict';
+var arr = ['1', '2', '3'];
+var r;
+r = arr.map(Number);//用arr.map(parseInt)的结果为：1, NaN, NaN
+
+
+----------------------------------
+函数内部声明变量的时候，一定要用var，不用的话，实际声明了一个全局变量
+function f1(){
+    n=999;
+}
+f1();
+alert(n); // 999
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 
 // 面向对象编程：
@@ -1793,504 +2346,3 @@ ajax编程
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-NaN
-null,undefined
-var
-``
-动态，静态语言
-use strict的优点：var申明的变量不是全局变量
-\x表示16进制
-\u表示unicode
-
-+----------------------------------------------------------字符串String:
-
-var name = '小明';
-var age = 20;
-var message = '你好, ' + name + ', 你今年' + age + '岁了!';
-alert(message);
-// ES6
-var name = '小明';
-var age = 20;
-var message = `你好, ${name}, 你今年${age}岁了!`;  //注意外面是反斜点
-alert(message);
-
-var s = 'Hello, world!';
-s.length; // 13
-s[0]; // 'H'
-s[6]; // ' '
-s[7]; // 'w'
-s[12]; // '!'
-s[13]; // undefined 超出范围的索引不会报错，但一律返回undefined  ，，，，跟python有点像
-
-var s = 'Test';
-s[0] = 'X';
-alert(s); // s仍然为'Test'   ，，，，，，字符串不可变，same as oc.
-
-'a'.toUpperCase()//对大小写敏感
-'A'.toLowerCase()
-
-s.indexOf('world'); // 返回7
-s.indexOf('World'); // 没有找到指定的子串，返回-1
-
-
-var s = 'hello, world'
-s.substring(0, 5); // 从索引0开始到5（不包括5），返回'hello'
-s.substring(7); // 从索引7开始到结束，返回'world'
-
-var a = 'abdb'
-a.slice(0,3)//"abd",这个同样可以用用于数组,，字符串；类似于切片,,,substring效果与slice等价，不包括后面的数，两个参数都是索引
-
-
-slice 可以用于数组，和字符串,类似python中的切片，可以用负数
-splice 用于数组,arrayObject.splice(index,howmany,item1,.....,itemX);
-substring 用于字符串
-
-name.charAt(n)获取name定义的字符串的第n个字符；
-name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
-
-
-
-+-----------------------------------------------------------------字符和数字的互转：
-parseInt('3')
-//3
-String(3)
-//"3"
-Number('3')
-//3
-'8'-0
-//8
-
-// 字符串转为number类型，-0或者-'0',或者*1
-> s
-'1234455'
-> s-'0'
-1234455
-> s-0
-1234455
-
-typeof("23252"*1)
-"number"
-
-// number转为字符串类型，+'0'
-> typeof(3+0)
-'number'
-> typeof(3+'0')
-'string'
-> 3+'0'
-'30'
-
-trim():移除前导空格、尾随空格和行终止符的原始字符串;IE9以下的版本没有trim()方法
-' a hh \n'.trim()
-"a hh"
-
-// 把一个Array中的空字符串删掉，可以这么写：
-'use strict';
-var arr = ['A', '', 'B', null, undefined, 'C', '  '];
-var r = arr.filter(function (s) {
-    return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
-});
-r; // ['A', 'B', 'C']
-
-toString()
-arr=[1,2,3,4,5]
-arr.toString()//"1,2,3,4,5";用于数组
-s='1234678ageg'
-s.toString()//"1234678ageg";用于字符串
-String(3) // "3"
-
-> s
-'1234455'
-> s.split('')
-[ '1', '2', '3', '4', '4', '5', '5' ]
-
-> b=[1,2,3,4,5]
-[ 1, 2, 3, 4, 5 ]
-> b.join('')
-'12345'
-
-+-----------------------------------------------------------------数组Array：
-
-var c =new Array()
-var c =new Array(1,2,3)
-var d=[4,5,6]
-var f=[[],[],[]];
-
-var arr = [1, 2, 3];
-arr.length; // 3
-arr.length = 6;
-arr; // arr变为[1, 2, 3, undefined, undefined, undefined]
-arr.length = 2;
-arr; // arr变为[1, 2]
-
-
-var arr=[10,20,30,'xyz']
-arr.indexOf('10')//元素10的索引0，与字符串保持一致
-var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];//slice方法对应字符串的substring()
-arr.slice(0,3) //从索引0开始，到索引3结束，但不包括索引3: ['A', 'B', 'C']
-arr.slice(3)//从索引3开始到结束: ['D', 'E', 'F', 'G']
-
-
-push和pop（末尾）
-unshift和shift（开头）
-sort()
-reverse()
-concat()
-join()
-splice()
-
-arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
-
-
-+-----------------------------------------------------------------对象object, if , while ：
-
-delete xiaoming.school
-'toString' in xiaoming   // true
-xiaoming.hasOwnProperty('toString') //false
-
-条件语句加括号
-JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true
-
-var height = parseFloat(prompt('请输入身高(m):'));
-var weight = parseFloat(prompt('请输入体重(kg):'));
-var userinput = window.prompt('商品价格')；
-
-退出条件用break
-
-for ..in 
-for (var key in o) {    //用于对象属性
-    if (o.hasOwnProperty(key)) {
-        alert(key); // 'name', 'age', 'city'
-    }
-}
-
-var a = ['A', 'B', 'C'];  //用书数组
-for (var i in a) {    //对应元素用of
-    alert(i); // '0', '1', '2'
-    alert(a[i]); // 'A', 'B', 'C'
-}
-
-var a = '1234456';  //用于字符串
-for(var i of a){
-    console.log(i);
-}
-
-
-+-----------------------------------------------------------------typeof,prototype,setInterval:
-typeof
-包装对象
-parseInt,parseFloat
-Number(),Boolean()
-typeof 123; // 'number'
-typeof NaN; // 'number'
-typeof 'str'; // 'string'
-typeof true; // 'boolean'
-typeof undefined; // 'undefined'
-typeof Math.abs; // 'function'
-
-typeof null; // 'object'
-typeof []; // 'object'
-typeof {}; // 'object'
-
-typeof返回的是字符串
-判断Array要使用Array.isArray(arr)；
-判断null请使用myVar === null；
-判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
-函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
-
-任何对象都有toString()方法吗？null和undefined就没有！
-// number.toString()
-123.toString(); // SyntaxError
-123..toString(); // '123', 注意是两个点！
-(123).toString(); // '123'
-
-Array.prototype.show = function (){
-    for (var i = 0; i < this.length; i++) {
-        document.write(this[i]+"<br>");
-    }
-}
-
-//下面为去左右空格，左空格，右空格函数, js中需要定义这几个函数
-String.prototype.trim=function(){
-   return this.replace(/(^\s*)|(\s*$)/g, "");
-}
-String.prototype.ltrim=function(){
-   return this.replace(/(^\s*)/g,"");
-}
-String.prototype.rtrim=function(){
-   return this.replace(/(\s*$)/g,"");
-}
-
-String.prototype.qu=function (){var char=this.replace(/\s+/g,"");}
-去除所有空格:   
-str=str.replace(/\s+/g,"");       
-去除两头空格:   
-str=str.replace(/^\s+|\s+$/g,"");
-去除左空格：
-str=str.replace( /^\s*/, '');
-去除右空格：
-str=str.replace(/(\s*$)/g, "");
-
-outerHTML、innerText不是W3C标准
-
-
-setTimeout(fun,1000);
-clearTimeout()
-
-t=setTimeout("count();",1000);//1000ms后调用自己
-clearTimeout(t);
-
-t1=setInterval("start();",1000);//间隔1000ms调用start();
-//看样子setInterval执行function时，会每次把function中执行的结果存储起来。。。
-//所以function中也不需要写return对应的值..
-clearInterval(t1);
-
-onclick,ondbclick,oncontextmenu,onfocus,onblur：
-
-outerHTML、innerText不是W3C标准
-
-
-+-----------------------------------------------------------------JSON .parse() .stringify() regExp
-
-//json字符串转obj:
-var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
-eval("var jb="+jsonstr); //也可以用这个表达式转换json为obj;
-
-
-JSON.parse();
-JSON.parse('{"name":"小明","age":14}', function (key, value) {
-    // 把number * 2:
-    if (key === 'name') {
-        return value + '同学';
-    }
-    return value;
-}); // Object {name: '小明同学', age: 14}
-
-//obj转json字符串：
-JSON.stringify(jsonobj);
-
-JSON.stringify(xiaoming, ['name', 'skills'], '  '); // 第二个参数为过滤，第三个为格式化；
-toJSON:精准化控制序列化
-var xiaoming = {
-    name: '小明',
-    age: 14,
-    gender: true,
-    height: 1.65,
-    grade: null,
-    'middle-school': '\"W3C\" Middle School',
-    skills: ['JavaScript', 'Java', 'Python', 'Lisp'],
-    toJSON: function () {
-        return { // 只输出name和age，并且改变了key：
-            'Name': this.name,
-            'Age': this.age
-        };
-    }
-};
-
-
-//g,i,m;
-regExp.test()
-'a,b;; c  d'.split(/[\s\,\;]+/); //正则分割
-
-var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分组
-re.exec('010-12345'); // ['010-12345', '010', '12345']
-re.exec('010 12345'); // null
-
-Date.parse('2015-06-24T19:49:22.875+08:00'); //1435146562875
-var d = new Date(1435146562875); //Wed Jun 24 2015 19:49:22 GMT+0800 (中国标准时间) {}
-d.toLocaleString();  // "2018/12/5 下午3:10:49"
-d.toUTCString();  // "Wed, 05 Dec 2018 07:10:49 GMT"
-
-
-// 获取时间戳，世界各地的时间戳是一致的；Date.now()获取的是时间戳
-if (Date.now) {
-    alert(Date.now()); // 老版本IE没有now()方法
-} else {
-    alert(new Date().getTime()); //1543994245316
-}
-
-
-function test(){
-   var sum=0;
-   for(var i=0;i<arguments.length;i++){
-       sum+=arguments[i];
-      }
-      return sum;
-}
-
-<a href="javascript:selectAll();">全选</a> 
-// BOM设置显示隐藏
-document.getElementById("content").style.visibility="visible" //通过样式
-document.getElementById("div1").style.display=type; //通过display
-style.overflow
-style.left/top
-
-bt01.onclick=function(){}
-
-oncontextmenu, onclick, onmouserover, onmouseout, onmouseup, onmousedown.
-onload, onunload, beforeunload
-onchange
-onreadystatechange
-onfocus, onblur
-
-ontouchstart, ontouchmove, ontouchend
-keyup, keypress, keydown
-
-event.KeyCode
-
-case中用||不生效？
-
-function fun()
-{
-       var cx=event.clientX;    //相对于当前标签的X坐标
-       var cy=event.clientY;
-       var sx=event.screenX;   //相对于屏幕的X坐标
-       var sy=event.screenY;
-       var msg="clientX="+cx+" clientY="+cy+" screenX="+sx+" screenY="+sy;
-       div.innerHTML=msg;     //设置div里面的内容
-       window.status=msg;      //设置状态条内容
-       window.document.title=msg;  //设置当前文档的标题
-       img.style.top=cy+10;
-       img.style.left=cx+10;
-}
-
-移动端图片跟随效果：
-ontouchstart,ontouchmove,ontouchend
-var touch = e.touches[0];
-<script>
-      var con=document.getElementById("content");
-      var img=document.getElementById("img1");
-      con.ontouchstart=function(e){
-           var touch=e.touches[0];  //参数e是返回用户点的坐标
-           var x=touch.clientX;
-           var y=touch.clientY;
-           img.style.left=x;
-           img.style.top=y;
-      }
-      con.ontouchmove=function(e){
-           e.preventDefault();  //把缺省的事件给屏蔽掉,否在会在微信里面发生滚动，这是H5里面都会有这句代码
-           var touch=e.touches[0];//返回第一次触摸点的坐标
-           var x=touch.clientX;
-           var y=touch.clientY;
-           img.style.left=x;
-           img.style.top=y;
-      }
-      con.ontouchend=function(e){
-            var touch=e.touches[0];
-            img.style.left=0;
-            img.style.top=0;
-      }
-</script>
-
-onblur, onfocus
-var us=document.f1.username.value
-document.f1.password.focus();
-var cityindex=document.forms[0].city.selectedIndex;
-
-//打开一个新窗口
-open("http://news.baidu.com/");
-//关闭窗口
-close();
-document.bgColor=s; //设置dom背景颜色
-window.location.href="https://www.baidu.com/"; // window可以省略不写；
-
-
-test.call(dog); //call函数的使用
------------------------
-<html>  
-<head>  
- <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
-  <script type="text/javascript" language="javascript">  
-      
-    var dog = {  //dog相当于一个obj;
-      name: "kaka",
-      age: 23
-    };  
-    function test() {  
-       window.alert(this.name);  
-    }   
-   test.call(dog); //等价于dog.test();  
-    
-  </script>  
-</head>  
-<body>  
-</body>  
-</html> 
-
-
-\ 可以折行
-
-显示/隐藏：
-content.style.visibility="hidden/visible"
-content.style.display="block/none"
-content.style.overflow="hidden/visible/scroll/auto"
-
-
-parentNode 获取父节点
-childNodes 获取所有子节点
-firstChild 获取第一个子节点
-lastChild 获取最后一个子节点
-nextSibling 获取下一个同胞节点
-previousSibling 获取上一个同胞节点
-
-.nodeName
-.nodeValue
-
-document.getElementById()
-document.getElementsByTagName()
-document.getElementsByClassName()
-
-var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,parsefloat
-var userinput=window.prompt("请输入商品价格","");
-
-
-===========================================
-
-练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
-解答：
-// 关键点是在map中用字符串做数字运算达到隐式转型，这里用 x-0
-// x*1也可以，但是会被评论吞掉，x+0不行，会被进行字符串连接
-function stingToint(s){
-    return s.split('').map(x => x-0).reduce((x,y) => x*10 + y);
-}
-
-练习:请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
-解答：
-// 先都小写，然后首字母大写，用正则表达式更简洁
-function normolize(arr){
-    return arr.map(x => x.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())); // 这个L什么鬼？L通前面的x
-}
-
-
-str.replace():
-------------------------
-name = "Doe, John";
-name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"); 
-// "John Doe"
-
-name = '"a", "b"';
-name.replace(/"([^"]*)"/g, "'$1'"); 
-// "'a', 'b'"
-
-name = 'aAV BbD cfGGc';
-uw=name.replace(/\b\w+\b/g, function(word){
-  return word.substring(0,1).toUpperCase()+word.substring(1).toLowerCase();}
-  );
-// "Aav Bbd Cfggc"
-
-
-练习：小明希望利用map()把字符串变成整数，他写的代码很简洁：
-解答：
-// parseInt(value,index)，放map中下标从0自增，导致后面NaN（廖老师给的参考链接有详细说明），修正如下：
-'use strict';
-var arr = ['1', '2', '3'];
-var r;
-r = arr.map(Number);//用arr.map(parseInt)的结果为：1, NaN, NaN
-
-
-----------------------------------
-函数内部声明变量的时候，一定要用var，不用的话，实际声明了一个全局变量
-function f1(){
-    n=999;
-}
-f1();
-alert(n); // 999
