@@ -75,7 +75,7 @@ console.log(), console.error(), console.warn()
 
 交换值：
 1.用temp,2.用两个数的和，差，或（具体可见hello.c的文件）
-+----------------------------------------------------------结构
++----------------------------------------------------------程序结构
 if..else()
 a>b? a:b
 switch(num){
@@ -233,7 +233,35 @@ splice()
 
 arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
 
++-----------------------------------------------------------------函数的定义：
+var d = 1;e =2;f=3; //(分号相当于换行)
+//第一种
+function fn1(){
+    console.log("我是第一种定义方法！");
+}
 
+//第二种(匿名函数)
+var fn2 = function (){
+    console.log("我是第二种定义方法！");
+}
+
+//第三种
+var fn3 = new Function("console.log('我是第三种定义方法！')");
+
+
+变量提升：
+var num = 10;
+fun();
+function fun(){
+    //变量声明提升    值提升变量名，不提升变量值。var num;
+    console.log(num);
+    var num = 20;
+    var b = 9;
+    console.log(b);
+}
+执行的结果为：
+undefined
+9
 +-----------------------------------------------------------------对象object, if , while ：
 
 delete xiaoming.school
