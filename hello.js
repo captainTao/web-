@@ -262,6 +262,27 @@ function fun(){
 执行的结果为：
 undefined
 9
+
+//隐式全局变量
+function fn(){
+    //b和c都是隐式全局变量
+    var a = b = c = 1;
+    //e和f都是隐式全局变量(分号相当于换行)
+    var d = 1;e =2;f=3;
+    //g和i都不是隐式全局变量
+    var g = 1,h= 2,i=3;
+}
+a,g,h,i在函数外都不能访问；
+
+var a = 18;   //先编辑，再运算，就近原则
+f1();
+function f1(){
+    var b=9;
+    console.log(a);
+    console.log(b);
+    var a = '123';
+}
+a为undefined，b为9
 +-----------------------------------------------------------------对象object, if , while ：
 
 delete xiaoming.school
@@ -313,7 +334,7 @@ typeof []; // 'object'
 typeof {}; // 'object'
 
 typeof返回的是字符串
-判断Array要使用Array.isArray(arr)；
+判断是否是数组Array要使用Array.isArray(arr)；
 判断null请使用myVar === null；
 判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
 函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
