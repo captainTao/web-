@@ -1,8 +1,10 @@
 d3.js---大数据
 three.js---游戏，3D
 echarts.js ---百度大数据
-
-
+满意的插件效果：
+1.jquery.singlePageNav.min.js
+2.wow.min.js
+3.animate.css
 
 'use strict';
 
@@ -16,7 +18,6 @@ true
 /[^\s]{3,10}/.test(s);
 true
 
-arguments?
 isNaN? not a Number
 INfinity;无限大
 
@@ -70,13 +71,33 @@ use strict的优点：var申明的变量不是全局变量
 \x表示16进制
 \u表示unicode
 
+进制转化：
+> parseInt(110,2)
+6
+> parseInt(110,8)
+72
+> parseInt(110,10)
+110
+> parseInt(110,16)
+272
+
+
+//toString();   无参转换成字符串。    带参进制转换。
+//十进制转换成任意进制
+var num = 10;
+var trnum = num.toString(16);
+console.log(trnum);
+结果为a
+
+
 alert(), prompt(), confirm()
 console.log(), console.error(), console.warn()
 
 交换值：
 1.用temp,2.用两个数的和，差，或（具体可见hello.c的文件）
+
 +----------------------------------------------------------程序结构
-if..else()
+if..else if..else..
 a>b? a:b
 switch(num){
     case a:
@@ -94,8 +115,41 @@ function(){alert("hell")} 匿名函数
 无穷小：console.log(-1/0); -Infinity
 console.log(Number.MAX_VALUE);
 console.log(Number.MIN_VALUE);
-+----------------------------------------------------------字符串String:
 
+或且非的优先级：
+! > && >||
+
++----------------------------------------------------------arguments
+arguments是个伪数组，能直接修改其值，不是数组实例，也不能修改数组的长短；
+fn(1,2);
+fn(1,2,3);
+fn(1,2,3,4,5);
+function fn(a,b){
+    //只在函数中使用，实参的数组。
+   arguments[0] = 0;
+   console.log(arguments);
+    //伪数组：不能修改长短的数组。(可以修改元素，但是不能变长变短)
+   // arguments.push(1);
+   console.log(arguments instanceof Array);
+
+   //形参个数
+   console.log(fn.length);
+   //实参个数
+   console.log(arguments.length);
+
+   //arguments.callee整个函数。函数名。
+   console.log(arguments.callee);
+}
+
++----------------------------------------------------------字符串String:
+var str1=new String('abc');
+var str2='bdc';
+console.log(typeof str1); //object
+console.log(typeof str2); //string
+console.log(str1 instanceof String); //true
+console.log(str2 instanceof String); //false
+
+var str = new String('abc');
 var name = '小明';
 var age = 20;
 var message = '你好, ' + name + ', 你今年' + age + '岁了!';
@@ -202,6 +256,10 @@ String(3) // "3"
 '12345'
 
 +-----------------------------------------------------------------数组Array：
+var arr1 = [1,2,3];
+console.log(arr1);
+console.log(arr1.valueOf());  //结果同直接打印数组
+console.log(typeof arr1.valueOf()); //Object
 
 var c =new Array()
 var c =new Array(1,2,3)
@@ -231,7 +289,35 @@ concat()
 join()
 splice()
 
-arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素
+arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素,用length总比最大的下标大1
+
+push,unshift执行的结果返回新数组长度
+pop,shift返回弹出的元素
+
+var arr = ["关羽","张飞","刘备"];
+var str1 = arr.join(); //关羽,张飞,刘备
+var str2 = arr.join(" ");//关羽 张飞 刘备
+var str3 = arr.join("");//关羽张飞刘备
+var str4 = arr.join("&");//关羽&张飞&刘备
+
+
+自定义sort():
+--------------
+arr.sort(function(a,b){
+    if (typeof a == 'string' && typeof b == 'string') {  //需要注意的是这儿的string不能用new String('')来定义
+        x1=a.toUpperCase();
+        x2=b.toUpperCase();        
+    }else if(typeof a == 'number' && typeof b == 'number') {
+        x1=a;
+        x2=b;       
+    }
+    if (x1>x2) {
+        return 1;
+    }else if(x1<x2){
+        return -1;
+    }else
+    return 0;
+})
 
 +-----------------------------------------------------------------函数的定义：
 var d = 1;e =2;f=3; //(分号相当于换行)
@@ -283,6 +369,7 @@ function f1(){
     var a = '123';
 }
 a为undefined，b为9
+
 +-----------------------------------------------------------------对象object, if , while ：
 
 delete xiaoming.school
@@ -332,6 +419,12 @@ typeof Math.abs; // 'function'
 typeof null; // 'object'
 typeof []; // 'object'
 typeof {}; // 'object'
+
+function fn(){
+    console.log(1);
+}
+typeof fn; //function
+typeof fn(); //undefined
 
 typeof返回的是字符串
 判断是否是数组Array要使用Array.isArray(arr)；
@@ -392,6 +485,20 @@ outerHTML、innerText不是W3C标准
 
 
 +-----------------------------------------------------------------JSON .parse() .stringify() regExp
+// json和对象的区别在于，json的key必须带有""
+
+//制作一个json,然后输出
+var json = {};
+console.log(json);
+for(var i=1;i<5;i++){
+    json[i] = i*10;
+}
+console.log(json);
+//输出：
+for(var k in json){
+    console.log(json[k]);
+}
+
 
 //json字符串转obj:
 var jb=eval("("+jsonstr+")");//将json字符串转换为obj;
@@ -585,7 +692,7 @@ var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,pars
 var userinput=window.prompt("请输入商品价格","");
 
 
-===========================================
+==================================================================================
 
 练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
 解答：
@@ -653,6 +760,8 @@ alert(n); // 999
 //类名的第一个字母要大写，以便区分普通函数：
 
 /************************************************/
+// 对象遍历用for...in
+
 1.通过现成对象创建：
 // obj.__proto__在低版本中的IE不支持
 var robot = {
