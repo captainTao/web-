@@ -300,9 +300,14 @@ var str2 = arr.join(" ");//关羽 张飞 刘备
 var str3 = arr.join("");//关羽张飞刘备
 var str4 = arr.join("&");//关羽&张飞&刘备
 
+//输入字符A的ASCII码
+console.log('A'.charCodeAt());
 
 自定义sort():
 --------------
+var arr= [ 'three', 'two', 'one', 'tarr'];
+var arr= [6,6,3,590,434,4];  //自带sort对数字排序不准确
+
 arr.sort(function(a,b){
     if (typeof a == 'string' && typeof b == 'string') {  //需要注意的是这儿的string不能用new String('')来定义
         x1=a.toUpperCase();
@@ -318,6 +323,34 @@ arr.sort(function(a,b){
     }else
     return 0;
 })
+
+
+var arr2 = [7,6,15,4,13,2,1];
+console.log(arr2.sort(function (a,b) {
+    return a-b; //a-b:升序，b-a：降序
+}));
+
+sort和reverse的执行结果都返回新的数组，并赋值给原数组；
+
+sort():
+--------------
+> arr
+[ 'three', 'two', 'one' ]
+> arr.sort()
+[ 'one', 'three', 'two' ]
+> arr
+[ 'one', 'three', 'two' ]
+
+
+reverse():
+--------------
+> var arr = ['one', 'two', 'three'];
+undefined
+> arr.reverse()
+[ 'three', 'two', 'one' ]
+> arr
+[ 'three', 'two', 'one' ]
+
 
 +-----------------------------------------------------------------函数的定义：
 var d = 1;e =2;f=3; //(分号相当于换行)
