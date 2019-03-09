@@ -19,7 +19,16 @@ true
 true
 
 isNaN? not a Number
+NaN
+isNaN()
+唯一能判断NaN的方法是通过isNaN()函数：
+isNaN(NaN); // true
+
 INfinity;无限大
+
+//要比较两个浮点数是否相等，只能计算它们之差的绝对值，看是否小于某个阈值
+Math.abs(1 / 3 - (1 - 2 / 3)) < 0.0000001; // true
+1 / 3 == (1 - 2 / 3); //false，另外也请注意
 
 toMD5 is not defined?
 设置cookie.
@@ -42,8 +51,6 @@ js关闭a连接的跳转：
 
 ////////////////////////////////////js基础////////////////////////////////////////////
 
-NaN
-isNaN()
 null,undefined
 备注：
 Undefined和任何数值计算为NaN;
@@ -172,6 +179,16 @@ var s = 'Test';
 s[0] = 'X';
 alert(s); // s仍然为'Test'   ，，，，，，字符串不可变，same as oc.
 
+
+toUpperCase()
+toLowerCase()
+indexOf()
+substring()
+slice()
+charAt()
+substr()
+
+
 'a'.toUpperCase()//对大小写敏感
 'A'.toLowerCase()
 
@@ -193,7 +210,6 @@ substring 用于字符串
 
 name.charAt(n)获取name定义的字符串的第n个字符；
 name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
-
 
 
 +-----------------------------------------------------------------字符和数字的互转：
@@ -279,20 +295,26 @@ arr.indexOf('10')//元素10的索引0，与字符串保持一致
 var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];//slice方法对应字符串的substring()
 arr.slice(0,3) //从索引0开始，到索引3结束，但不包括索引3: ['A', 'B', 'C']
 arr.slice(3)//从索引3开始到结束: ['D', 'E', 'F', 'G']
+arr.slice(-2) //倒数两个[ 'F', 'G' ]
 
 
-push和pop（末尾）
-unshift和shift（开头）
-sort()
-reverse()
-concat()
-join()
-splice()
+push(), pop()                 //数组末尾
+unshift(),shift()             //数组开头
+sort()                        //改变原数组值，返回新数组值
+reverse()                     //改变原数组值，返回新数组值
+concat()                      //不改变原来数组的值
+join()                        //不改变原来数组的值
+slice()                       //不改变原来数组的值
+splice()                      //改变原数组值，返回删除的元素数组
+indexOf()                     //从左往右找，返回找到的第一个索引，找不到返回-1
+lastindexOf()                 //从右往左找，返回找到的第一个索引，找不到返回-1
+every(), some(),forEach()     //forEach()是ES5.1引进
+filter()
+
+// push,unshift执行的结果返回新数组长度
+// pop,shift返回弹出的元素
 
 arr2[arr2.length] = 9; arr2[arr2.length] = 10; //添加元素,用length总比最大的下标大1
-
-push,unshift执行的结果返回新数组长度
-pop,shift返回弹出的元素
 
 var arr = ["关羽","张飞","刘备"];
 var str1 = arr.join(); //关羽,张飞,刘备
@@ -330,7 +352,6 @@ console.log(arr2.sort(function (a,b) {
     return a-b; //a-b:升序，b-a：降序
 }));
 
-sort和reverse的执行结果都返回新的数组，并赋值给原数组；
 
 sort():
 --------------
@@ -351,6 +372,60 @@ undefined
 > arr
 [ 'three', 'two', 'one' ]
 
+
+indexOf(),lastindexOf():
+--------------------------
+var arr = ["a","b","c","d","c","b","a"];
+console.log(arr.indexOf("a"));//0
+console.log(arr.indexOf("x"));//-1
+console.log(arr.lastIndexOf("a"));//6
+console.log(arr.lastIndexOf("x"));//-1
+
+
+every(), some():
+--------------------
+every()是对数组中每一项运行给定函数，如果该函数对每一项返回true,则返回true。
+some()是对数组中每一项运行给定函数，如果该函数对任一项返回true，则返回true。
+
+var arr = [ 1, 2, 3, 4, 5, 6 ];
+console.log( arr.some( function( item, index, array ){ 
+    console.log( 'item=' + item + ',index='+index+',array='+array ); 
+    return item > 3; 
+})); 
+console.log( arr.every( function( item, index, array ){ 
+    console.log( 'item=' + item + ',index='+index+',array='+array ); 
+    return item > 3; 
+}));
+
+forEach()：
+----------------------   
+var a = [1, 5, 8, 6, 7];
+sum=0;
+a.forEach(function (element, index, array) {
+    // console.log(element);
+    sum=sum+element;
+    return sum;
+});
+console.log(sum);
+
+filter()：
+-----------------
+var arr1 = arr.filter(function (ele,index,array) {
+    if(ele.length>1){
+        return true;
+    }
+    return false;
+});
+
+类似：
+arr.map(function callback(currentValue, index, array)
+
+// 清空数组：
+var arr = [1,3];
+arr.splice(0);
+arr.length=0; //伪数组？
+arr = [];
+console.log(arr);
 
 +-----------------------------------------------------------------函数的定义：
 var d = 1;e =2;f=3; //(分号相当于换行)
