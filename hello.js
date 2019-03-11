@@ -149,7 +149,7 @@ function fn(a,b){
 }
 
 +----------------------------------------------------------字符串String:
-var str1=new String('abc');
+var str1=new String('abc'); //同样数字可以用： var a = new Number(22);
 var str2='bdc';
 console.log(typeof str1); //object
 console.log(typeof str2); //string
@@ -688,6 +688,7 @@ onload, onunload, beforeunload
 onchange
 onreadystatechange
 onfocus, onblur
+onrest, onsubmit
 
 ontouchstart, ontouchmove, ontouchend
 keyup, keypress, keydown
@@ -783,11 +784,11 @@ content.style.overflow="hidden/visible/scroll/auto"
 
 
 parentNode 获取父节点
-childNodes 获取所有子节点
-firstChild 获取第一个子节点
-lastChild 获取最后一个子节点
-nextSibling 获取下一个同胞节点
-previousSibling 获取上一个同胞节点
+childNodes 获取所有子节点, children
+firstChild 获取第一个子节点, firstElementChild
+lastChild 获取最后一个子节点, lastElementChild
+nextSibling 获取下一个同胞节点, nextElementSibling
+previousSibling 获取上一个同胞节点, previousElementSibling
 
 .nodeName
 .nodeValue
@@ -854,11 +855,46 @@ alert(n); // 999
 
 
 
+统计频次
+----------------------------------
+var arr5 = ["c","a","x","a","x","a"];
+
+var json = {};
+// console.log(json["aflasdfasdf"]); //不存在的属性，返回值是undefined。
+for(var i=0;i<arr5.length;i++){
+    //判断数组中的元素，在json中是否存在属性值。
+    if(json[arr5[i]]){
+        json[arr5[i]] += 1;
+    }else{
+        json[arr5[i]] = 1;
+    }
+}
+console.log(json);
 
 
-
-
-
+数组去重：
+----------------------------------
+function fn(array){
+    var newArr = [];
+    for(var i=0;i<array.length;i++){
+        //开闭原则
+        var bool = true;
+        //每次都要判断新数组中是否有旧数组中的值。
+        for(var j=0;j<newArr.length;j++){
+            if(array[i] === newArr[j]){
+                bool = false;
+            }
+        }
+        if(bool){
+            newArr[newArr.length] = array[i];
+        }
+    }
+    return newArr;
+}
+// 另外一种方法：
+arr.filter(function(element,index,self){
+  return self.indexOf(element)===index;
+})
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 
@@ -1143,7 +1179,10 @@ forward()
 新手开始设计Web页面时喜欢在登录页登录成功时调用history.back()，试图回到登录前的页面。这是一种错误的方法。
 任何情况，你都不应该使用history这个对象了。
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////// DOM操作
+
 DOM方法操作：
 /************************************************/
 
@@ -1252,7 +1291,7 @@ list.appendChild(js);
 
 2. createElement + appendChild:
 
-// 0创建：
+// 创建：
 var
     list = document.getElementById('list'),
     haskell = document.createElement('p');
