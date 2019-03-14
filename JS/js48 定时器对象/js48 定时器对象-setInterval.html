@@ -19,6 +19,7 @@
 				  var tf=5;
 			      function count(){
 					document.getElementById("num").innerHTML="计数: "+n;//初始化
+					clearInterval(t1);//清除上一次的interval，避免重复调用
 					t1=setInterval("start();",1000);//1000ms后调用自己
 				    }
 				    function start(){
@@ -29,33 +30,33 @@
 					
 					function stop(){
 					      clearInterval(t1);
+					      clearInterval(t2);
 					}
 					
 
 					function dis(){
+						clearInterval(t2);//避免t2重复调用
+						clearInterval(t1);//如果有计时，则清除计时
 						t2=setInterval("end();",1000)
 						document.getElementById("num").innerHTML="还有"+tf+"s后图片消失";//初始化
 					}
 					function end(){
 					    tf--;
- 					    clearInterval(t1);//如果有计时，则清除计时
 						if (tf<=0){
-						//document.getElementsByTagName("div").innerHTML="";
-						//document.getElementById("num").innerHTML="";
-						document.getElementById("img").innerHTML="";
-						document.getElementById("num").innerHTML="";
-						//break;//跳出循环
-						//exit(2);//跳出程序
-						console.log("mark");
-						clearInterval(t2);
-						return;//跳出函数
-						}
-						else{
+							//document.getElementsByTagName("div").innerHTML="";
+							//document.getElementById("num").innerHTML="";
+							document.getElementById("img").innerHTML="";
+							document.getElementById("num").innerHTML="";
+							//break;//跳出循环
+							//exit(2);//跳出程序
+							// console.log("mark");
+							clearInterval(t2);
+							// return;//跳出函数
+						}else{
 						document.getElementById("num").innerHTML="还有"+tf+"s后图片消失";
 						//return();
-						//if(tf!=0){
-						
-					}
+						//if(tf!=0){	
+						}
 					}
 			 </script>
 </body>

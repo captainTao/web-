@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>左右焦点图</title>
+    <style type="text/css">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      img,input,button{
+        border: 0 none;
+        outline-style: none;
+      }
+      ul,ol{
+        list-style: none;
+      }
+      .box{
+        width: 520px;
+        height: 280px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin: 100px auto;
+        position: relative;
+      }
+      .inner{
+        width: 520px;
+        height: 280px;
+        position: absolute;
+        overflow: hidden;
+      }
+      ul{
+        width: 500%;
+        list-style: none;
+        position: absolute;
+        left: 0;
+      }
+      li{
+        float: left;
+      }
+      .square{
+        position: absolute;
+        top:45%;
+        display: none;
+      }
+      span{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        position: absolute;
+        background: #000;
+        display: inline-block;
+        cursor: pointer;
+        opacity: 0.3;
+      }
+      span.right{
+        /*left: 480px;*/
+        right:-520px;
+      }
+    </style>
+</head>
+<body>
+  <div class="box" id="box">
+    <div class="inner" id="inner">
+      <ul class="pic">
+        <li><img src="images/1.jpg"></li>
+        <li><img src="images/2.jpg"></li>
+        <li><img src="images/3.jpg"></li>
+        <li><img src="images/4.jpg"></li>
+        <li><img src="images/5.jpg"></li>
+      </ul>
+      <div class="square">
+        <span class="left"><</span>
+        <span class="right">></span>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    /* 
+    需求：
+       1.鼠标放上面的时候，显示轮播按钮；
+       2.放上面暂停自动播放，按左右键能前后滚动
+       3.鼠标不放在上面的时候，自动轮播；
+       连续自动轮播？？
+    */
+
+    //初始化
+    var box = document.getElementById("box");
+    // var imgWidth = document.getElementsByTagName("img")[0].offsetWidth; //为什么这个结果打印出来是0？
+    var imgWidth = box.children[0].offsetWidth; //获取宽度需文中指定的值？
+    // console.log(imgWidth);
+    var ul = box.children[0].children[0];
+    var square = document.getElementsByClassName("square")[0];
+    var btnArr = document.getElementsByTagName("span");
+
+    //放鼠标
+    box.onmouseover = function(){
+      square.style.display = "block";
+    }
+    box.onmouseout = function(){
+      square.style.display = "none";
+    }
+    //左边按钮点击效果
+    var index = 0;
+    btnArr[0].onclick = function(){
+      index--;
+      if (index>=0) {
+        animate(ul,-imgWidth*index);
+      }else{
+        index++;
+        console.log("这里是第一张!");
+      }
+    }
+    //右边按钮点击效果
+    btnArr[1].onclick = function(){
+      index++;
+      // console.log("index++ = "+index++);
+      if (index>=5) {
+        index--;
+        console.log("这里是最后一张")
+      } else {
+        animate(ul,-imgWidth*index);
+      }
+      
+    }
+
+    // 动画函数.（移动元素，目标位置）
+    function animate(ele,target){
+      clearInterval(ele.timer);
+      var speed = target>ele.offsetLeft?10:-10;
+      ele.timer = setInterval(function(){
+        var distance = target - ele.offsetLeft;
+        ele.style.left = ele.offsetLeft + speed + "px";
+        if (Math.abs(distance)<Math.abs(speed)) {
+          ele.style.left = target+"px";
+          clearInterval(ele.timer);
+        }
+      },10)
+    }
+  </script>
+</body>
+</html>

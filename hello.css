@@ -3,6 +3,7 @@ question:
 a.left/right/bottom/top生效的前提是必须设置父容器position:absolute或relative
 b.如果父容器没有设置postion，则会一直往上找，如果没找到就不生效；
 c.而margin-left就会以父容器为基准，不管是否设置了postion;
+e.right往右移动为-px,往左移动用+px;left往右用+，往左用-;
 
 2.position几个参数的用法？
 a.都是通过left,right,bottom,top来定位

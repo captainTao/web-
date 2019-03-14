@@ -6,6 +6,7 @@ echarts.js ---百度大数据
 2.wow.min.js
 3.animate.css
 
+
 'use strict';
 
 s = "1214141";
@@ -47,7 +48,9 @@ js关闭a连接的跳转：
 <a href="javascript:;">context</a>
 <a href="javascript:void(0)">context</a>
 
-
+--------------------question------------
+1.setInterval如何避免重复调用？
+全局设置var timer=null,在调用函数中第一步设置clearInterval(timer);
 
 ////////////////////////////////////js基础////////////////////////////////////////////
 
@@ -895,6 +898,18 @@ function fn(array){
 arr.filter(function(element,index,self){
   return self.indexOf(element)===index;
 })
+
+
+
+offsetHeight = height+padding+border;(不加margin)
+offsetWidth = width+padding+border;(不加margin)
+
+offsetLeft/offsetTop = 有定位(relative,fixed,absolute)的父级或者自身级别元素左边距+左边padding;(不加border)//返回为xx,只读
+而.style.left/.style.top只能获取他自己的行内样式style中left的值，没有则返回为空"";//返回为xx px,可以读写;
+
+offsetParent =返回带有定位的父级元素；//带标签输出
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 
