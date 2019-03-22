@@ -1302,7 +1302,13 @@ list.appendChild(js);
 </div>
 
 
+cloneNode() + appendChild;
 
+var ulNewLi = ul.children[0].cloneNode(true); //true表示深度复制,包括下面的文本和元素的事件！
+ul.appendChild(ulNewLi)；
+
+replaceWith(): 将所有匹配的元素都替换为指定的HTML 或DOM 元素
+replaceAll(): 颠倒了的replaceWith()方法.
 
 2. createElement + appendChild:
 
@@ -2666,3 +2672,23 @@ ajax编程
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+DOM事件监听：
+https://github.com/chenxiaochun/blog/issues/9
+document.hidden//mac 缩小到状态栏，或者滑动到第二屏幕不能监听到；
+document.visibilityState
+// visible：当页面没有被最小化，并且是可见状态时
+// hidden：当页面已经被最小化，或者不是可见状态时，或者是操作系统处于锁屏状态时
+// prerender：页面已经被预渲染完毕，还没有展示给用户时
+// unloaded：页面没有从内存中被加载出来时
+
+一般用这个监听器：requestAnimationFrame
+
+document.addEventListener('visibilitychange', function(){
+  if(document.hidden){
+    console.log('hidden')
+    clearInterval(timer1);
+ }else{
+    console.log('visible')
+    timer1 = setInterval(autoplay,1000);
+  }
+}, false);

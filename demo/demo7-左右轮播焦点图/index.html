@@ -30,7 +30,7 @@
         overflow: hidden;
       }
       ul{
-        width: 500%;
+        width: 600%;
         list-style: none;
         position: absolute;
         left: 0;
@@ -38,7 +38,7 @@
       li{
         float: left;
       }
-      .square{
+      .arrows{
         position: absolute;
         top:45%;
         display: none;
@@ -60,6 +60,26 @@
         /*left: 480px;*/
         right:-520px;
       }
+      .current{
+        background-color: darkorange;
+        color: white;
+      }
+      .square{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
+      ol li{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        text-align: center; 
+        margin:3px;
+        border:1px solid #ccc;
+        line-height: 16px;
+        cursor: pointer;
+      }
     </style>
 </head>
 <body>
@@ -72,10 +92,12 @@
         <li><img src="images/4.jpg"></li>
         <li><img src="images/5.jpg"></li>
       </ul>
-      <div class="square">
+      <div class="arrows">
         <span class="left"><</span>
         <span class="right">></span>
       </div>
+      <ol class="square">
+      </ol>
     </div>
   </div>
   <script type="text/javascript">
@@ -84,47 +106,127 @@
        1.鼠标放上面的时候，显示轮播按钮；
        2.放上面暂停自动播放，按左右键能前后滚动
        3.鼠标不放在上面的时候，自动轮播；
-       连续自动轮播？？
+       4.优化：页面呈现的时候，执行定时器；页面不呈现的视图停止计时器；document.hidden
     */
 
-    //初始化
+    /*
+    代码总结：
+        1.先写好移动动画
+        2.定时器为向后滚动，右边箭头为向后滚动；左边箭头为向前滚动；向后向前都需做好参数重置；
+        3.鼠标放上方块图标，移动对应的动画后，相关参数应该传给定时器动画；
+        4.代码中number为移动动画参数；index为定时动画参数；square为方块动画参数；
+    */
+    
+    // 定时器初始化
+    var timer1 = setInterval(autoplay,1000);
+
+    // 添加一个页面监听事件，离开页面的时候停止计时器，发生页面切换的时候才会触发
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){
+        console.log('hidden');
+        clearInterval(timer1);
+     }else{
+        console.log('visible');
+        timer1 = setInterval(autoplay,1000);
+      }
+    }, false);
+    
+
+    // 元素初始化
     var box = document.getElementById("box");
     // var imgWidth = document.getElementsByTagName("img")[0].offsetWidth; //为什么这个结果打印出来是0？
     var imgWidth = box.children[0].offsetWidth; //获取宽度需文中指定的值？
     // console.log(imgWidth);
     var ul = box.children[0].children[0];
-    var square = document.getElementsByClassName("square")[0];
+    var arrows = document.getElementsByClassName("arrows")[0];
     var btnArr = document.getElementsByTagName("span");
+    var ol = document.getElementsByTagName("ol")[0];
+
+    // 添加图片的轮播标识以及初始化
+    for(var i=0;i<ul.children.length;i++){
+      var olNewLi = document.createElement("li");
+      olNewLi.innerHTML = i+1;
+      ol.appendChild(olNewLi);
+    }
+    var olLiArr = ol.children;
+    olLiArr[0].className = "current";
+
+    //给每个小方块mouseover添加事件;
+    var number = 0;
+    for (var i = 0; i < olLiArr.length; i++) {
+      olLiArr[i].number = i;
+      olLiArr[i].onmouseover = function(){
+        for (var j = 0; j < olLiArr.length; j++) {
+          olLiArr[j].className ="";
+        }
+        this.className = "current";
+        square = this.number; //鼠标移动之后对square重新赋值；
+        index = this.number; //对index重新赋值；
+        animate(ul, -this.number*imgWidth);
+      }
+    }
 
     //放鼠标
     box.onmouseover = function(){
-      square.style.display = "block";
+      clearInterval(timer1);
+      arrows.style.display = "block";
+      // console.log("执行了放入");
     }
     box.onmouseout = function(){
-      square.style.display = "none";
+      arrows.style.display = "none";
+      timer1 = setInterval(autoplay,1000); //这儿需要将定时器重新赋值
+      // console.log("执行了放出");
     }
+
+    // 添加第一帧到最后，避免闪现的动画
+    var liNewLi = ul.children[0].cloneNode(true);
+    ul.appendChild(liNewLi);
+       
     //左边按钮点击效果
     var index = 0;
     btnArr[0].onclick = function(){
+      /*
       index--;
       if (index>=0) {
         animate(ul,-imgWidth*index);
       }else{
         index++;
         console.log("这里是第一张!");
+      }      
+      */
+      index--;
+      square--;
+      // console.log(index);
+      //当在第一张的时候跳到最后一张；
+      if (index<0) {
+        ul.style.left = -imgWidth*(ul.children.length-1)+"px";
+        // console.log(ul.style.left);
+        index = ul.children.length-2;
       }
+      animate(ul, -index*imgWidth);
+
+      // 显色小方块到第一个的时候，重新赋值；
+      if (square<0) {
+        square = olLiArr.length -1;
+      }
+      for (var i = 0; i < olLiArr.length; i++) {
+        olLiArr[i].className = "";
+      }
+      olLiArr[square].className = "current";
     }
+    
     //右边按钮点击效果
-    btnArr[1].onclick = function(){
+    btnArr[1].onclick = function(){     
+      /*
       index++;
-      // console.log("index++ = "+index++);
       if (index>=5) {
         index--;
         console.log("这里是最后一张")
       } else {
         animate(ul,-imgWidth*index);
       }
-      
+      */
+      autoplay();
     }
 
     // 动画函数.（移动元素，目标位置）
@@ -139,6 +241,32 @@
           clearInterval(ele.timer);
         }
       },10)
+    }
+
+    var square = 0;
+    // 自动移动；
+    var test = 0;
+    function autoplay(){
+      // clearInterval(timer1);
+      index++;
+      square++;
+      test++;
+      console.log("计时器运算："+test);
+      // 当在最后一张的时候跳到第一张；
+      if(index >=ul.children.length){  
+        ul.style.left = 0;
+        index = 1;
+      }
+      animate(ul, -index*imgWidth);
+      
+      //对应的小方块也要变色
+      if (square>=olLiArr.length) {
+        square = 0;
+      }
+      for (var i = 0; i < olLiArr.length; i++) {
+        olLiArr[i].className="";
+      }
+      olLiArr[square].className = "current";
     }
   </script>
 </body>
