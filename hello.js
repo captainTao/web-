@@ -2681,7 +2681,8 @@ document.visibilityState
 // prerender：页面已经被预渲染完毕，还没有展示给用户时
 // unloaded：页面没有从内存中被加载出来时
 
-一般用这个监听器：requestAnimationFrame
+一般用这个监听器：
+requestAnimationFrame
 
 document.addEventListener('visibilitychange', function(){
   if(document.hidden){
