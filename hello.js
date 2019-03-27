@@ -910,6 +910,22 @@ offsetLeft/offsetTop = 有定位(relative,fixed,absolute)的父级或者自身�
 offsetParent =返回带有定位的父级元素；//带标签输出
 
 
+1、scrollWidth/scrollHeight 内容的宽高
+IE67可以比盒子小。 IE8+火狐谷歌不能比盒子小
+2、scrollLeft/scrollTop
+被卷去的左侧和头部（浏览器无法显示的左/头部）
+一般调用 document.body.scrollTop:
+
+window.scroll = function(){}
+window.onLoad = function(){}
+
+兼容性：
+未声明 DTD（谷歌只认识他）（IE9+认识他）document.body.scrollTop
+已经声明DTD（IE678只认识他）(IE9+任何时候)
+   document.documentElement.scrollTop
+火狐/谷歌/ie9+以上支持的(不管DTD)
+   window.pageYOffset
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 
