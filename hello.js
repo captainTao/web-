@@ -692,6 +692,7 @@ onchange
 onreadystatechange
 onfocus, onblur
 onrest, onsubmit
+onscroll
 
 ontouchstart, ontouchmove, ontouchend
 keyup, keypress, keydown
@@ -2696,10 +2697,6 @@ document.visibilityState
 // hidden：当页面已经被最小化，或者不是可见状态时，或者是操作系统处于锁屏状态时
 // prerender：页面已经被预渲染完毕，还没有展示给用户时
 // unloaded：页面没有从内存中被加载出来时
-
-一般用这个监听器：
-requestAnimationFrame
-
 document.addEventListener('visibilitychange', function(){
   if(document.hidden){
     console.log('hidden')
@@ -2709,3 +2706,88 @@ document.addEventListener('visibilitychange', function(){
     timer1 = setInterval(autoplay,1000);
   }
 }, false);
+
+
+
+不过事件监听一般用这个监听器：
+requestAnimationFrame
+
+var progress = 0;
+//回调函数
+function render() {
+    progress += 1; //修改图像的位置
+    if (progress < 100) {
+           //在动画没有结束前，递归渲染
+           window.requestAnimationFrame(render);
+    }
+}
+//第一帧渲染
+window.requestAnimationFrame(render);
+
+https://github.com/darius/requestAnimationFrame
+兼容优化后：
+if (!Date.now)
+    Date.now = function() { return new Date().getTime(); };
+(function() {
+    'use strict';
+    var vendors = ['webkit', 'moz'];
+    for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
+        var vp = vendors[i];
+        window.requestAnimationFrame = window[vp+'RequestAnimationFrame'];
+        window.cancelAnimationFrame = (window[vp+'CancelAnimationFrame']
+                                   || window[vp+'CancelRequestAnimationFrame']);
+    }
+    if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy
+        || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+        var lastTime = 0;
+        window.requestAnimationFrame = function(callback) {
+            var now = Date.now();
+            var nextTime = Math.max(lastTime + 16, now);
+            return setTimeout(function() { callback(lastTime = nextTime); },
+                              nextTime - now);
+        };
+        window.cancelAnimationFrame = clearTimeout;
+    }
+}());
+
+
+js动画：
+-------------------
+1.平移动画：
+// 动画函数.（移动元素，目标位置）
+function animate(ele,target){
+  clearInterval(ele.timer);
+  var speed = target>ele.offsetLeft?10:-10;
+  ele.timer = setInterval(function(){
+    var distance = target - ele.offsetLeft;
+    ele.style.left = ele.offsetLeft + speed + "px";
+    if (Math.abs(distance)<Math.abs(speed)) {
+      ele.style.left = target+"px";
+      clearInterval(ele.timer);
+    }
+  },10)
+}
+2.弹簧动画：
+//缓动动画封装
+function animate(ele,target) {
+    //要用定时器，先清定时器
+    //一个萝卜一个坑儿，一个元素对应一个定时器
+    clearInterval(ele.timer);
+    //定义定时器
+    ele.timer = setInterval(function () {
+        //获取步长
+        //步长应该是越来越小的，缓动的算法。
+        var step = (target-ele.offsetLeft)/10;
+        //对步长进行二次加工(大于0向上取整,小于0项下取整)
+        step = step>0?Math.ceil(step):Math.floor(step);
+        //动画原理： 目标位置 = 当前位置 + 步长
+        ele.style.left = ele.offsetLeft + step + "px";
+        //检测缓动动画有没有停止
+        console.log(1);
+        if(Math.abs(target-ele.offsetLeft)<=Math.abs(step)){
+            //处理小数赋值
+            ele.style.left = target + "px";
+            clearInterval(ele.timer);
+        }
+    },30);
+}
