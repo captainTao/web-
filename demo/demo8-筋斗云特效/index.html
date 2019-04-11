@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>筋斗云特效</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: rgba(0,0,0,0.8);
+		}
+		#nav{
+			position: relative;
+			margin: 200px auto;
+			width: 800px;
+			height: 42px;
+			border-radius: 5px;
+			background: white url("images/wifi.png") right center no-repeat; /*white需要写在这一行*/
+		}
+		ul{
+			list-style: none;
+			position: relative; /*这儿有定位背景颜色才不会遮挡前面的文字*/
+		}
+		ul li {
+			float: left;
+			width: 85px;
+			height: 42px;
+			text-align: center;
+			line-height: 42px;
+			cursor: pointer;
+		}
+		a{
+			text-decoration: none;
+			color: black;
+		}
+		span{
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 83px;
+			height: 42px;
+			background: url("images/cloud.gif") no-repeat;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var liArr = document.getElementsByTagName("li");
+			var liWidth = liArr[0].offsetWidth;
+			var span = document.getElementsByTagName("span")[0];
+
+			//初始化每个li over和out移动动画
+			for (var i = 0; i < liArr.length; i++) {
+				liArr[i].index = i;
+				liArr[i].onmouseover = function(){
+					animate(span,this.index*liWidth);
+				}
+				liArr[i].onmouseout = function(){
+					animate(span,0); //回到第一个li
+				}
+				liArr[i].onclick = function(){
+					animate(span,this.index*width);
+				}
+			}
+
+			//移动动画
+			function animate(ele,target) {
+			    clearInterval(ele.timer);
+			    ele.timer = setInterval(function () {
+			        var step = (target-ele.offsetLeft)/10;
+			        step = step>0?Math.ceil(step):Math.floor(step);
+			        ele.style.left = ele.offsetLeft + step + "px";
+			        if(Math.abs(target-ele.offsetLeft)<=Math.abs(step)){
+			            ele.style.left = target + "px";
+			            clearInterval(ele.timer);
+			        }
+			    },15);
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="nav">
+	<span></span>
+	<ul>
+		<li><a href="javascript:void(0);">首页新闻</a></li>  <!-- 添加void能有效避免不必要跳转 -->
+		<li><a href="javascript:void(0);">活动策划</a></li>
+		<li><a href="javascript:void(0);">师资力量</a></li>
+		<li><a href="javascript:void(0);">企业文化</a></li>
+		<li><a href="#">招聘信息</a></li>
+		<li><a href="#">公司简介</a></li>
+		<li><a href="#">上海校区</a></li>
+		<li><a href="">广州校区</a></li>
+	</ul>
+</div>
+</body>
+</html>

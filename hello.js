@@ -686,7 +686,7 @@ style.left/top
 
 bt01.onclick=function(){}
 
-oncontextmenu, onclick, onmouserover, onmouseout, onmouseup, onmousedown.
+oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown.
 onload, onunload, beforeunload
 onchange
 onreadystatechange
@@ -2778,12 +2778,12 @@ function animate(ele,target) {
         //获取步长
         //步长应该是越来越小的，缓动的算法。
         var step = (target-ele.offsetLeft)/10;
-        //对步长进行二次加工(大于0向上取整,小于0项下取整)
+        //对步长进行二次加工(大于0向上取整,最小单位为1px;小于0项下取整,最小单位为-1px)
         step = step>0?Math.ceil(step):Math.floor(step);
         //动画原理： 目标位置 = 当前位置 + 步长
         ele.style.left = ele.offsetLeft + step + "px";
         //检测缓动动画有没有停止
-        console.log(1);
+        // console.log(1);
         if(Math.abs(target-ele.offsetLeft)<=Math.abs(step)){
             //处理小数赋值
             ele.style.left = target + "px";
@@ -2791,3 +2791,11 @@ function animate(ele,target) {
         }
     },30);
 }
+
+
+href="javascript:void(0);"
+--------------------------
+可以避免跳到的空连接
+href="javascript:void(0);"这句话的意思，是执行js函数，而不是跳链接，函数内容为返回为空；
+<li><a href="javascript:void(0);">企业文化</a></li>
+<li><a href="#">招聘信息</a></li>
