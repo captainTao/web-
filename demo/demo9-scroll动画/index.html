@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>scroll fixed动画</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		img{
+			vertical-align: top;
+		}
+		body{
+			max-width: 1423px; /*设置最大移动宽度，来固定main的效果*/
+		}
+		#main{
+			margin: 0 auto;
+			width: 1001px;
+		}
+		.fixed{
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var top = document.getElementById('top');
+			var topheight = top.offsetHeight;
+			var nav = document.getElementById('nav');
+			var main = document.getElementById('main');
+			
+			//初始化一个position
+			judgePositon();
+			//绑定scroll事件
+			window.onscroll = judgePositon;
+			//scroll封装
+			function scroll(){
+				return{
+					"top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+					"left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+				}
+			}
+			//判断nav的位置封装
+			function judgePositon(){
+				if (scroll().top > topheight) {
+					nav.className = 'fixed';
+					//第二个盒子不占位置了，所以我们给第三个盒子一个上padding占位置，不出现盒子抖动问题,但我去掉这个，感觉效果也差不多；
+					main.style.paddingTop = nav.offsetHeight+"px";
+				} else {
+					nav.className = '';
+					//清零
+					main.style.paddingTop = 0;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="top" class="maxwidth">
+		<img src="images/top.png">
+	</div>
+	<div id="nav">
+		<img src="images/nav.png">
+	</div>
+	<div id="main">
+		<img src="images/main.png">
+	</div>
+</body>
+</html>

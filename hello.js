@@ -913,10 +913,17 @@ offsetParent =返回带有定位的父级元素；//带标签输出
 
 1、scrollWidth/scrollHeight 内容的宽高
 IE67可以比盒子小。 IE8+火狐谷歌不能比盒子小
+// scrollWidth和scrollHeight不包括border和margin
+
+// scrollWidth = width + padding;
+
+// 高度有一个特点：如果文字超出了盒子，高度为超出盒子的内容的高。不超出是盒子本身高度
+// IE8以下，不包括IE8为盒子本身内容的多少。
+
+
 2、scrollLeft/scrollTop
 被卷去的左侧和头部（浏览器无法显示的左/头部）
 一般调用 document.body.scrollTop:
-
 window.scroll = function(){}
 window.onLoad = function(){}
 
@@ -927,6 +934,32 @@ window.onLoad = function(){}
 火狐/谷歌/ie9+以上支持的(不管DTD)
    window.pageYOffset
 
+document.compatMode  // CSS1Compat
+
+
+return {
+    "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+    "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+}
+/*
+详细解释如下
+if(window.pageYOffset !== undefined){ // ie9+ 高版本浏览器, 因为 window.pageYOffset 默认的是0  所以这里需要判断
+    return {
+        "top": window.pageYOffset,
+        "left": window.pageXOffset
+    };
+}else if(document.compatMode === "CSS1Compat"){ // 标准浏览器  来判断有没有声明DTD
+    return {
+        "top": document.documentElement.scrollTop,
+        "left": document.documentElement.scrollLeft
+    };
+}else{  // 未声明 DTD
+    return {
+        "top": document.body.scrollTop,
+        "left": document.body.scrollLeft
+    };
+}
+*/
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 
