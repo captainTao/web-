@@ -11,7 +11,7 @@
 		   </style>
 </head>
 <body onmousemove="fun();">
-        图片跟随鼠标移动效果<br>
+      	图片跟随鼠标移动效果<br>
         <div id="div1"></div>
 		<img id="im1" src="糖水西施.jpg">
 		<script>
@@ -23,7 +23,9 @@
        					var cy=event.clientY;
 				        var sx=event.screenX;   //相对于屏幕的X坐标
 						var sy=event.screenY;
-						var msg="clientX="+cx+" clientY="+cy+" screenX="+sx+" screenY="+sy;
+						var gx=event.pageX;
+						var gy=event.pageY;
+						var msg="clientX="+cx+" clientY="+cy+" screenX="+sx+" screenY="+sy+" pageX="+gx+" pageY="+gy;
 						div.innerHTML=msg;     //设置div里面的内容
 						window.status=msg;      //设置状态条内容
 						window.document.title=msg;  //设置当前文档的标题

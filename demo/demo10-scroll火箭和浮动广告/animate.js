@@ -1,3 +1,8 @@
+// 类jquery的封装
+function $(id) { return document.getElementById(id);}
+function show(id) { $(id).style.display = "block";}
+function hide(id) { $(id).style.display = "none";}
+
 //缓动动画封装
 function animate(ele,target) {
     clearInterval(ele.timer);
@@ -12,6 +17,7 @@ function animate(ele,target) {
     },15);
 }
 
+//向左移动的动画
 function animateLeft(ele,target) {
     clearInterval(ele.timer);
     ele.timer = setInterval(function () {
@@ -25,7 +31,7 @@ function animateLeft(ele,target) {
     },15);
 }
 /**
- * Created by andy on 2015/12/8.
+ * scroll封装
  */
 function scroll() {  // 开始封装自己的scrollTop
     if(window.pageYOffset != null) {  // ie9+ 高版本浏览器

@@ -686,7 +686,7 @@ style.left/top
 
 bt01.onclick=function(){}
 
-oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown.
+oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown, onmousemove
 onload, onunload, beforeunload
 onchange
 onreadystatechange
@@ -701,6 +701,8 @@ event.KeyCode
 
 case中用||不生效？
 
+
+// 事件：
 function fun()
 {
        var cx=event.clientX;    //相对于当前标签的X坐标
@@ -936,24 +938,25 @@ window.onLoad = function(){}
 
 document.compatMode  // CSS1Compat
 
-
-return {
-    "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
-    "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+function scroll(){
+  return {
+      "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+      "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+  }
 }
 /*
 详细解释如下
-if(window.pageYOffset !== undefined){ // ie9+ 高版本浏览器, 因为 window.pageYOffset 默认的是0  所以这里需要判断
+if(window.pageYOffset !== undefined){ // 火狐/谷歌/ie9+以上支持的(不管DTD), 因为 window.pageYOffset默认的是0, 所以这里需要判断
     return {
         "top": window.pageYOffset,
         "left": window.pageXOffset
     };
-}else if(document.compatMode === "CSS1Compat"){ // 标准浏览器  来判断有没有声明DTD
+}else if(document.compatMode === "CSS1Compat"){ // 来判断有没有声明DTD,CSS1Compat：已经声明， BackCompat  未声明
     return {
-        "top": document.documentElement.scrollTop,
+        "top": document.documentElement.scrollTop, // 已经声明DTD（IE678只识别CSS1Compat ）(IE9+任何时候)
         "left": document.documentElement.scrollLeft
     };
-}else{  // 未声明 DTD
+}else{  // 未声明 DTD（谷歌只认识他）（IE9+认识他）
     return {
         "top": document.body.scrollTop,
         "left": document.body.scrollLeft
@@ -963,6 +966,63 @@ if(window.pageYOffset !== undefined){ // ie9+ 高版本浏览器, 因为 window.
 
 window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
 
+rocket.onclick = function(){
+  clearInterval(timer);
+  timer = setInterval(function(){
+    var step = (target-scrollTopVal)/10;
+    step = step>0?Math.ceil(step):Math.floor(step);
+    scrollTopVal = scrollTopVal +step;
+    //显示区域移动
+    window.scrollTo(0,scrollTopVal); // window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
+    if (scrollTopVal === 0) {
+      clearInterval(timer);
+    }
+  },15)   
+}
+
+
+olLiArr[i].onclick = function () {
+    target = ulLiArr[this.index].offsetTop;
+    clearInterval(timer);
+    //利用缓动动画原理实现屏幕滑动
+    timer = setInterval(function () {
+        //(1).获取步长
+        var step = (target-scrollTopVal)/10;
+        //(2).二次处理步长
+        step = step>0?Math.ceil(step):Math.floor(step);
+        //(3).屏幕滑动
+        scrollTopVal = scrollTopVal + step;
+        window.scrollTo(0,scrollTopVal);
+        //(4).清除定时器
+        if(Math.abs(target-scrollTopVal)<=Math.abs(step)){
+            window.scrollTo(0,target);
+            clearInterval(timer);
+        }
+    },15);
+}
+
+// 事件：
+document.onclick = function (event) {
+    //兼容写法
+   event = event || window.event;
+   console.log(event);
+   console.log(event.timeStamp);
+   console.log(event.bubbles);
+   console.log(event.button);
+   console.log(event.pageX); //body,测试在一个page中，和client的值一致；但只要有滚动，那么两个值不一样，准确的应用page,不用client
+   console.log(event.pageY);
+   console.log(event.screenX); //屏幕
+   console.log(event.screenY);
+   console.log(event.target); 
+   console.log(event.type);
+   console.log(event.clientX); //浏览器可视区
+   console.log(event.clientY);
+}
+
+event = event || window.event;
+//鼠标在页面的位置 = 被卷去的部分+可视区域部分。
+var pagey = event.pageY || scroll().top + event.clientY;
+var pagex = event.pageX || scroll().left + event.clientX;
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 

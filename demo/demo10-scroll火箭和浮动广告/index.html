@@ -34,7 +34,7 @@
 			//缓动跳转到页面最顶端
 			var timer = null;
 			var target = 0;//目标位置
-			var leader = 0;//显示区域自身的位置
+			var scrollTopVal = 0;//显示区域自身的位置
 			//初始化的时候执行一次
 			scorllAnimation();
 			//滚动的时候执行一次
@@ -44,27 +44,29 @@
 				var val = scroll().top;
 				animate(imgArr[0],val+80);
 				animate(imgArr[1],val+80);
-				if (val>80) {
+				if (val>200) {
 					rocket.style.display = "block";
 				} else {
 					rocket.style.display = "none";
 				}
-				//每次移动滚动条的时候都给leader赋值，模拟leader获取距离顶部的距离
-				leader = scroll().top;
+				//每次移动滚动条的时候都给scrollTopVal赋值，模拟scrollTopVal获取距离顶部的距离
+				scrollTopVal = scroll().top;
+				// console.log("scrollTopVal1 = "+scrollTopVal);
 			}
 			rocket.onclick = function(){
 				clearInterval(timer);
 				timer = setInterval(function(){
-					var step = (target-leader)/10;
+					var step = (target-scrollTopVal)/10;
+					// console.log('step = '+step);
 					step = step>0?Math.ceil(step):Math.floor(step);
-					leader = leader +step;
+					scrollTopVal = scrollTopVal +step; //移动一次，需要把新值传递过去
+					// console.log("scrollTopVal2 = "+scrollTopVal);
 					//显示区域移动
-					window.scrollTo(0,leader); // window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
-					if (leader === 0) {
+					window.scrollTo(0,scrollTopVal); // window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
+					if (scrollTopVal === 0) {
 						clearInterval(timer);
 					}
-				},15)
-				
+				},15)		
 			}
 	}
 </script>
