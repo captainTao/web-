@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拖拽</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.nav{
+			height: 30px;
+			background: #036663;
+			border-bottom: 1px solid #369;
+            line-height: 30px;
+            padding-left: 30px;
+		}
+		.nav a {
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .ibox {
+            width: 400px;
+            height: 300px;
+            border: 5px solid #eee;
+            box-shadow: 2px 2px 2px 2px #666;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+
+        .hd {
+            width: 100%;
+            height: 25px;
+            background-color: #7c9299;
+            border-bottom: 1px solid #369;
+            line-height: 25px;
+            color: white;
+            cursor: move;
+        }
+
+        #box-close{
+            float: right;
+            cursor: pointer;
+        }
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<a href="javascript:;" id="register">注册信息</a>
+	</div>
+	<div class="ibox" id="ibox">
+		<div class="hd" id="drop">注册信息（按住标题栏拖拽）
+			<span id="box-close">【关闭】</span>
+		</div>
+		<div class="bd">我是正文内容</div>
+	</div>
+</body>
+<script type="text/javascript">
+    var box = document.getElementById('ibox');
+    var drop = document.getElementById('drop');
+    // 第一个参数，拖动哪里；第二个参数，那个移动；
+    startMove(drop, box);
+    //计算按下点距离box边缘的距离
+    function scroll(){
+        return{
+            "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+            "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+        }
+    }
+    function startMove(obj, target){
+        obj.onmousedown = function(event){
+            var event = event || window.event;
+            var pagex = event.pageX || scroll().left + event.clientX;
+            var pagey = event.pageY || scroll().top + event.clientY;
+            //鼠标在盒子里面的距离
+            var xp = pagex - target.offsetLeft;
+            var yp = pagey - target.offsetTop;
+            //按下后鼠标移动：
+            obj.onmousemove = function(event){
+                var event = event || window.event;
+                var pagexx = event.pageX || scroll().left + event.clientX;
+                var pageyy = event.pageY || scroll().top + event.clientY;
+                //target移动的距离
+                var xx = pagexx -xp;
+                var yy = pageyy -yp;
+                target.style.left = xx + 'px';
+                target.style.top = yy + 'px';
+            }
+        }
+        // 鼠标离开的时候，需要置空
+        obj.onmouseup = function(){
+            obj.onmousemove = null;
+        }
+    }
+</script>
+</html>

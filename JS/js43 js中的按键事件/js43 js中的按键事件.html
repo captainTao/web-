@@ -6,35 +6,43 @@
 		       img{
 			   position:absolute;
                left:10;
-               top:110;
+               top:140;
                  }			   
 		 </style>
 </head>
 <body onkeydown="fun();">
     <h1>js中的按键事件<br></h1>
-	 吉林大学糖水西施<br>
-	 遗漏问题：case用  或且非 不生效<br>
-	 <img style="display:block;width:200;;height:300;" src="吉林大学糖水西施o.jpg" id="id1">
+	 note: case用  或且非 不生效, 只能认识一个值，表达式求值后再识别。<br>
+	 <img style="display:block;width:400;;height:209;" src="01.jpg" id="id1">
       <script>
 	          var x=10;
-			  var y=110;
-	          function fun(){
+			  var y=140;
+	          function fun(event){
 			         //获取图片对象
 					 var img=document.getElementById("id1");
 					 //var img=document.getElementsByTagName("img");
+					 var event = event || window.event;
 					 var code=event.keyCode; //获取按下键的代码
 					 console.log(code);
 					 switch (code){
-					        case (65||37)://左
+					        // case (65 || 37)://左
+					        case 65:
+					        case 37:
 							x=x-10;
 							break;
-							case 39|| 68://右
+							// case 39 ||  68://右
+							case 39:
+							case 68:
 							 x=x+10;
 							 break;
-							case 38||87://上
+							// case 38 || 87://上
+							case 38:
+							case 87:
 							 y=y-10;
 							 break;
-							 case 40||83://下
+							 // case 40 || 83://下
+							 case 40:
+							 case 83:
 							 y=y+10;
 							 break;
 					       }

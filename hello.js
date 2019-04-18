@@ -2894,4 +2894,5 @@ href="javascript:void(0);"
 可以避免跳到的空连接
 href="javascript:void(0);"这句话的意思，是执行js函数，而不是跳链接，函数内容为返回为空；
 <li><a href="javascript:void(0);">企业文化</a></li>
+<li><a href="javascript:;">其他事件</a></li>
 <li><a href="#">招聘信息</a></li>
