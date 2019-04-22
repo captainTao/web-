@@ -1023,6 +1023,10 @@ event = event || window.event;
 //鼠标在页面的位置 = 被卷去的部分+可视区域部分。
 var pagey = event.pageY || scroll().top + event.clientY;
 var pagex = event.pageX || scroll().left + event.clientX;
+
+
+//不清楚下面这句啥子意思？当物体在被移动后进行的赋值
+window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程///////////////////////////////////////
 

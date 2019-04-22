@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>横向滚动条</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 1000px;
+			height: 200px;
+			margin: 50px;
+			position: relative;
+			overflow: hidden;
+		}
+		.content{
+			width: 1500px;
+			height: 200px;
+			padding: 5px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.scroll{
+			width: 100%;
+			height: 12px;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			background-color: #eee;
+		}
+		.bar{
+			height: 7px;
+			width: 100px;
+			background-color: #d69090;
+			border-radius: 10px;
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			margin-top: -3.5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="content" id="content">
+			<h2>自然资源部：中国台湾海域6.7级地震不会引发海啸</h2>
+			<span>2019-04-18 15:13</span> 
+			<span>中新社北京4月18日电 (记者 阮煜琳)</span>
+			<p>中国台湾花莲县海域18日发生6.7级地震。自然资源部海啸预警中心18日发布消息说，根据初步地震参数判断，本次地震不会引发海啸。
+			4月18日下午13时，台湾花莲县附近发生6.7级地震，震源深度24千米。信义区松仁路地表发生开裂，市民纷纷走上街头。</p>
+			<p>据中国地震台网测定，北京时间2019年4月18日13时1分，在台湾花莲县海域(北纬24.02度，东经121.65度)发生6.7级地震，震源深度24千米。震中距离花莲市最近海岸线约1千米，距台北市约115千米。台湾震感强烈，福建、浙江等地震感明显，江苏、安徽等地有感。自然资源部海啸预警中心根据初步地震参数判断，本次地震不会引发海啸。自然资源部海啸预警中心表示，将继续跟踪分析地震和海啸监测数据。(完)</p>
+		</div>
+		<div class="scroll" id="scroll">
+			<!-- 需要做两层，一层是底色，一层是滚动色 -->
+			<div class="bar" id="bar"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var box = document.getElementById('box');
+		var con = document.getElementById('content');
+		var bar = document.getElementById('bar');
+		//初始化bar宽度
+		var barWidth = box.offsetWidth * box.offsetWidth/content.offsetWidth;
+		bar.style.width = barWidth + 'px';
+		//scroll封装
+		function scroll(){
+		    return{
+		        "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
+		        "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
+		    }
+		}
+		bar.onmousedown = function(event){
+			var event = event || window.event;
+			var pagex = event.pageX || scroll().left + event.clientX;
+			//鼠标在bar上的位置，距离bar最左端的长度
+			var leftw = pagex - box.offsetLeft - bar.offsetLeft;
+			// content内容距离左边的距离
+			var conleft = content.offsetLeft;
+			document.onmousemove = function(event){
+				var event = event || window.event;
+				var pagexx = event.pageX || scroll().left + event.clientX;
+				//x移动距离
+				var moved = pagexx -pagex;
+				//content移动的距离：
+				var conmoved = -(con.offsetWidth - box.offsetWidth)/(box.offsetWidth - bar.offsetWidth)*moved;
+				// content的left属性
+				var contleft = conleft + conmoved;
+				// bar的left属性
+				var barleft = pagexx - leftw - box.offsetLeft;
+				// 对barleft和contleft属性的判断
+				if (barleft < 0) {
+					barleft = 0;
+					contleft = 0;
+				}else if( barleft > box.offsetWidth - bar.offsetWidth){
+					barleft = box.offsetWidth - bar.offsetWidth;
+					contleft = box.offsetWidth - con.offsetWidth;
+				}
+				//赋值：
+				bar.style.left = barleft + 'px';
+				con.style.left = contleft + 'px';
+				window.getSelection ? window.getSelection().removeAllRanges():document.selection.empty();
+			}
+		}
+		document.onmouseup =function(){
+			document.onmousemove = null;
+		}
+	}
+</script>
+</html>

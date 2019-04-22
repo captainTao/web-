@@ -78,7 +78,7 @@
             var xp = pagex - target.offsetLeft;
             var yp = pagey - target.offsetTop;
             //按下后鼠标移动：
-            obj.onmousemove = function(event){
+            document.onmousemove = function(event){
                 var event = event || window.event;
                 var pagexx = event.pageX || scroll().left + event.clientX;
                 var pageyy = event.pageY || scroll().top + event.clientY;
@@ -87,11 +87,13 @@
                 var yy = pageyy -yp;
                 target.style.left = xx + 'px';
                 target.style.top = yy + 'px';
+                //不清楚下面这句啥子意思？
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
             }
         }
-        // 鼠标离开的时候，需要置空
-        obj.onmouseup = function(){
-            obj.onmousemove = null;
+        // 鼠标离开的时候，需要置空,这里优化为document.
+        document.onmouseup = function(){
+            document.onmousemove = null;
         }
     }
 </script>
