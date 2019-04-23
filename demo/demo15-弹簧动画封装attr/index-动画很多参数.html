@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>弹簧动画封装很多参数</title>
+	<style type="text/css">
+		div{
+			position: absolute;
+            top: 40px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<button>json运动</button>
+	<div></div>
+</body>
+<script type="text/javascript">
+	window.onload = function () {
+		var btnArr = document.getElementsByTagName('button');
+		var div = document.getElementsByTagName('div')[0];
+		btnArr[0].onclick = function(){
+			var json = {"left":40,"top":200,"width":400,"height":200};
+            animate(div,json);
+		}
+
+		//弹簧动画封装
+		function animate(ele, json){
+			clearInterval(ele.timer);
+			ele.timer = setInterval(function(){
+				//开闭原则
+				var bool = true;
+				for(var k in json){
+					//原位置
+					var leader = parseInt(getStyle(ele,k)) || 0;
+					var step = (json[k] -leader)/10;
+					step = step>0?Math.ceil(step):Math.floor(step);
+					leader = leader + step;
+					ele.style[k] = leader +'px';
+					// if (Math.abs(json[k]-leader)<=Math.abs(step)) {
+					// 	ele.style[k] = json[k] + 'px';
+					// 	//这儿停掉计时器，不是很准确，只有一个位置到目的地了；
+					// 	clearInterval(ele.timer);
+					// }
+					if (json[k] !== leader) {
+						bool = false;
+					}
+				}
+				// console.log(1);
+				if (bool) {
+					clearInterval(ele.timer);
+				}
+			},25);
+		}
+		//获取样式
+		function getStyle(ele,attr){
+			if (window.getComputedStyle) {
+				return window.getComputedStyle(ele,null)[attr];
+			}
+			return ele.currentStyle[attr];
+		}
+	}
+</script>
+</html>

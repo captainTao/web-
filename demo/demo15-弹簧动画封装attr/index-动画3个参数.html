@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>弹簧动画封装3个参数</title>
+	<style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<button>运动到400</button>
+	<button>宽度变成400</button>
+	<div></div>
+</body>
+<script type="text/javascript">
+	// 存在问题：当点击一个，再点击另一个按钮时候，第一个定时器会停止，即位置到不了最终位置？
+	// 应该把两个按钮的动画拆开？
+	window.onload = function () {
+		var btnArr = document.getElementsByTagName('button');
+		var div = document.getElementsByTagName('div')[0];
+		btnArr[0].onclick = function(){
+			animate(div, 'left', 400);
+		}
+		btnArr[1].onclick = function(){
+			animate(div, 'width', 400);
+		}
+		//弹簧动画封装
+		function animate(ele, attr, target){
+			clearInterval(ele.timer);
+			ele.timer = setInterval(function(){
+				//原先的位置
+				var leader = parseInt(getStyle(ele,attr)) || 0;
+				var step = (target - leader)/10;
+				step = step>0?Math.ceil(step):Math.floor(step);
+				leader = leader + step; //原始位置+步长，开始运动
+				//赋值
+				ele.style[attr] = leader + 'px';
+				if (Math.abs(target - leader)<=Math.abs(step)) {
+					ele.style[attr] = target + 'px';
+					clearInterval(ele.timer);
+				}
+			},25);
+		}
+		//获取样式
+		function getStyle(ele,attr){
+			if (window.getComputedStyle) {
+				return window.getComputedStyle(ele,null)[attr];
+			}
+			return ele.currentStyle[attr];
+		}
+	}
+</script>
+</html>

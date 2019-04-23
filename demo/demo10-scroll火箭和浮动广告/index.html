@@ -44,7 +44,7 @@
 				var val = scroll().top;
 				animate(imgArr[0],val+80);
 				animate(imgArr[1],val+80);
-				if (val>200) {
+				if (val>100) {
 					rocket.style.display = "block";
 				} else {
 					rocket.style.display = "none";
@@ -60,7 +60,7 @@
 					// console.log('step = '+step);
 					step = step>0?Math.ceil(step):Math.floor(step);
 					scrollTopVal = scrollTopVal +step; //移动一次，需要把新值传递过去
-					// console.log("scrollTopVal2 = "+scrollTopVal);
+					// console.log("scrollTopVal = "+scrollTopVal);
 					//显示区域移动
 					window.scrollTo(0,scrollTopVal); // window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
 					if (scrollTopVal === 0) {

@@ -688,6 +688,7 @@ bt01.onclick=function(){}
 
 oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown, onmousemove
 onload, onunload, beforeunload
+window.onresize, window.onscroll
 onchange
 onreadystatechange
 onfocus, onblur
@@ -902,8 +903,26 @@ arr.filter(function(element,index,self){
   return self.indexOf(element)===index;
 })
 
+///////////////////////////////////////////////////////
+
+//    width和height
+//    offset带border
+//    scroll不带border，内容的宽高
+//    client不带border
 
 
+//    top和left
+//    offset距离父系盒子带有定位的盒子之间的距离
+//    scroll被卷去的部分的距离
+//    clientborder的宽高
+
+
+//    clientX和clientY
+//    event调用，鼠标距离浏览器的可视区域的距离
+
+
+offset
+-----------------
 offsetHeight = height+padding+border;(不加margin)
 offsetWidth = width+padding+border;(不加margin)
 
@@ -913,6 +932,8 @@ offsetLeft/offsetTop = 有定位(relative,fixed,absolute)的父级或者自身�
 offsetParent =返回带有定位的父级元素；//带标签输出
 
 
+scroll
+-----------------
 1、scrollWidth/scrollHeight 内容的宽高
 IE67可以比盒子小。 IE8+火狐谷歌不能比盒子小
 // scrollWidth和scrollHeight不包括border和margin
@@ -963,7 +984,8 @@ if(window.pageYOffset !== undefined){ // 火狐/谷歌/ie9+以上支持的(不�
     };
 }
 */
-
+缓动动画
+----------------------------------
 window.scrollTo(x,y);浏览器显示区域跳转到指定的坐标
 
 rocket.onclick = function(){
@@ -1001,7 +1023,8 @@ olLiArr[i].onclick = function () {
     },15);
 }
 
-// 事件：
+事件：
+--------------------------------------
 document.onclick = function (event) {
     //兼容写法
    event = event || window.event;
@@ -1027,8 +1050,44 @@ var pagex = event.pageX || scroll().left + event.clientX;
 
 //不清楚下面这句啥子意思？当物体在被移动后进行的赋值
 window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+
+
+client
+------------------------
+//不包括margin和border
+//padding+width
+console.log(box.clientWidth);
+//clientTop获取的是上border的宽度
+console.log(box.clientTop);
+
+
+//获取屏幕可视区域的宽高
+------------------------
+window.onresize = function () {
+    document.title = client().width + "    "+ client().height;
+}
+
+function client(){
+    if(window.innerHeight !== undefined){
+        return {
+            "width": window.innerWidth,
+            "height": window.innerHeight
+        }
+    }else if(document.compatMode === "CSS1Compat"){
+        return {
+            "width": document.documentElement.clientWidth,
+            "height": document.documentElement.clientHeight
+        }
+    }else{
+        return {
+            "width": document.body.clientWidth,
+            "height": document.body.clientHeight
+        }
+    }
+}
 //////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////面向对象编程///////////////////////////////////////
+////////////////////////////////////面向对象编程////////////////////////////////////////
+
 
 // 面向对象编程：
 
@@ -2893,6 +2952,60 @@ function animate(ele,target) {
 }
 
 
+
+//兼容方法获取元素样式
+function getStyle(ele,attr){
+    if(window.getComputedStyle){
+        return window.getComputedStyle(ele,null)[attr];
+    }
+    return ele.currentStyle[attr];
+}
+
+// 弹簧动画封装属性：参数变为3个
+function animate(ele,attr,target){
+    //先清定时器
+    clearInterval(ele.timer);
+    ele.timer = setInterval(function () {
+        //四部
+        var leader = parseInt(getStyle(ele,attr)) || 0;
+        //1.获取步长
+        var step = (target - leader)/10;
+        //2.二次加工步长
+        step = step>0?Math.ceil(step):Math.floor(step);
+        leader = leader + step;
+        //3.赋值
+        ele.style[attr] = leader + "px";
+         //4.清除定时器
+        if(Math.abs(target-leader)<=Math.abs(step)){
+            ele.style[attr] = target + "px";
+            clearInterval(ele.timer);
+        }
+
+    },25);
+}
+// 动画封装，多个参数，直接传json字段；
+function animate(ele, json){
+  clearInterval(ele.timer);
+  ele.timer = setInterval(function(){
+    //开闭原则
+    var bool = true;
+    for(var k in json){
+      //原位置
+      var leader = parseInt(getStyle(ele,k)) || 0;
+      var step = (json[k] -leader)/10;
+      step = step>0?Math.ceil(step):Math.floor(step);
+      leader = leader + step;
+      ele.style[k] = leader +'px';
+      if (json[k] !== leader) {
+        bool = false;
+      }
+    }
+    if (bool) {
+      clearInterval(ele.timer);
+    }
+  },25);
+}
+
 href="javascript:void(0);"
 --------------------------
 可以避免跳到的空连接
@@ -2900,3 +3013,79 @@ href="javascript:void(0);"这句话的意思，是执行js函数，而不是跳�
 <li><a href="javascript:void(0);">企业文化</a></li>
 <li><a href="javascript:;">其他事件</a></li>
 <li><a href="#">招聘信息</a></li>
+
+
+阻止冒泡：
+-------------------------
+w3c的方法是：（火狐、谷歌、IE11）
+  event.stopPropagation()
+IE10以下则是使用：
+  event.cancelBubble = true
+
+兼容代码如下：
+var event = event || window.event;
+ if(event && event.stopPropagation){
+      event.stopPropagation();
+  }else{
+      event.cancelBubble = true;
+  }
+
+冒泡：
+IE 6.0: 
+div -> body -> html -> document
+其他浏览器: 
+div -> body -> html -> document -> window
+
+不是所有的事件都能冒泡。以下事件不冒泡：blur、focus、load、unload
+
+
+
+隐藏模态框
+-------------------------
+判断当前对象
+IE678         event.srcElement
+火狐/谷歌等     event.target
+
+兼容写法获取元素ID：
+var event = event || window.event;
+var target = event.target? event.target : event.srcElement;
+var targetId =  event.target ?  event.target.id : event.srcElement.id;
+//类似还有tagName;
+
+
+获得用户选择内容
+-------------------------
+window.getSelection().toString();         标准浏览器   w3c
+
+document.selection.createRange().text;    ie678
+
+
+变量属性获取/赋值方法
+-------------------------
+传统给属性赋值：（既能获取又能赋值）
+div.style.width             单个赋值
+div.style[“width”]          变量赋值
+
+获取属性值：（只能获取）
+div.currentStyle.width;      IE678    单个获取
+window.getComputedStyle(div,null).width;
+div.currentStyle[“width”];   IE678    变量获取
+window.getComputedStyle(div,null)[“width”];
+  参数1：获取属性的元素。
+  参数2：伪元素，C3学习。
+
+ //获取行内式和内嵌式
+console.log(typeof window.getComputedStyle(div,null)); //object
+console.log(window.getComputedStyle(div,null).border);
+console.log(window.getComputedStyle(div,null)["background-color"]);
+
+
+//兼容方法获取元素样式
+function getStyle(ele,attr){
+    if(window.getComputedStyle){
+        return window.getComputedStyle(ele,null)[attr];
+    }
+    return ele.currentStyle[attr];
+}
+console.log(getStyle(div,"padding"));
+console.log(getStyle(div,"background-color"));
