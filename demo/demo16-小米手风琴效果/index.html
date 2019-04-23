@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>小米手风琴效果</title>
+	<style type="text/css">
+        *{
+        	margin:0; 
+        	padding:0;
+        }
+        ul{
+        	list-style: none
+        }
+        div{
+            width: 1150px;
+            height: 400px;
+            margin:50px auto;
+            /*border:1px solid red;*/
+            overflow: hidden;
+
+        }
+        div li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+        div ul {
+            width: 1300px;
+        }
+	</style>
+	<script src="jquery0.0.1.js"></script>
+</head>
+<script type="text/javascript">
+	    window.onload = function () {
+	        //需求：鼠标放入到li中该盒子变宽，其他的盒子变窄。移开大盒子，回复原样。
+	        //步骤：
+	        //1.给li添加背景
+	        //2.绑定onmouseover事件，鼠标放入到li中该盒子变宽，其他的盒子变窄
+	        //3.移开大盒子，回复原样
+
+	        //存在问题：如果box盒子设置为1200的时候，明显看到动画有抖动且不流畅；如何解决？
+	        var div = document.getElementsByTagName("div")[0];
+	        var liArr = div.getElementsByTagName("li");
+	        //1.给li添加背景
+	        for(var i=0;i<liArr.length;i++){
+	            liArr[i].style.background = "url(images/"+(i+1)+".jpg) no-repeat";
+
+	            //2.绑定onmouseover事件，鼠标放入到li中该盒子变宽，其他的盒子变窄
+	            liArr[i].onmouseover = function () {
+	                //排他思想
+	                for(var j=0;j<liArr.length;j++){
+	                    //引用框架实现宽度变窄
+	                    animate(liArr[j],{"width":80});
+	                }
+	                //剩下他自己
+	                animate(this,{"width":880})
+	            }
+	        }
+
+	        //3.移开大盒子，回复原样
+	        div.onmouseout = function () {
+	            for(var j=0;j<liArr.length;j++){
+	                //引用框架实现宽度变窄
+	                animate(liArr[j],{"width":240});
+	            }
+	        }
+	    }
+	</script>
+</script>
+<body>
+	<div>
+	    <ul>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	        <li></li>
+	    </ul>
+	</div>
+</body>
+</html>
