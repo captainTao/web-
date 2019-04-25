@@ -6,6 +6,7 @@ echarts.js ---百度大数据
 2.wow.min.js
 3.animate.css
 
+IE678不识别opacity
 
 'use strict';
 
@@ -197,6 +198,10 @@ substr()
 
 s.indexOf('world'); // 返回7
 s.indexOf('World'); // 没有找到指定的子串，返回-1
+//search();  给字符差索引
+var str = "abcdefg";
+console.log(str.search(/bc/)); //1
+console.log(str.indexOf("bc")); //1
 
 
 var s = 'hello, world'
@@ -515,7 +520,7 @@ for(var i of a){
 }
 
 
-+-----------------------------------------------------------------typeof,prototype,setInterval:
++-----------------------------------------------------------------typeof,prototype,setInterval,trim:
 typeof
 包装对象
 parseInt,parseFloat
@@ -553,6 +558,18 @@ Array.prototype.show = function (){
     for (var i = 0; i < this.length; i++) {
         document.write(this[i]+"<br>");
     }
+}
+
+// 检测输入为空的的代码；
+inp.onblur = function () {
+        var val = this.value;
+        if(trim(val) == ""){
+            return alert("不能输入为空！");
+        }
+        alert("成功！:"+trim(val)+"1");
+    }
+function trim(str){
+    return str.replace(/(^\s+)|(\s+$)/g,"");
 }
 
 //下面为去左右空格，左空格，右空格函数, js中需要定义这几个函数
@@ -647,6 +664,62 @@ var xiaoming = {
 };
 
 
+正则表达式：
+-----------------
+匹配国内电话号码：
+\d{3}-\d{8}|\d{4}-\d{7}
+验证手机号：
+/^((13[0-9])|(15[^4,\D])|(18[0,5-9]))\d{8}$/ 
+1.验证QQ号：/^[1-9][0-9]{4,}$/
+2.验证手机号：/^((13[0-9])|(15[^4,\D])|(18[0-9]))\d{8}$/
+3.验证邮箱：/^[\w\-\.]+\@[\w]+\.[\w]{2,4}$/
+4.验证座机号：/^0\d{2}-\d{8}$|^0\d{3}-\d{7}$/
+5.验证用户名：/^[a-zA-Z0-9_-]{3,16}$/
+6.验证密码：/^[a-zA-Z0-9_-]{6,18}/
+
+匹配中国邮政编码：[1-9]\d{5}(?!\d)
+评注：中国邮政编码为6位数字
+匹配身份证：\d{15}|\d{18}
+评注：中国的身份证为15位或18位
+匹配ip地址：\d+\.\d+\.\d+\.\d+
+评注：提取ip地址时有用
+匹配密码： /^[a-zA-Z0-9_-]{6,18}/
+
+/^([a-z].*[A-Z])|([A-Z].*[a-z])$/   
+区分大小写英文字母
+
+/^([a-z].*[0-9])|([A-Z].*[0-9])|[0-9].*[a-zA-Z]$/   
+带有字母 和 数字 
+
+/^[A-Za-z0-9]+[_][A-Za-z0-9]*$/   
+字母数字中间 加有下划线（想要什么中括号中加）
+
+匹配中文字符的正则表达式：
+ /^[\u4e00-\u9fa5]{2,4}$/
+
+匹配双字节字符(包括汉字在内)：
+[^\x00-\xff]
+评注：可以用来计算字符串的长度（一个双字节字符长度计2，ASCII字符计1）
+
+匹配空白行的正则表达式：\n\s*\r
+评注：可以用来删除空白行
+
+匹配HTML标记的正则表达式：< (\S*?)[^>]*>.*?|< .*? />
+评注：网上流传的版本太糟糕，上面这个也仅仅能匹配部分，对于复杂的嵌套标记依旧无能为力
+
+匹配首尾空白字符的正则表达式：^\s*|\s*$
+评注：可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式
+
+匹配Email地址的正则表达式：
+/^[\w\-\.]+\@[\w]+\.[\w]{2,4}$/
+评注：表单验证时很实用
+
+匹配网址URL的正则表达式：[a-zA-z]+://[^\s]*
+评注：网上流传的版本功能很有限，上面这个基本可以满足需求
+
+匹配帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：
+/^[a-z0-9_-]{3,16}$/评注：表单验证时很实用
+
 //g,i,m;
 regExp.test()
 'a,b;; c  d'.split(/[\s\,\;]+/); //正则分割
@@ -683,6 +756,7 @@ document.getElementById("content").style.visibility="visible" //通过样式
 document.getElementById("div1").style.display=type; //通过display
 style.overflow
 style.left/top
+
 
 bt01.onclick=function(){}
 
@@ -1085,6 +1159,9 @@ function client(){
         }
     }
 }
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////面向对象编程////////////////////////////////////////
 
@@ -2984,7 +3061,7 @@ function animate(ele,attr,target){
     },25);
 }
 // 动画封装，多个参数，直接传json字段；
-function animate(ele, json){
+function animate(ele, json, fn){
   clearInterval(ele.timer);
   ele.timer = setInterval(function(){
     //开闭原则
@@ -3002,6 +3079,9 @@ function animate(ele, json){
     }
     if (bool) {
       clearInterval(ele.timer);
+      if(fn){
+          fn(); //fn 为回调函数
+      }
     }
   },25);
 }
