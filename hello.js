@@ -760,7 +760,7 @@ style.left/top
 
 bt01.onclick=function(){}
 
-oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown, onmousemove
+oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown, onmousemove, onmouseenter, onmouseleave
 onload, onunload, beforeunload
 window.onresize, window.onscroll
 onchange
@@ -3060,6 +3060,13 @@ function animate(ele,attr,target){
 
     },25);
 }
+
+
+animate(div,json1, function () {
+    animate(div,json2, function () {
+        animate(div,json1);
+    });
+});
 // 动画封装，多个参数，直接传json字段；
 function animate(ele, json, fn){
   clearInterval(ele.timer);
@@ -3169,3 +3176,17 @@ function getStyle(ele,attr){
 }
 console.log(getStyle(div,"padding"));
 console.log(getStyle(div,"background-color"));
+
+
+//style属性的赋值
+--------------------
+var div = document.getElementsByTagName("div")[0];
+
+div.style.cssText = "width:100px;height:100px;background-color: pink";
+
+div.style["border-radius"] = "50px";
+div.style["zIndex"] = "1";
+
+ //很多浏览器支持的是
+div.style.borderTopLeftRadius =  "50px";
+div.style.borderBottomRightRadius =  "50px";

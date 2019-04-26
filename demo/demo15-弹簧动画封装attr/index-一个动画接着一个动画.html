@@ -25,7 +25,7 @@
 
         btnArr[0].onclick = function () {
             var json1 = {"left":300,"top":200,"width":400,"height":200};
-            var json2 = {"left":10,"top":30,"width":100,"height":100};
+            var json2 = {"left":10,"top":40,"width":100,"height":100};
             animate(div,json1, function () {
                 animate(div,json2, function () {
                     animate(div,json1);
@@ -72,7 +72,7 @@
                         fn();
                     }
                 }
-            },25);
+            },35);
         }
 
         //兼容方法获取元素样式
