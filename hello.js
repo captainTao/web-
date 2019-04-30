@@ -1981,6 +1981,30 @@ ctx.fillText('带阴影的文字', 20, 40);
 JQuery:
 /************************************************/
 
+//原生js，入口函数。页面上所有内容加载完毕，会执行。
+//不仅文本加载完毕，而且图片也要加载完毕，在执行函数。
+window.onload = function () {
+    alert(1);
+}
+
+//jquery的入口函数。  1.文档加载完毕，图片不加载的时候就可以执行这个函数。
+$(document).ready(function () {
+    alert(1);
+})
+
+
+// jquery的入口函数。  2.文档加载完毕，图片不加载的时候就可以执行这个函数。
+$(function () {
+    alert(1);
+});
+
+
+//jquery的入口函数。  3.文档加载完毕，图片也加载完毕的时候在执行这个函数。
+$(window).ready(function () {
+    alert(1);
+})
+
+$(document).ready(function (){}
 $(function () {
     // init...
 });
@@ -1988,8 +2012,11 @@ $(function () {
 $(function(){
     $('.box p').html('this is JQ modified content!').css('background-color','green');
 });
+
+
     
 JQ 过滤器（Filter）
+----------------------------
 过滤器一般不单独使用，它通常附加在选择器上，帮助我们更精确地定位元素。观察过滤器的效果：
 /*
 <!-- HTML结构 -->
@@ -2098,7 +2125,10 @@ $('#test-form :text, #test-form :password, #test-form input:checked, #test-form 
 json = JSON.stringify(elts);
 
 
-// ----------------------------JQ修改DOM:
+
+
+JQ修改DOM:
+---------------------------------------
 修改Text和HTML:
 /*
 <ul id="test-ul">
@@ -2110,6 +2140,8 @@ json = JSON.stringify(elts);
 // 有的浏览器只有innerHTML，有的浏览器支持innerText，有了jQuery对象，不需要考虑浏览器差异了，全部统一操作！
 $('#test-ul li[name=book]').text(); // 'Java & JavaScript'  // text()参数为空就是获取，有参数就是设置；
 $('#test-ul li[name=book]').html(); // 'Java &amp; JavaScript'
+
+
 
 
 JQ修改css：
@@ -2124,6 +2156,7 @@ div.css('color', ''); // 清除CSS属性
 $("div").css({"width":"50px",
              "height":"50px"});  //设置两个属性
 
+jqdiv.css({"width": 100,"height":100,"background-color":"red","margin":10});
 
 为了和JavaScript保持一致，CSS属性可以用'background-color'和'backgroundColor'两种格式。
 
@@ -2134,10 +2167,12 @@ var div = $('#test-div');
 div.hasClass('highlight'); // false， class是否包含highlight
 div.addClass('highlight'); // 添加highlight这个class
 div.removeClass('highlight'); // 删除highlight这个class
+div.toggleClass('highlight'); //切换class
 
 
 
 显示和隐藏DOM:
+---------------------------------
 要隐藏一个DOM，我们可以设置CSS的display属性为none，利用css()方法就可以实现。
 不过，要显示这个DOM就需要恢复原有的display属性，这就得先记下来原有的display属性到底是block还是inline还是别的值。
 
@@ -2146,6 +2181,9 @@ jQuery直接提供show()和hide()方法:
 var a = $('a[target=_blank]');
 a.hide(); // 隐藏
 a.show(); // 显示
+连写：
+$("#center li").eq($(this).index()).show().siblings("li").hide();
+
 
 
 JQ和DOM互转：
@@ -2163,6 +2201,14 @@ $("#bt04").click(function(){
     var nowp=$("#p2")[0];//对象[0] 从JQ对象中获取DOM对象
     nowp.innerHTML="我是DOM改的!!!!";
 })  ;   
+
+//DOM转JQuery
+var box = document.getElementById("box");
+var jqbox = $("#box");
+//jquery对象转换成js对象
+jqdiv[0].style.backgroundColor = "black";
+jqdiv.get(4).style.backgroundColor = "pink";
+
 
 
 
@@ -2183,6 +2229,19 @@ div.width(); // 600
 div.height(); // 300
 div.width(400); // 设置CSS属性 width: 400px，是否生效要看CSS是否有效
 div.height('200px'); // 设置CSS属性 height: 200px，是否生效要看CSS是否有效
+
+// 坐标值获取：
+$(selector).offset();
+$(selector).offset({left:100, top: 150});
+
+// 作用：获取相对于其最近的具有定位的父元素的位置。
+// 获取，返回值为对象：{left:num, top:num}
+$(selector).position(); // 只能获取，不能设置。
+
+
+// 可获取可以设置
+$(selector).scrollTop(100);
+$(selector).scrollLeft(100);
 
 
 attr()和removeAttr()
@@ -2217,8 +2276,19 @@ radio.is(':checked'); // true
 类似的属性还有selected，处理时最好用is(':selected')。
 
 
+
+
 JQ操作表单:
 /***********************************/
+$(selector).attr("title", "传智播客");
+$(selector).attr("title");
+$(selector).removeAttr("title");
+$(selector).val();
+$(selector).val("具体值");
+$(selector).text();
+$(selector).text("我是内容");
+
+
 对于表单元素，jQuery对象统一提供val()方法获取和设置对应的value属性：
 
 /*
@@ -2248,6 +2318,21 @@ textarea.val('Hi'); // 文本区域已更新为'Hi'
 
 JQ修改DOM:
 /***********************************/
+$(selector).append($node);
+/*
+不常用：
+$(selector).appendTo(node);
+$(selector).prepend(node);
+$(selector).after(node);
+$(selector).before(node);
+*/
+$(selector).html('<span>传智播客</span>');
+$(selector).html();
+$(selector).empty();
+$(selector).html(“”);
+$(selector).remove();
+$(selector).clone();
+
 // append()
 //增加（节点不在文章当中）或者移动（节点已经存在文章当中）：
 
@@ -2520,10 +2605,20 @@ $(function () {
 JQ动画:
 /***********************************/
 //括号中的参数为：毫秒，或者slow ,fast
+/* slow：600ms、normal：400ms、fast：200ms */
 show() / hide() / toggle()
 slideUp() / slideDown() / slidetoggle()
 fadeIn() / fadeOut()  /fadeToggle()
-
+上面函数接受两个参数，例：show(speed, function(){})
+fadeTo()
+// 用法有别于其他动画效果
+// 第一个参数表示：时长
+// 第二个参数表示：不透明度值，取值范围：0-1
+$(selector).fadeTo(1000, .5); //  0全透，1全不透
+// 第一个参数为0，此时作用相当于：.css(“opacity”, .5);
+$(selector).fadeTo(0, .5);
+stop()
+$(selector).stop(clearQueue,jumpToEnd);
 
 // 自定义动画：
 animate()  // 接受三个参数：动画，时间，回调
@@ -2554,7 +2649,6 @@ div.slideDown(2000)
        width: '128px',
        height: '128px'
    }, 2000);
-}
 
 为什么有的动画没有效果
 你可能会遇到，有的动画如slideUp()根本没有效果。这是因为jQuery动画的原理是逐渐改变CSS的值，如height从100px逐渐变为0。
