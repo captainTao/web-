@@ -2243,7 +2243,7 @@ $(selector).position(); // 只能获取，不能设置。
 $(selector).scrollTop(100);
 $(selector).scrollLeft(100);
 
-
+// 表单处理
 attr()和removeAttr()
 方法用于操作DOM节点的属性：
 
@@ -2328,9 +2328,9 @@ $(selector).before(node);
 */
 $(selector).html('<span>传智播客</span>');
 $(selector).html();
-$(selector).empty();
-$(selector).html(“”);
-$(selector).remove();
+$(selector).empty(); //清空所有
+$(selector).html("");
+$(selector).remove(); //移除第一个
 $(selector).clone();
 
 // append()
