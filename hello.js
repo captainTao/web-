@@ -774,8 +774,9 @@ keyup, keypress, keydown
 
 event.KeyCode
 
-case中用||不生效？
-
+case中用||不生效？--要分开写
+case 65:
+case 37:
 
 // 事件：
 function fun()
@@ -1896,6 +1897,15 @@ XMLHttpRequest对象的open()方法有3个参数，第一个参数指定是GET�
 
 
 
+readyState
+存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。
+0: 请求未初始化
+1: 服务器连接已建立
+2: 请求已接收
+3: 请求处理中
+4: 请求已完成，且响应已就绪
+
+
 
 安全限制(跨域):
 /************************************************/
@@ -2125,6 +2135,14 @@ $('#test-form :text, #test-form :password, #test-form input:checked, #test-form 
 json = JSON.stringify(elts);
 
 
+each:
+jQuery(function () {
+    //设置不一样的盒子透明度逐渐递增
+    $("ul li").each(function (index,element) {
+        //console.log(index+"---"+element.tagName);
+        $(element).css("opacity",(index+1)/10);
+    });
+});
 
 
 JQ修改DOM:
@@ -2167,7 +2185,7 @@ var div = $('#test-div');
 div.hasClass('highlight'); // false， class是否包含highlight
 div.addClass('highlight'); // 添加highlight这个class
 div.removeClass('highlight'); // 删除highlight这个class
-div.toggleClass('highlight'); //切换class
+div.toggleClass('highlight'); // 切换class,在原来的和highlight样式之间切换
 
 
 
@@ -3284,3 +3302,38 @@ div.style["zIndex"] = "1";
  //很多浏览器支持的是
 div.style.borderTopLeftRadius =  "50px";
 div.style.borderBottomRightRadius =  "50px";
+
+
+表单提交：
+--------------------
+/*
+<form action="01.php" method="get"> //get
+<form action="02.php" method="post"> //post
+<form action="03.fileUpdate.php" method="post" enctype="multipart/form-data"> //文件提交
+  <label for="">姓名:
+      <input type="text" name= "userName"></label>
+      <br/>
+  <label for="">邮箱:
+      <input type="text" name= "userEmail"></label>
+      <br/>
+      <input type="submit" name="">
+</form>
+
+
+<?php 
+    echo "<h1>GET_PAGE</h1>";
+    echo 'userName:'.$_GET['userName'];
+    echo '<br/>';
+    echo 'userEmail:'.$_GET['userEmail'];
+?>
+*/
+
+POST&GET错误处理
+--------------------
+array_key_exists(key, 数组)
+
+if(array_key_exists('name', $_GET)){
+       //如果有数据 再去读取
+   }else{
+       // 反之 可以执行一些 其他的逻辑
+}
