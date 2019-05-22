@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue-demo1</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app1">
+		<div>
+			<input v-model="inputValue"/>
+			<button @click = "handleSubmit">提交</button>
+		</div>
+		<ul>
+			<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
+			<todo-item v-for="(item,index) of list" :key="index" :content="item"></todo-item>
+		</ul>
+	</div>
+	<script>
+		// 全局组件
+		Vue.component('todo-item',{
+			props:['content'],//使用自己定义的content属性,这个表示接受外部属性
+			template: '<li>{{content}}</li>'
+		})
+		// 局部组件
+		// var TodoItem = {
+		// 	template:'<li>item</li>'
+		// }
+		var app = new Vue({
+			el: '#app1',
+			// components:{
+			// 	'todo-item':TodoItem
+			// },
+			data:{
+				list:[],
+				inputValue:''
+			},
+			methods:{
+				handleSubmit: function(){
+					this.list.push(this.inputValue)
+					this.inputValue=''
+				}
+			}
+		})
+	</script>
+</body>
+</html>

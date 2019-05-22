@@ -3337,3 +3337,94 @@ if(array_key_exists('name', $_GET)){
    }else{
        // 反之 可以执行一些 其他的逻辑
 }
+
+
+
+
+
+
+
+
+vue.js
+============================================
+// 面向数据去编程：
+// 
+// 
+// https://cn.vuejs.org/v2/guide/
+// <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+// <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+// <!-- 生产环境版本，优化了尺寸和速度 -->
+// <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+// html:
+绑定：v-bind:title="message"  简写:title
+可见：
+v-if="seen"  //会移除dom元素
+v-show="seen" //会把dom元素的display设置为none;
+
+数组：v-for="todo in todos"
+监听：v-on:click="reverseMessage"   简写@click
+双向：v-model="message"
+显示的文档：
+v-text='number'
+v-html='content'
+
+<ul>
+ //引用组件
+  <todo-item v-for="(item, index) of list" :key="index" :content="item"></todo-item>
+</ul>
+
+// 挂载点，模板，实例
+// js:
+
+//定义一个全局组件
+Vue.component('todo-item',{
+  props:['content'],
+  template:'<li>{{content}}</li>'
+})
+
+//定义一个局部组件
+var TodoItem = {
+  template:'<li>item</li>'
+}
+var app = new vue({
+  el:'#app',
+  template: '<div>item</div>',
+  //局部组件注册
+  components:{
+    'todo-item':TodoItem
+  }
+  data{
+    message:'hello, Vue!',
+    seen:true,
+    todo:[{text:'js'},{text:'vue'},{text:'niu'}]
+  },
+  methods:{
+    reverseMessage: function(){
+      this.message = this.message.split('').reverse().join('')
+    }
+  },
+  //通react中的reselect
+  //计算属性
+  computed:{
+    fullName: function(){
+      return this.firstName + ' ' + this.lastName
+    }
+  },
+  //监听器
+  watch:{
+    fullName: function(){
+      this.count++
+    }
+  }
+
+})
+
+
+
+
+
+
+
+
