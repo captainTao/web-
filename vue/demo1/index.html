@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>vue-demo1</title>
+	<title>vue-todolist的添加和删除</title>
 	<script type="text/javascript" src="vue.js"></script>
 </head>
 <body>
@@ -12,19 +12,27 @@
 		</div>
 		<ul>
 			<!-- <li v-for="(item, index) of list" :key="index">{{item}}</li> -->
-			<todo-item v-for="(item,index) of list" :key="index" :content="item"></todo-item>
+			<!-- 通过监听子组件的delete事件 -->
+			<todo-item v-for="(item,index) of list" :key="index" :content="item" :index="index" @delete="handleDelete"></todo-item>
 		</ul>
 	</div>
 	<script>
 		// 全局组件
 		Vue.component('todo-item',{
-			props:['content'],//使用自己定义的content属性,这个表示接受外部属性
-			template: '<li>{{content}}</li>'
+			props:['content','index'],//使用自己定义的content属性,这个表示接受外部属性
+			template: '<li @click="handleClick">{{content}}</li>',
+			methods:{
+				handleClick: function(){
+					// alert(this.content)
+					this.$emit('delete',this.index)
+				}
+			}
 		})
 		// 局部组件
 		// var TodoItem = {
 		// 	template:'<li>item</li>'
 		// }
+		// vue的实例
 		var app = new Vue({
 			el: '#app1',
 			// components:{
@@ -38,6 +46,9 @@
 				handleSubmit: function(){
 					this.list.push(this.inputValue)
 					this.inputValue=''
+				},
+				handleDelete: function(index){ //记得传入子组件中的index
+					this.list.splice(index,1)
 				}
 			}
 		})

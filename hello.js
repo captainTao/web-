@@ -3390,7 +3390,7 @@ var TodoItem = {
 }
 var app = new vue({
   el:'#app',
-  template: '<div>item</div>',
+  template: '<div>item</div>', //vue中如果不定义模板，则默认为绑定的el的内容部分
   //局部组件注册
   components:{
     'todo-item':TodoItem
@@ -3421,8 +3421,9 @@ var app = new vue({
 
 })
 
-
-
+// 组件也是一个vue的实例
+// 父组件往子组件通信通过属性
+// 子组件往父组件通信通过$emit
 
 
 
