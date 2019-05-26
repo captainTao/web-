@@ -3347,6 +3347,17 @@ if(array_key_exists('name', $_GET)){
 
 vue.js
 ============================================
+架构从MVC向Rest API+前端MV*迁移
+MV*(MVC,MVP,MVVM)
+
+mvp: model, view, presenter
+
+MVVM: angular, react, vue
+  view = viewmodel = model
+   |         |         |
+  视图      通讯       数据
+  DOM      观察者     JS对象
+
 // 面向数据去编程：
 // 
 // 
@@ -3369,6 +3380,8 @@ v-show="seen" //会把dom元素的display设置为none;
 显示的文档：
 v-text='number'
 v-html='content'
+v-once
+
 
 <ul>
  //引用组件
@@ -3394,8 +3407,8 @@ var app = new vue({
   //局部组件注册
   components:{
     'todo-item':TodoItem
-  }
-  data{
+  },
+  data: {
     message:'hello, Vue!',
     seen:true,
     todo:[{text:'js'},{text:'vue'},{text:'niu'}]
@@ -3421,11 +3434,84 @@ var app = new vue({
 
 })
 
-// 组件也是一个vue的实例
-// 父组件往子组件通信通过属性
-// 子组件往父组件通信通过$emit
+Note:
+1.组件也是一个vue的实例
+2.父组件往子组件通信通过属性
+3.子组件往父组件通信通过$emit
+4.Object.freeze(obj),会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+5.created,mounted、updated 和 destroyed。
+
+样式：可以用对象，或者数组来定义
+
+vue-cli
+-----------------------
+/*
+最新的：
+npm uninstall vue-cli -g
+npm install -g @vue/cli
+vue --version
+vue create my-project
+cd my-project
+npm run serve
+ */
+
+/*
+老的:
+npm install --global vue-cli
+vue init webpack my-project
+cd my-project
+npm run dev
+ */
+note:
+data在单页面中是一个对象，在脚手架中是一个函数，可以用ES6的语法，它会自动转译成ES5的语法。
+methods没有变，还是一个对象
+组件的style一般是加上：scoped是局部作用域
+
+
+vue中改变数组的值的方法：
+改变引用或pop,push,shift,unshift,splice,sort,reverse
+或者用set：
+Vue.set(vm.userInfo, 1, 5) //1为index,全局方法
+vue.$set(vm.userInfo, 2, 3) //2为index,实例方法
+
+vue改变对象的方法：改变引用或者：
+Vue.set(vm.userInfo, "address","beijing")//全局引用
+vm.$set(vm.userInfo, "address","beijing")//实例方法
 
 
 
+localstorage.js
+-------------------
+// sessionStorage and localstorage
+// https://www.cnblogs.com/xmoomoo/p/5757464.html
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("lastname", "Gates");
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+} else {
+    document.getElementById("result").innerHTML = "抱歉！您的浏览器不支持 Web Storage ...";
+}
+// 检查页面浏览次数
+if (localStorage.pagecount)
+  {
+  localStorage.pagecount=Number(localStorage.pagecount) +1;
+  }
+else
+  {
+  localStorage.pagecount=1;
+  }
+document.write("Visits: " + localStorage.pagecount + " time(s).");
 
-
+// vue localstorage.js
+const STORAGE_KEY = 'studentName-vuejs'
+export default {
+  fetch: function() {
+    return JSON.parse(window.sessionStorage.getItem(STORAGE_KEY)
+     || '[]')
+  },
+  save:function(items) {
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+  }
+}
