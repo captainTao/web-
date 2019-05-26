@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>非父子之间的传值(Bus/总线/发布订阅模式/观察者模式)</title>
+	<script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<child content='Dell'></child>
+		<child content='Lee'></child>
+	</div>
+	<script>
+		Vue.prototype.bus = new Vue()
+
+		Vue.component('child',{
+			data: function(){
+				return{
+					selfContent: this.content //这里用selfcontent来复制一份数据
+				}
+			},
+			props:{
+				content: String
+			},
+			template:'<div @click = "handleClick">{{selfContent}}</div>',
+			methods:{
+				handleClick: function(){
+					this.bus.$emit('change',this.selfContent)
+				}
+			},
+			//钩子,挂载的时候
+			mounted: function(){
+				var _this = this
+				this.bus.$on('change',function(msg){
+					// alert(msg)//弹窗两次的原因是因为上面有两个child都监听到了这个事件
+					_this.selfContent = msg; //这个this的作用域发生了变化
+				})
+			}
+		})
+		var app = new Vue({
+			el: '#app'
+			
+		})
+	</script>
+</body>
+</html>

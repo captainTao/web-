@@ -7,7 +7,7 @@
 <body>
 	<div id="app1">
 		<div>
-			<input v-model="inputValue"/>
+			<input v-model="inputValue" placeholder="pls input value" />
 			<button @click = "handleSubmit">提交</button>
 		</div>
 		<ul>
@@ -17,27 +17,45 @@
 		</ul>
 	</div>
 	<script>
-		// 全局组件
+		// 全局组件（这是一个子组件）
 		Vue.component('todo-item',{
 			props:['content','index'],//使用自己定义的content属性,这个表示接受外部属性
+			// props:{
+			// 	content:[Number,String]   //传入的content的类型为number或者string，这个跟的是一个数组
+			// 	content: Number   //传入的content为number类型，这个是对传进来的数据进行一个校验，这个跟的是一个值
+			// 	content:{   //还可以传入一个object
+			// 		type:String, //传入的类型
+			// 		requried:false, //是否必传
+			// 		default:'defalut value', //默认值
+			// 		validator: function(value){
+			// 			return (value.length>5)  //校验传入的值的长度需要>5
+			// 		}
+			// 	},
+			// 	index:Number
+			// },
 			template: '<li @click="handleClick">{{content}}</li>',
 			methods:{
 				handleClick: function(){
 					// alert(this.content)
 					this.$emit('delete',this.index)
 				}
+			},
+			// 子组件的data是一个function,不是一个object.
+			data:function(){
+				return{}
 			}
 		})
 		// 局部组件
 		// var TodoItem = {
 		// 	template:'<li>item</li>'
 		// }
-		// vue的实例
+		// vue的实例，为母组件
 		var app = new Vue({
 			el: '#app1',
 			// components:{
 			// 	'todo-item':TodoItem
 			// },
+			// 这儿母组件的data是一个object.
 			data:{
 				list:[],
 				inputValue:''

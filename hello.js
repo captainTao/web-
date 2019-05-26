@@ -3340,7 +3340,41 @@ if(array_key_exists('name', $_GET)){
 
 
 
+localstorage.js
+-------------------
+// sessionStorage and localstorage
+// https://www.cnblogs.com/xmoomoo/p/5757464.html
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+    // Store
+    localStorage.setItem("lastname", "Gates");
+    // Retrieve
+    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+} else {
+    document.getElementById("result").innerHTML = "抱歉！您的浏览器不支持 Web Storage ...";
+}
+// 检查页面浏览次数
+if (localStorage.pagecount)
+  {
+  localStorage.pagecount=Number(localStorage.pagecount) +1;
+  }
+else
+  {
+  localStorage.pagecount=1;
+  }
+document.write("Visits: " + localStorage.pagecount + " time(s).");
 
+// vue localstorage.js
+const STORAGE_KEY = 'studentName-vuejs'
+export default {
+  fetch: function() {
+    return JSON.parse(window.sessionStorage.getItem(STORAGE_KEY)
+     || '[]')
+  },
+  save:function(items) {
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+  }
+}
 
 
 
@@ -3436,12 +3470,14 @@ var app = new vue({
 
 Note:
 1.组件也是一个vue的实例
-2.父组件往子组件通信通过属性
-3.子组件往父组件通信通过$emit
+2.父组件往子组件通信通过属性，去传值
+3.子组件往父组件通信通过$emit，通过事件去传值
 4.Object.freeze(obj),会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
 5.created,mounted、updated 和 destroyed。
 
 样式：可以用对象，或者数组来定义
+
+
 
 vue-cli
 -----------------------
@@ -3463,9 +3499,14 @@ cd my-project
 npm run dev
  */
 note:
-data在单页面中是一个对象，在脚手架中是一个函数，可以用ES6的语法，它会自动转译成ES5的语法。
-methods没有变，还是一个对象
-组件的style一般是加上：scoped是局部作用域
+1.data在单页面中是一个对象，在脚手架中是一个函数，可以用ES6的语法，它会自动转译成ES5的语法。
+2.methods没有变，还是一个对象
+3.组件的style一般是加上：scoped是局部作用域
+4.子组件中data是一个function,不能是一个object,而在母组件vue中可以是一个object
+5.在vue中操作dom,需要用引用$ref来获取对应的引用名字
+6.子组件可以接收来自父组件的内容，但一般不能去修改它，这就是单向数据流的概念。
+如果修改了控制台会报错；一般如果要修改父组件的数据，我们可以复制一份数据到子组件，再到子组件里面去修改；
+
 
 
 vue中改变数组的值的方法：
@@ -3479,39 +3520,28 @@ Vue.set(vm.userInfo, "address","beijing")//全局引用
 vm.$set(vm.userInfo, "address","beijing")//实例方法
 
 
+// 组件参数的校验器：
+props:{
+ content:[Number,String]   //传入的content的类型为number或者string，这个跟的是一个数组
+ content: Number   //传入的content为number类型，这个是对传进来的数据进行一个校验，这个跟的是一个值
+ content:{   //还可以传入一个object
+   type:String, //传入的类型
+   requried:false, //是否必传
+   default:'defalut value', //默认值
+   validator: function(value){ //自定义的校验
+     return (value.length>5)  //校验传入的值的长度需要>5
+   }
+ },
+ index:Number
+},
 
-localstorage.js
--------------------
-// sessionStorage and localstorage
-// https://www.cnblogs.com/xmoomoo/p/5757464.html
-// Check browser support
-if (typeof(Storage) !== "undefined") {
-    // Store
-    localStorage.setItem("lastname", "Gates");
-    // Retrieve
-    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-} else {
-    document.getElementById("result").innerHTML = "抱歉！您的浏览器不支持 Web Storage ...";
-}
-// 检查页面浏览次数
-if (localStorage.pagecount)
-  {
-  localStorage.pagecount=Number(localStorage.pagecount) +1;
-  }
-else
-  {
-  localStorage.pagecount=1;
-  }
-document.write("Visits: " + localStorage.pagecount + " time(s).");
+//非props特性：：
+1.props没有接受传进来的参数，那么在组件中用这个参数就不可用
+2.在组件中用的内容是非props参数，那么显示出来的标签中会带有props的参数的属性；
+而在props特性中，则不会显示props的属性；
 
-// vue localstorage.js
-const STORAGE_KEY = 'studentName-vuejs'
-export default {
-  fetch: function() {
-    return JSON.parse(window.sessionStorage.getItem(STORAGE_KEY)
-     || '[]')
-  },
-  save:function(items) {
-    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(items))
-  }
-}
+
+
+监听父组件的原生事件：
+第一种方法呢：就是先监听子组件的事件，然后子组件传递给父组件一个事件，然后父组件执行这个事件；
+第二种方法呢：就是直接监听父组件的原生事件：@click.native="handleClick"
