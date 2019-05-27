@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue js动画-velocity</title>
+	<script type="text/javascript" src="./vue.js"></script>
+	<script type="text/javascript" src="./velocity.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<button @click="toggleClick">Toggle</button>
+		
+		<transition
+			name="fade"
+			@before-enter="handleBeforeEnter"
+			@enter="handleEnter" 
+			@after-enter="handleAfterEnter" 
+		>
+			<div v-if="show">hello,world!</div>		
+		</transition>
+		
+	</div>
+	<script>
+		
+		var app = new Vue({
+			el: '#app',
+			data:{
+				show:true
+			},
+			methods:{
+				toggleClick: function(){
+					this.show = !this.show;
+				},
+				/*
+				handleBeforeEnter: function(el){ //el指transition包裹的标签
+					// console.log('BeforeEnter')
+					el.style.color = 'red'
+				},
+				handleEnter: function(el, done){  //注意这其中有个done()
+					setTimeout(()=>{
+						el.style.color = 'green'
+					},2000)
+
+					setTimeout(()=>{
+						done() //当动画执行完之后，需要调用done()告诉执行完了
+					},4000)
+					
+				},
+				handleAfterEnter: function(el){
+					el.style.color = '#000'
+				 */
+				
+				//下面为用velocity执行的动画：
+				handleBeforeEnter: function(el){ //el指transition包裹的标签
+					el.style.opacity = 0;
+				},
+				handleEnter: function(el, done){  //注意这其中有个done()
+					Velocity(el, {opacity:1}, {duration:3000, complete:done})
+				},
+				handleAfterEnter: function(el){
+					console.log('动画执行完毕')
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

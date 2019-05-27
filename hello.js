@@ -3417,7 +3417,7 @@ v-text='number'
 v-html='content'
 
 v-once,表示只在内存中渲染一次，不用每次创建，如果在重复利用的需求中，可以极大的节省内存开销；
-
+如果需要复用DOM的时候，需要在不同的标签中加上不同的key值  :key="value" 
 <ul>
  //引用组件
   <todo-item v-for="(item, index) of list" :key="index" :content="item"></todo-item>
@@ -3564,6 +3564,9 @@ vue动画：
 ----------------
 vue自动增加的class:
 最前面的v是根据对应transition绑定的name值保持一致，默认不写name是v
+
+进场和出场的class钩子：
+---------------------
 v-enter            v-enter>       v-enter-active>
 v-enter-active     v-enter-to     v-enter-to>
 
@@ -3582,3 +3585,22 @@ appear为加载的入场动画，前面需要加appear,后面需要appear-active
 >
   <div v-if="show">hello,world!</div>   
 </transition>
+
+
+
+入场和出场动画的钩子：
+--------------------
+<transition
+    @before-enter="handleBeforeEnter"
+    @enter="handleEnter"   //handleEnter:这其中动画执行完之后，需要执行done()
+    @after-enter="handleAfterEnter" 
+
+    @before-leave="handleBeforeLeave"
+    @leave="handleLeave"   //handleLeave:这其中动画执行完之后，需要执行done()
+    @after-leave="handleAfterLeave" 
+></transition>
+
+
+两个元素或者组件的切换，都可以先定义所有出入场的动画，（通过class或者函数钩子）
+然后在transition中指定mode，即进出的先后，来实现组件切换的动画
+

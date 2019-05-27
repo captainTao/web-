@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue多个元素或组件的过渡动画</title>
+	<script type="text/javascript" src="./vue.js"></script>
+	<script type="text/javascript" src="./velocity.min.js"></script>
+	<style>
+		.v-enter,.v-leave-to{
+			opacity: 0;
+		}
+		.v-enter-active,.v-leave-active{
+			transition: opacity 1s;
+		}
+	</style>
+</head>
+<!-- 两个元素或者组件的切换，都可以先定义所有出入场的动画，（通过class或者函数钩子））
+然后在transition中指定mode，即进出的先后，来实现组件切换的动画 -->
+<body>
+	<div id="app">
+		<button @click="toggleClick">Toggle</button>
+		<!-- 元素的切换： -->
+		<!-- mode的值是决定进出的效果，out-in:先出后进，in-out:先进后出; 默认为in-out -->
+		<transition mode='out-in'>
+			<!-- 如果这里不加key值，那么动画效果是不会出现的，因为它复用了DOM -->
+			<div v-if="show" key="hello">hello,World!</div>
+			<div v-else key="bye" >Bye,World!</div>		
+		</transition>
+
+
+		<!-- 组件的切换： -->
+		<transition mode='out-in'>
+			<!-- <child-one v-if="show"></child-one> -->
+			<!-- <child-two v-else></child-two> -->
+			<!-- 上面的内容替代为下面内容： -->
+			<component :is='type'></component> 
+		</transition>
+		
+	</div>
+	<script>
+		Vue.component('child-one',{
+			template:`<div v-once>component-one</div>`
+		})
+		Vue.component('child-two',{
+			template:`<div v-once>component-two</div>`
+		})
+		var app = new Vue({
+			el: '#app',
+			data:{
+				show:true,
+				type:'child-one'
+			},
+			methods:{
+				toggleClick: function(){
+					this.show = !this.show;
+					this.type = (this.type==='child-one'?'child-two':'child-one');
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>
