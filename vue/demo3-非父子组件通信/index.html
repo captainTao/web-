@@ -8,6 +8,7 @@
 	<div id="app">
 		<child content='Dell'></child>
 		<child content='Lee'></child>
+		<h1 v-once>{{message}}</h1>
 	</div>
 	<script>
 		Vue.prototype.bus = new Vue()
@@ -37,7 +38,10 @@
 			}
 		})
 		var app = new Vue({
-			el: '#app'
+			el: '#app',
+			data:{
+				message: 'who are you?'
+			}
 			
 		})
 	</script>

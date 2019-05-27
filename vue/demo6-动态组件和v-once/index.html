@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动态组件和v-once</title>
+	<script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 这一句等同下面两句，目的是决定谁去展示 -->
+		<component :is=type></component> 
+
+	<!-- 	<child-one v-if="type==='child-one'"></child-one>
+		<child-two v-if="type==='child-two'"></child-two> -->
+		
+		<button @click="clickChange">Change Component</button>
+	</div>
+	<script>
+		Vue.component('child-one',{
+			template:`<div v-once>component-one</div>`
+		})
+		Vue.component('child-two',{
+			template:`<div v-once>component-two</div>`
+		})
+		var app = new Vue({
+			el: '#app',
+			data:{
+				type:'child-one'
+			},
+			methods:{
+				clickChange: function(){
+					this.type = (this.type==='child-one'?'child-two':'child-one');
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>

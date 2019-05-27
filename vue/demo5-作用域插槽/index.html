@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>作用域插槽</title>
+	<script type="text/javascript" src="./vue.js"></script>
+</head>
+<body>
+	<!-- 父组件向子组件传递dom的内容，子组件向父组件传递属性值，具体怎么展示看父组件传递尽量的dom内容; 
+		子组件传递过来的内容存储在props(这个名字可以随便取)中;
+	-->
+	<div id="app">
+		<child>
+			<template slot-scope="props">    <!-- 具体怎么展示是看template模板中怎么去写 -->
+				<h4>hello - {{props.item}}</h4>
+			</template>
+		</child>
+	</div>
+	<script>
+		Vue.component('child',{
+			data:function(){
+				return{
+					list:[1,2,3,4]
+				}
+			},
+			template:`<div>
+						<ul>
+							<slot
+								v-for="item of list"
+								:item="item"
+							></slot>
+						</ul>
+					  </div>`
+		})
+		var app = new Vue({
+			el: '#app'
+			
+		})
+	</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ export default {
 	},
 	methods:{
 		clickEvent:function(){
-			alert(this.$refs.hello.innerHTML);
+			alert(this.$refs.hello.innerHTML); //vue操作dom
 		}
 	}
 }

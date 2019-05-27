@@ -3411,11 +3411,12 @@ v-show="seen" //会把dom元素的display设置为none;
 数组：v-for="todo in todos"
 监听：v-on:click="reverseMessage"   简写@click
 双向：v-model="message"
+
 显示的文档：
 v-text='number'
 v-html='content'
-v-once
 
+v-once,表示只在内存中渲染一次，不用每次创建，如果在重复利用的需求中，可以极大的节省内存开销；
 
 <ul>
  //引用组件
@@ -3545,3 +3546,15 @@ props:{
 监听父组件的原生事件：
 第一种方法呢：就是先监听子组件的事件，然后子组件传递给父组件一个事件，然后父组件执行这个事件；
 第二种方法呢：就是直接监听父组件的原生事件：@click.native="handleClick"
+
+
+slot:
+父组件向子组件传递dom的内容，包含一些常见的标签，那么这时候一般用slot；
+在子组件中需要定义对应的slot,才能在DOM中显示出来，对于具体结构的slot可以定义名字来使用;
+
+父组件如果要用子组件传递过来的值，并定义成不同的dom，需要用到作用域插槽中的template模板;
+
+
+<component :is=type></component> 
+//切换组件，决定去展示哪一个
+
