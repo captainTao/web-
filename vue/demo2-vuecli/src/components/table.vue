@@ -1,5 +1,5 @@
 <template>
-      <tr><td colspan="" rowspan="" headers="" ref="hello" @click="clickEvent">{{content}}</td></tr>
+      <tr><td ref="hello" @click="clickEvent">{{content}}</td></tr>
 </template>
 
 <script>
@@ -12,7 +12,8 @@ export default {
 	},
 	methods:{
 		clickEvent:function(){
-			alert(this.$refs.hello.innerHTML); //vue操作dom
+			// alert(this.$refs.hello.innerHTML); //vue操作dom
+			console.log(this.$refs.hello)
 		}
 	}
 }

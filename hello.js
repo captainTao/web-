@@ -3558,3 +3558,27 @@ slot:
 <component :is=type></component> 
 //切换组件，决定去展示哪一个
 
+
+
+vue动画：
+----------------
+vue自动增加的class:
+最前面的v是根据对应transition绑定的name值保持一致，默认不写name是v
+v-enter            v-enter>       v-enter-active>
+v-enter-active     v-enter-to     v-enter-to>
+
+v-leave            v-leave>       v-leave-active>
+v-leave-active     v-leave-to     v-leave-to>
+
+动画需要用<transition>标签去包裹
+
+
+appear为加载的入场动画，前面需要加appear,后面需要appear-active-class
+<transition
+  appear
+  enter-active-class="animated bounceInDown"
+  leave-active-class="animated fadeOutDown"
+  appear-active-class="animated bounceInDown"
+>
+  <div v-if="show">hello,world!</div>   
+</transition>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue animate.css应用</title>
+	<script type="text/javascript" src="./vue.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	<style type="text/css">
+		/* @keyframes bounce-in{
+			0%{
+				transform: scale(0);
+			}
+			50%{
+				transform: scale(1.5);
+			}
+			100%{
+				transform: scale(1);
+			}
+		}
+		.v-enter-active, .v-leave-active{
+			transform-origin: left center; 
+			animation: bounce-in 1s;
+		} */
+		.v-enter,.v-leave-to{
+			opacity: 0;
+		}
+		.v-enter-active,.v-leave-active{
+			transition: opacity 3s;
+		}
+		div{
+			color: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button @click="toggleClick">Toggle</button>
+		<!-- appear为加载的入场动画，前面需要加appear,后面需要appear-active-class -->
+		<!-- type="transition" 表示动画时长以transition 3s为准，而不以animate.css中的时间为准 ，但实际结果不生效-->
+		<!-- :duration="10000"  可以直接跟时间，或者一个对象，观察可以选择hello world查看class消失的时间 -->
+		
+		<transition
+			:duration="{enter:5000, leave:1000}"
+			appear
+			enter-active-class="animated bounceInDown"
+			leave-active-class="animated fadeOutDown"
+			appear-active-class="animated bounceInDown"
+		>
+			<div v-if="show">hello,world!</div>		
+		</transition>
+		
+	</div>
+	<script>
+		
+		var app = new Vue({
+			el: '#app',
+			data:{
+				show:true
+			},
+			methods:{
+				toggleClick: function(){
+					this.show = !this.show;
+				}
+			}
+			
+		})
+	</script>
+</body>
+</html>
