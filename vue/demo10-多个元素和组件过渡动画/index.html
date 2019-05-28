@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>vue多个元素或组件的过渡动画</title>
+	<title>vue多个元素或组件的过渡动画和动画封装</title>
 	<script type="text/javascript" src="./vue.js"></script>
 	<script type="text/javascript" src="./velocity.min.js"></script>
 	<style>
@@ -34,9 +34,58 @@
 			<!-- 上面的内容替代为下面内容： -->
 			<component :is='type'></component> 
 		</transition>
-		
+
+		<!-- 这儿两个transition，可否写成一个transition group? mode不生效 -->
+		<!-- <transition-group mode='out-in'>
+			<div v-if="show" key="hello">hello,World!</div>
+			<div v-else key="bye" >Bye,World!</div>	
+			<component :is='type' key='cp'></component> 
+		</transition-group> -->
+
+
+		<!-- 调用封装的动画: -->
+		<fade :show='show'>
+			<div>这里是动画的封装1</div>
+		</fade>
+		<fade :show='show'>
+			<h1>这里是动画的封装2</h1>
+		</fade>
+
 	</div>
 	<script>
+		// 动画的封装,为fade,对样式的封装也可以加入到这里面，一般用js来封装，用js的钩子
+		Vue.component('fade',{
+			props:['show'],
+			template:`
+				<transition 
+				@before-enter="handleBeforeEnter"
+				@enter="handleEnter" 
+				@after-enter="handleAfterEnter"
+				>
+					<slot v-if='show'></slot>
+				</transition>
+			`,
+			methods:{
+				handleBeforeEnter: function(el){ //el指transition包裹的标签
+					// console.log('BeforeEnter')
+					el.style.color = 'red'
+				},
+				handleEnter: function(el, done){  //注意这其中有个done()
+					setTimeout(()=>{
+						el.style.color = 'green'
+					},2000)
+
+					setTimeout(()=>{
+						done() //当动画执行完之后，需要调用done()告诉执行完了
+					},4000)
+					
+				},
+				handleAfterEnter: function(el){
+					el.style.color = '#000'
+				}
+			}
+		})
+
 		Vue.component('child-one',{
 			template:`<div v-once>component-one</div>`
 		})
