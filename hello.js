@@ -3604,3 +3604,58 @@ appear为加载的入场动画，前面需要加appear,后面需要appear-active
 两个元素或者组件的切换，都可以先定义所有出入场的动画，（通过class或者函数钩子）
 然后在transition中指定mode，即进出的先后，来实现组件切换的动画
 
+
+// <router-link to='./list'></router-link>
+
+
+
+1.解决移动端因为初始化带来的问题，可以用reset.css
+2.解决移动端因为retina屏幕带来的1px问题，可以引入border.css
+3.解决移动端设备点击300ms延迟的问题，可以引入fastclick.js库，进入项目，
+npm install fastclick --save
+然后再次main.js引入：
+import fastClick from 'fastclick'
+fastClick.attach(document.body)   //绑定事件到body中
+4.字体图标： iconfont
+https://www.iconfont.cn/
+5.快速编写css: 进入项目：
+npm install stylus --save
+npm install stylus-loader --save
+
+
+6.使用vue-router:
+cd project
+npm install vue-router
+main.js中引入：
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+@是src的目录
+在style中引用，需要前面加上~，import前面加@
+@import '~@/assets/styles/varibles.styl'
+
+webpack.base.config.js中的alias,在vue3.7中如何设置？
+stylus的样式在sublime中安装
+
+
+
+
+vue-awesome-swiper
+npm install vue-awesome-swiper@2.6.7 --save
+https://segmentfault.com/a/1190000014609379
+
+.wrapper
+  width: 100%
+  height: 0 //如果这儿直接写26.67%的话，会取父级元素的宽度为标准
+  padding-bottom: 26.67% //表示高度的26.67%
+  overflow: hidden
+  background: #eee //给没有显示出来的背景给一个灰色
+  //上面的内容可以简写成如下内容：但下面的兼容性不好
+  width: 100%
+  height: 26.67%vm // vm 表示viewport的宽度
+
+.wrapper >>> .swiper-pagination-bullet-active   //样式穿透
+  background: red !important
+

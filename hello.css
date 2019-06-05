@@ -841,6 +841,13 @@ div{
     display: flex;
     align-items:center;
 }
+设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
 ---------------------
 容器属性：
 flex-direction
@@ -879,3 +886,28 @@ flex-basis: <length> | auto;      /*分配占据主轴的空间，默认auto*/
 flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]   /*默认0 1 auto; 快捷值：auto(1 1 auto) none(0 0 auto)*/
 align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对齐，默认auto*/
 
+
+
+placeholder的颜色设置：
+----------------------
+https://www.cnblogs.com/hcxwd/p/9232936.html
+/* pc端,手机端只使用webkit方式即可： */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #666;
+  font-size: 16px;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {  /* WebKit browsers */
+  color: #666;
+  font-size: 16px;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: #666;
+  font-size: 16px;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color: #666;
+  font-size: 16px;
+}
