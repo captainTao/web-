@@ -1034,12 +1034,17 @@ window.onLoad = function(){}
 
 document.compatMode  // CSS1Compat
 
+
+
+pc版本scroll
 function scroll(){
   return {
       "top": window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
       "left":  window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft
   }
 }
+
+
 /*
 详细解释如下
 if(window.pageYOffset !== undefined){ // 火狐/谷歌/ie9+以上支持的(不管DTD), 因为 window.pageYOffset默认的是0, 所以这里需要判断
@@ -3637,9 +3642,8 @@ Vue.use(VueRouter)
 @import '~@/assets/styles/varibles.styl'
 
 webpack.base.config.js中的alias,在vue3.7中如何设置？
-stylus的样式在sublime中安装
-
-
+axios返回的结果是一个promise对象，这个需要复习下？
+vue 3.x的moco数据放在哪里？ 以前是放在static目录下的的moco目录
 
 
 vue-awesome-swiper
@@ -3659,3 +3663,68 @@ https://segmentfault.com/a/1190000014609379
 .wrapper >>> .swiper-pagination-bullet-active   //样式穿透
   background: red !important
 
+.icons >>> .swiper-container   //可以设置swiper指示器的高度
+    height: 0
+    padding-bottom: 60%
+
+
+vue ajax:
+1.浏览器自带的fetch函数
+2.vue以前推荐的vue-resource模块
+3.官方推荐的axios
+项目中：
+npm install axios --save
+
+一个page发送一个ajax请求即可
+import axios from 'axios'
+在mounted(){}中进行执行
+
+better-scroll插件：
+项目中安装：
+npm install better-scroll --save
+
+<keep-alive></keep-alive>包裹的router-link，返回的时候，可以keep住原来的位置
+
+其他组件：
+1.五星好评组件
+2.scroll组件
+
+
+
+vue中scroll监听：这个在better-scroll中不能运用
+https://segmentfault.com/q/1010000009119633
+
+window.addEventListener('scroll', () => {
+  let scrollTop = document.documentElement.scrollTop ||
+                   document.body.scrollTop ||
+                   document.querySelector('.list').scrollTop;
+  console.log(scrollTop);
+}, true);
+
+或者mounted()里面：
+window.addEventListener('scroll', this.handleScroll, true)
+methods里面写对应handleScroll()
+
+
+
+vuex的高级属性：
+-------------------------
+import {mapState, mapMutations, mapGetters} from 'vuex'
+//在计算属性中进行state映射
+computed:{
+    ...mapState(['city'])
+    ...mapState({
+     currentCity: 'city' //可以是数组，也可以是一个对象，即city映射到currentCity
+    })
+    ...mapGetters(['doublecity'])
+},
+//在方法中进行mutations的映射
+methods:{
+  ...mapMutations(['changeCity'])
+}
+
+当router-view进行keep-alive的时候，会多一个actived() 生命周期函数。当发生页面切换的时候，都会进行加载。
+
+router-link会把标签变成一个a标签，如果在router-link中加一个tag属性，那么标签的最终样式还是tag的值的类型
+
+<router-link tag="li" :/to="'/details/'+item.name"></router-link>

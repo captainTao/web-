@@ -885,7 +885,9 @@ flex-shrink: <number>;       /*缩小，默认1，如果空间不足，该项目
 flex-basis: <length> | auto;      /*分配占据主轴的空间，默认auto*/
 flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]   /*默认0 1 auto; 快捷值：auto(1 1 auto) none(0 0 auto)*/
 align-self: auto | flex-start | flex-end | center | baseline | stretch;    /*对齐，默认auto*/
-
+flex:1的意义：
+flex-grow:1;flex-shrink:1;flex-basis:0%;
+https://blog.csdn.net/aliven1/article/details/78853725
 
 
 placeholder的颜色设置：
