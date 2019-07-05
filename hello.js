@@ -3667,6 +3667,12 @@ https://segmentfault.com/a/1190000014609379
     height: 0
     padding-bottom: 60%
 
+//这两个是监控父级元素刷新的话会重新刷新下swiper
+swiperOption:{
+    observer: true, 
+    observeParents: true
+  }
+
 
 vue ajax:
 1.浏览器自带的fetch函数
@@ -3682,6 +3688,9 @@ import axios from 'axios'
 better-scroll插件：
 项目中安装：
 npm install better-scroll --save
+
+this.scroll = new BScroll(this.$refs.wrapper,{click: true})
+{click: true}表示获取dom元素中的点击事件，如果为false则不开启点击事件
 
 <keep-alive></keep-alive>包裹的router-link，返回的时候，可以keep住原来的位置
 
@@ -3723,8 +3732,45 @@ methods:{
   ...mapMutations(['changeCity'])
 }
 
-当router-view进行keep-alive的时候，会多一个actived() 生命周期函数。当发生页面切换的时候，都会进行加载。
+keep-alive之后，mounted()只会执行一次，如果要每次执行，可以添加一个属性 exclude='vue的名字'
+
+当router-view进行keep-alive的时候，会多一个activated() 生命周期函数。当发生页面切换的时候，都会进行加载。
+当页面进行keep-alive的时候，会多两个生命周期函数；
+会在加载页面的时候，多一个activated的生命周期函数；
+同时，在页面消失或者页面替换为新的页面的时候，会有一个deactivated的生命周期函数；
+activated(){
+  window.addEventListener('scroll', this.handleScoll)
+},
+deactivated(){
+  window.removeEventListener('scroll', this.handleScoll)
+}
 
 router-link会把标签变成一个a标签，如果在router-link中加一个tag属性，那么标签的最终样式还是tag的值的类型
 
 <router-link tag="li" :/to="'/details/'+item.name"></router-link>
+
+
+组件的名字什么时候会用到？
+1.递归组件
+2.keep-alive排除缓存
+3.vue工程中查看结构
+
+联调：
+一、局域网ip不能访问的时候
+在package.json中有一段： 
+"dev": "webpack-dev-server --inline --progress --config"
+修改为：
+"dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config"
+
+二、联调的时候，部分手机出现白屏的状况，
+1.有可能不支持promise特性，这时候需要安装三方插件： 
+npm install babel-polyfill --save
+然后在main.js中引入：
+import 'babel-polyfill'
+
+三、在触摸的过程中出现，上拉或者下拉出现伸缩动画时候
+touch事件加上prevent
+@touchstart.prevent
+
+// https://github.com/vuejs/awesome-vue
+awesome-vue是基本支持的插件资源都列在里面
