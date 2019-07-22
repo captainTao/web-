@@ -55,6 +55,162 @@ js关闭a连接的跳转：
 
 ////////////////////////////////////js基础////////////////////////////////////////////
 
+
++----------------------------------------------------------ES6特性
+https://www.jianshu.com/p/ac1787f6c50f
+https://www.jianshu.com/p/87008f4f8513
+
+1.变量：
+let,const ---- var
+
+2.模板字面量：
+``,${} ---- +,\
+
+3.多变量赋值：
+const [x, y, z] = [10, 25, -34];
+console.log(x, y, z);
+
+let type = 'quartz';
+let color = 'rose';
+let carat = 21.29;
+let gemstone = {
+  type,
+  color,
+  carat,
+  calculateWorth() { ... }
+};
+console.log(gemstone);
+
+4.函数简写
+calculateWorth() {} ---- calculateWorth: function(){}
+
+5.函数参数能写默认值
+// ES6之前，当未传入参数时，text = 'default'；
+function printText(text) {
+    text = text || 'default';
+    console.log(text);
+}
+// ES6；
+function printText(text = 'default') {
+    console.log(text);
+}
+printText('hello'); // hello
+printText();// default
+
+// 对象的预处理：
+function createSundae({scoops = 1, toppings = ['Hot Fudge']}={}) {
+  const scoopText = scoops === 1 ? 'scoop' : 'scoops';
+  return `Your sundae has ${scoops} ${scoopText} with ${toppings.join(' and ')} toppings.`;
+}
+createSundae({}); // Your sundae has 1 scoop with Hot Fudge toppings.
+createSundae({scoops: 2}); // Your sundae has 2 scoops with Hot Fudge toppings.
+createSundae({scoops: 2, toppings: ['Sprinkles']}); // Your sundae has 2 scoops with Sprinkles toppings.
+createSundae({toppings: ['Cookie Dough']}); // Your sundae has 1 scoop with Cookie Dough toppings.
+createSundae(); // Your sundae has 1 scoop with Hot Fudge toppings.
+
+6.展开运算符
+const fruits = ["apples", "bananas", "pears"];
+const vegetables = ["corn", "potatoes", "carrots"];
+const produce = [...fruits,...vegetables];
+console.log(produce);
+
+剩余参数(可变参数)：
+const order = [20.17, 18.67, 1.50, "cheese", "eggs", "milk", "bread"];
+const [total, subtotal, tax, ...items] = order;
+console.log(total, subtotal, tax, items);
+
+function sum(...nums) {
+  let total = 0;  
+  for(const num of nums) {
+    total += num;
+  }
+  return total;
+}
+/*
+function sum() {
+  let total = 0;  
+  for(const argument of arguments) {
+    total += argument;
+  }
+  return total;
+}
+function test(){
+   var sum=0;
+   for(var i=0;i<arguments.length;i++){
+       sum+=arguments[i];
+      }
+      return sum;
+}
+ */
+
+7.for...of
+a.for,for...in循环都需要index来访问
+b.forEach只能用于数组中，且无法停止和退出
+c.向其中添加属性值，不会被遍历出来
+d.建议格式：for (const button of buttons) {…}
+for (const digit of digits) {
+  if (digit % 2 === 0) {
+    continue;
+  }
+  console.log(digit);
+}
+
+8.箭头函数：
+const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map(
+  name => name.toUpperCase()
+);
+/*
+const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map(function(name) { 
+  return name.toUpperCase();
+});
+ */
+// 空参数列表需要括号
+const sayHi = () => console.log('Hello Udacity Student!');
+// 一个参数不需要括号
+const greet = name => `Hello ${name}!`;
+greet('Asser');
+// 多个参数需要括号
+const orderIceCream = (flavor, cone) => console.log(`Here's your ${flavor} ice cream in a ${cone} cone.`);
+orderIceCream('chocolate', 'waffle');
+// 函数主体内需要多行代码
+const upperizedNames = ['Farrin', 'Kagure', 'Asser'].map( name => {
+  name = name.toUpperCase();
+  return `${name} has ${name.length} characters in their name`;
+});
+
+9.二进制和八进制字面量
+//ES6 支持二进制和八进制的字面量，通过在数字前面添加 0o 或者0O 即可将其转换为八进制值：
+let oValue = 0o10;
+console.log(oValue); // 8
+ 
+let bValue = 0b10; // 二进制使用 `0b` 或者 `0B`
+console.log(bValue); // 2
+
+
+10. super对象超类
+var parent = {
+  foo() {
+    console.log("Hello from the Parent");
+  }
+}
+ 
+var child = {
+  foo() {
+    super.foo();
+    console.log("Hello from the Child");
+  }
+}
+ 
+Object.setPrototypeOf(child, parent);
+child.foo(); // Hello from the Parent
+             // Hello from the Child
+            
+11. 支持class
+继承：class MI extends Phone
+需要在子类中调用 super()
+
+
++----------------------------------------------------------变量
 null,undefined
 备注：
 Undefined和任何数值计算为NaN;
@@ -220,7 +376,7 @@ name.charAt(n)获取name定义的字符串的第n个字符；
 name.substr(0,2)获取name定义的字符串中,从第0个字符开始取，取2个字符；stringObject.substr(start,length)
 
 
-+-----------------------------------------------------------------字符和数字的互转：
++----------------------------------------------------------字符和数字的互转：
 parseInt('3')
 //3
 String(3)
@@ -279,7 +435,7 @@ String(3) // "3"
 > b.join('')
 '12345'
 
-+-----------------------------------------------------------------数组Array：
++----------------------------------------------------------数组Array：
 var arr1 = [1,2,3];
 console.log(arr1);
 console.log(arr1.valueOf());  //结果同直接打印数组
@@ -381,6 +537,26 @@ undefined
 [ 'three', 'two', 'one' ]
 
 
+concat():
+--------------
+//方法把当前的Array和另一个Array连接起来，并返回一个新的Array：
+var arr = ['A', 'B', 'C'];
+var added = arr.concat([1, 2, 3]);
+added; // ['A', 'B', 'C', 1, 2, 3]
+arr; // ['A', 'B', 'C']
+//note:concat()方法并没有修改当前Array，而是返回了一个新的Array。
+//concat()方法可以接收任意个元素和Array，并且自动把Array拆开，然后全部添加到新的Array里：
+var arr = ['A', 'B', 'C'];
+arr.concat(1, 2, [3, 4]); // ['A', 'B', 'C', 1, 2, 3, 4]
+
+
+join():
+--------------
+var arr = ['A', 'B', 'C', 1, 2, 3];
+arr.join('-'); // 'A-B-C-1-2-3'
+//note:如果Array的元素不是字符串，将自动转换为字符串后再接。
+
+
 indexOf(),lastindexOf():
 --------------------------
 var arr = ["a","b","c","d","c","b","a"];
@@ -416,6 +592,100 @@ a.forEach(function (element, index, array) {
 });
 console.log(sum);
 
+Set中：
+// Set与Array类似，但Set没有索引，因此回调函数的前两个参数都是元素本身：
+var s = new Set(['A', 'B', 'C']);
+s.forEach(function (element, sameElement, set) {
+    alert(element);
+});
+Map中：
+// Map的回调函数参数依次为value、key和map本身：
+var m = new Map([[1, 'x'], [2, 'y'], [3, 'z']]);
+m.forEach(function (value, key, map) {
+    alert(value);
+});
+Array中：
+// 如果对某些参数不感兴趣，由于JavaScript的函数调用不要求参数必须一致，因此可以忽略它们。例如，只需要获得Array的element：
+var a = ['A', 'B', 'C'];
+a.forEach(function (element) {
+    alert(element);
+});
+
+
+
+for...in
+---------------------- 
+for (var key in o) {    //用于对象属性
+    if (o.hasOwnProperty(key)) {
+        alert(key); // 'name', 'age', 'city'
+    }
+}
+
+let stu = ['Sam', '22', '男'];  //遍历对象中的属性：
+stu.size = 3;
+for (let stu in stus) {
+  console.log(stu); // 结果: Sam, 22, 男
+}
+
+var a = ['A', 'B', 'C'];  //用于数组
+for (var i in a) {    //对应元素用of
+    alert(i); // '0', '1', '2'
+    alert(a[i]); // 'A', 'B', 'C'
+}
+
+var a = '1234456';  //用于字符串
+for(var i of a){
+    console.log(i);
+}
+
+
+for...of
+---------------------- 
+var a = ['A', 'B', 'C'];
+var s = new Set(['A', 'B', 'C']);
+var m = new Map([[1, 'x'], [2, 'y'], [3, 'z']]);
+for (var x of a) { // 遍历Array
+    alert(x);
+}
+for (var x of s) { // 遍历Set
+    alert(x);
+}
+for (var x of m) { // 遍历Map
+    alert(x[0] + '=' + x[1]);  //1=x 2=y 3=z
+}
+
+let letter = ['a', 'b', 'c']; //用于遍历一个迭代器，如数组：
+letter.size = 3;
+for (let letter of letters) {
+  console.log(letter); // 结果: a, b, c
+}
+
+
+for ...of循环和for...in循环有何区别？
+---------------------------------- 
+// for ... in循环由于历史遗留问题，它遍历的实际上是对象的属性名称。一个Array数组实际上也是一个对象，它的每个元素的索引被视为一个属性。
+// 当我们手动给Array对象添加了额外的属性后，for ... in循环将带来意想不到的意外效果：
+var a = ['A', 'B', 'C'];
+a.name = 'Hello';
+for (var x in a) {
+    alert(x); // '0', '1', '2', 'name'; a=["A", "B", "C", name: "Hello"];a.length=3
+}
+// for ... in循环将把name包括在内，但Array的length属性却不包括在内。
+// for ... of循环则完全修复了这些问题，它只循环集合本身的元素：
+var a = ['A', 'B', 'C'];
+a.name = 'Hello';
+for (var x of a) {
+    alert(x); // 'A', 'B', 'C';a=["A", "B", "C", name: "Hello"];a.length=3
+}
+
+//还有一个区别：老的为字符串，新的为整型，整型这个才是正确的
+a = [1, 2, 3, 4]
+for (i of a){typeof(i)}
+"number"
+for (i in a){typeof(i)}
+"string"
+
+
 filter()：
 -----------------
 var arr1 = arr.filter(function (ele,index,array) {
@@ -435,7 +705,7 @@ arr.length=0; //伪数组？
 arr = [];
 console.log(arr);
 
-+-----------------------------------------------------------------函数的定义：
++----------------------------------------------------------函数的定义：
 var d = 1;e =2;f=3; //(分号相当于换行)
 //第一种
 function fn1(){
@@ -501,24 +771,6 @@ var userinput = window.prompt('商品价格')；
 
 退出条件用break
 
-for ..in 
-for (var key in o) {    //用于对象属性
-    if (o.hasOwnProperty(key)) {
-        alert(key); // 'name', 'age', 'city'
-    }
-}
-
-var a = ['A', 'B', 'C'];  //用书数组
-for (var i in a) {    //对应元素用of
-    alert(i); // '0', '1', '2'
-    alert(a[i]); // 'A', 'B', 'C'
-}
-
-var a = '1234456';  //用于字符串
-for(var i of a){
-    console.log(i);
-}
-
 
 +-----------------------------------------------------------------typeof,prototype,setInterval,trim:
 typeof
@@ -554,11 +806,18 @@ typeof返回的是字符串
 123..toString(); // '123', 注意是两个点！
 (123).toString(); // '123'
 
+
+prototype
+----------------------------------
 Array.prototype.show = function (){
     for (var i = 0; i < this.length; i++) {
         document.write(this[i]+"<br>");
     }
 }
+
+onclick,ondbclick,oncontextmenu,onfocus,onblur：
+
+outerHTML、innerText不是W3C标准
 
 // 检测输入为空的的代码；
 inp.onblur = function () {
@@ -593,9 +852,9 @@ str=str.replace( /^\s*/, '');
 去除右空格：
 str=str.replace(/(\s*$)/g, "");
 
-outerHTML、innerText不是W3C标准
 
-
+Timeout, Interval
+-------------------------
 setTimeout(fun,1000);
 clearTimeout()
 
@@ -607,9 +866,6 @@ t1=setInterval("start();",1000);//间隔1000ms调用start();
 //所以function中也不需要写return对应的值..
 clearInterval(t1);
 
-onclick,ondbclick,oncontextmenu,onfocus,onblur：
-
-outerHTML、innerText不是W3C标准
 
 
 +-----------------------------------------------------------------JSON .parse() .stringify() regExp
@@ -728,6 +984,8 @@ var re = /^(\d{3})-(\d{3,8})$/;// 用()表示的就是要提取的分组
 re.exec('010-12345'); // ['010-12345', '010', '12345']
 re.exec('010 12345'); // null
 
+
++-----------------------------------------------------------------Date
 Date.parse('2015-06-24T19:49:22.875+08:00'); //1435146562875
 var d = new Date(1435146562875); //Wed Jun 24 2015 19:49:22 GMT+0800 (中国标准时间) {}
 d.toLocaleString();  // "2018/12/5 下午3:10:49"
@@ -742,14 +1000,7 @@ if (Date.now) {
 }
 
 
-function test(){
-   var sum=0;
-   for(var i=0;i<arguments.length;i++){
-       sum+=arguments[i];
-      }
-      return sum;
-}
-
++-----------------------------------------------------------------DOM事件，坐标
 <a href="javascript:selectAll();">全选</a> 
 // BOM设置显示隐藏
 document.getElementById("content").style.visibility="visible" //通过样式
@@ -757,9 +1008,17 @@ document.getElementById("div1").style.display=type; //通过display
 style.overflow
 style.left/top
 
+//打开一个新窗口
+open("http://news.baidu.com/");
+//关闭窗口
+close();
+document.bgColor=s; //设置dom背景颜色
+window.location.href="https://www.baidu.com/"; // window可以省略不写；
 
+
+鼠标按键事件：
+--------------------------------------
 bt01.onclick=function(){}
-
 oncontextmenu, onclick, onmouseover, onmouseout, onmouseup, onmousedown, onmousemove, onmouseenter, onmouseleave
 onload, onunload, beforeunload
 window.onresize, window.onscroll
@@ -774,11 +1033,54 @@ keyup, keypress, keydown
 
 event.KeyCode
 
-case中用||不生效？--要分开写
+case中用||不生效？  ---要分开写
 case 65:
 case 37:
 
-// 事件：
+// 表单提交注意如下写法：
+function endus(){
+    var us=document.f1.username.value // f1是form表单的name
+  if(us==""||us.replace(/(^\s*)|(\s*$)/g, "")==""){//输入为空，或者为空格；
+    document.f1.password.focus();// psw设置为浮动光标
+    alert("你输入的用户名为空或为空白，请重新输入");
+  }
+}
+//获取表单中的选项内容：
+var cityindex=document.forms[0].city.selectedIndex;
+
+
+
+DOM：
+--------------------------------------
+document.onclick = function (event) {
+    //兼容写法
+   event = event || window.event;
+   console.log(event);
+   console.log(event.timeStamp);
+   console.log(event.bubbles);
+   console.log(event.button);
+   console.log(event.pageX); //body,测试在一个page中，和client的值一致；但只要有滚动，那么两个值不一样，准确的应用page,不用client
+   console.log(event.pageY);
+   console.log(event.screenX); //屏幕
+   console.log(event.screenY);
+   console.log(event.target); 
+   console.log(event.type);
+   console.log(event.clientX); //浏览器可视区
+   console.log(event.clientY);
+}
+
+event = event || window.event;
+//鼠标在页面的位置 = 被卷去的部分+可视区域部分。
+var pagey = event.pageY || scroll().top + event.clientY;
+var pagex = event.pageX || scroll().left + event.clientX;
+
+
+//不清楚下面这句啥子意思？当物体在被移动后进行的赋值
+window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+
+
+
+// DOM事件举例：
 function fun()
 {
        var cx=event.clientX;    //相对于当前标签的X坐标
@@ -796,7 +1098,8 @@ function fun()
 移动端图片跟随效果：
 ontouchstart,ontouchmove,ontouchend
 var touch = e.touches[0];
-<script>
+
+// 下面为脚本部分：
       var con=document.getElementById("content");
       var img=document.getElementById("img1");
       con.ontouchstart=function(e){
@@ -819,44 +1122,11 @@ var touch = e.touches[0];
             img.style.left=0;
             img.style.top=0;
       }
-</script>
-
-onblur, onfocus
-var us=document.f1.username.value
-document.f1.password.focus();
-var cityindex=document.forms[0].city.selectedIndex;
-
-//打开一个新窗口
-open("http://news.baidu.com/");
-//关闭窗口
-close();
-document.bgColor=s; //设置dom背景颜色
-window.location.href="https://www.baidu.com/"; // window可以省略不写；
 
 
-test.call(dog); //call函数的使用
+
+DOM操作
 -----------------------
-<html>  
-<head>  
- <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
-  <script type="text/javascript" language="javascript">  
-      
-    var dog = {  //dog相当于一个obj;
-      name: "kaka",
-      age: 23
-    };  
-    function test() {  
-       window.alert(this.name);  
-    }   
-   test.call(dog); //等价于dog.test();  
-    
-  </script>  
-</head>  
-<body>  
-</body>  
-</html> 
-
-
 \ 可以折行
 
 显示/隐藏：
@@ -882,101 +1152,7 @@ document.getElementsByClassName()
 var price=parseInt(Math.random()*100+200)  //随机取200到300间的整数,parsefloat
 var userinput=window.prompt("请输入商品价格","");
 
-
-==================================================================================
-
-练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
-解答：
-// 关键点是在map中用字符串做数字运算达到隐式转型，这里用 x-0
-// x*1也可以，但是会被评论吞掉，x+0不行，会被进行字符串连接
-function stingToint(s){
-    return s.split('').map(x => x-0).reduce((x,y) => x*10 + y);
-}
-
-练习:请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
-解答：
-// 先都小写，然后首字母大写，用正则表达式更简洁
-function normolize(arr){
-    return arr.map(x => x.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())); // 这个L什么鬼？L通前面的x
-}
-
-
-str.replace():
-------------------------
-name = "Doe, John";
-name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"); 
-// "John Doe"
-
-name = '"a", "b"';
-name.replace(/"([^"]*)"/g, "'$1'"); 
-// "'a', 'b'"
-
-name = 'aAV BbD cfGGc';
-uw=name.replace(/\b\w+\b/g, function(word){
-  return word.substring(0,1).toUpperCase()+word.substring(1).toLowerCase();}
-  );
-// "Aav Bbd Cfggc"
-
-
-练习：小明希望利用map()把字符串变成整数，他写的代码很简洁：
-解答：
-// parseInt(value,index)，放map中下标从0自增，导致后面NaN（廖老师给的参考链接有详细说明），修正如下：
-'use strict';
-var arr = ['1', '2', '3'];
-var r;
-r = arr.map(Number);//用arr.map(parseInt)的结果为：1, NaN, NaN
-
-
-----------------------------------
-函数内部声明变量的时候，一定要用var，不用的话，实际声明了一个全局变量
-function f1(){
-    n=999;
-}
-f1();
-alert(n); // 999
-
-
-
-统计频次
-----------------------------------
-var arr5 = ["c","a","x","a","x","a"];
-
-var json = {};
-// console.log(json["aflasdfasdf"]); //不存在的属性，返回值是undefined。
-for(var i=0;i<arr5.length;i++){
-    //判断数组中的元素，在json中是否存在属性值。
-    if(json[arr5[i]]){
-        json[arr5[i]] += 1;
-    }else{
-        json[arr5[i]] = 1;
-    }
-}
-console.log(json);
-
-
-数组去重：
-----------------------------------
-function fn(array){
-    var newArr = [];
-    for(var i=0;i<array.length;i++){
-        //开闭原则
-        var bool = true;
-        //每次都要判断新数组中是否有旧数组中的值。
-        for(var j=0;j<newArr.length;j++){
-            if(array[i] === newArr[j]){
-                bool = false;
-            }
-        }
-        if(bool){
-            newArr[newArr.length] = array[i];
-        }
-    }
-    return newArr;
-}
-// 另外一种方法：
-arr.filter(function(element,index,self){
-  return self.indexOf(element)===index;
-})
+Math.random()随机生成0-1之间的数
 
 ///////////////////////////////////////////////////////
 
@@ -1103,33 +1279,6 @@ olLiArr[i].onclick = function () {
     },15);
 }
 
-事件：
---------------------------------------
-document.onclick = function (event) {
-    //兼容写法
-   event = event || window.event;
-   console.log(event);
-   console.log(event.timeStamp);
-   console.log(event.bubbles);
-   console.log(event.button);
-   console.log(event.pageX); //body,测试在一个page中，和client的值一致；但只要有滚动，那么两个值不一样，准确的应用page,不用client
-   console.log(event.pageY);
-   console.log(event.screenX); //屏幕
-   console.log(event.screenY);
-   console.log(event.target); 
-   console.log(event.type);
-   console.log(event.clientX); //浏览器可视区
-   console.log(event.clientY);
-}
-
-event = event || window.event;
-//鼠标在页面的位置 = 被卷去的部分+可视区域部分。
-var pagey = event.pageY || scroll().top + event.clientY;
-var pagex = event.pageX || scroll().left + event.clientX;
-
-
-//不清楚下面这句啥子意思？当物体在被移动后进行的赋值
-window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
 
 
 client
@@ -1141,7 +1290,7 @@ console.log(box.clientWidth);
 console.log(box.clientTop);
 
 
-//获取屏幕可视区域的宽高
+获取屏幕可视区域的宽高
 ------------------------
 window.onresize = function () {
     document.title = client().width + "    "+ client().height;
@@ -1166,9 +1315,127 @@ function client(){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+==================================================================================
+
+练习：不要使用JavaScript内置的parseInt()函数，利用map和reduce操作实现一个string2int()函数：
+解答：
+// 关键点是在map中用字符串做数字运算达到隐式转型，这里用 x-0
+// x*1也可以，但是会被评论吞掉，x+0不行，会被进行字符串连接
+function stingToint(s){
+    return s.split('').map(x => x-0).reduce((x,y) => x*10 + y);
+}
+
+练习:请把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']。
+解答：
+// 先都小写，然后首字母大写，用正则表达式更简洁
+function normolize(arr){
+    return arr.map(x => x.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())); // 这个L什么鬼？L通前面的x
+}
 
 
-//////////////////////////////////////////////////////////////////////////////////////
+str.replace():
+------------------------
+name = "Doe, John";
+name.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1"); 
+// "John Doe"
+
+name = '"a", "b"';
+name.replace(/"([^"]*)"/g, "'$1'"); 
+// "'a', 'b'"
+
+name = 'aAV BbD cfGGc';
+uw=name.replace(/\b\w+\b/g, function(word){
+  return word.substring(0,1).toUpperCase()+word.substring(1).toLowerCase();}
+  );
+// "Aav Bbd Cfggc"
+
+
+练习：小明希望利用map()把字符串变成整数，他写的代码很简洁：
+解答：
+// parseInt(value,index)，放map中下标从0自增，导致后面NaN（廖老师给的参考链接有详细说明），修正如下：
+'use strict';
+var arr = ['1', '2', '3'];
+var r;
+r = arr.map(Number);//用arr.map(parseInt)的结果为：1, NaN, NaN
+
+
+----------------------------------
+函数内部声明变量的时候，一定要用var，不用的话，实际声明了一个全局变量
+function f1(){
+    n=999;
+}
+f1();
+alert(n); // 999
+
+
+
+统计频次
+----------------------------------
+var arr5 = ["c","a","x","a","x","a"];
+
+var json = {};
+// console.log(json["aflasdfasdf"]); //不存在的属性，返回值是undefined。
+for(var i=0;i<arr5.length;i++){
+    //判断数组中的元素，在json中是否存在属性值。
+    if(json[arr5[i]]){
+        json[arr5[i]] += 1;
+    }else{
+        json[arr5[i]] = 1;
+    }
+}
+console.log(json);
+
+
+数组去重：
+----------------------------------
+function fn(array){
+    var newArr = [];
+    for(var i=0;i<array.length;i++){
+        //开闭原则
+        var bool = true;
+        //每次都要判断新数组中是否有旧数组中的值。
+        for(var j=0;j<newArr.length;j++){
+            if(array[i] === newArr[j]){
+                bool = false;
+            }
+        }
+        if(bool){
+            newArr[newArr.length] = array[i];
+        }
+    }
+    return newArr;
+}
+// 另外一种方法：
+arr.filter(function(element,index,self){
+  return self.indexOf(element)===index;
+})
+
+test.call(dog); //call函数的使用
+-----------------------
+<html>  
+<head>  
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+  <script type="text/javascript" language="javascript">  
+      
+    var dog = {  //dog相当于一个obj;
+      name: "kaka",
+      age: 23
+    };  
+    function test() {  
+       window.alert(this.name);  
+    }   
+   test.call(dog); //等价于dog.test();  
+    
+  </script>  
+</head>  
+<body>  
+</body>  
+</html> 
+
+
+
+
 ////////////////////////////////////面向对象编程////////////////////////////////////////
 
 
@@ -1178,7 +1445,7 @@ function client(){
 //类名的第一个字母要大写，以便区分普通函数：
 
 /************************************************/
-// 对象遍历用for...in
+// 对象遍历用for.let..in---ES6语法
 
 1.通过现成对象创建：
 // obj.__proto__在低版本中的IE不支持
@@ -1351,6 +1618,27 @@ var xiaoming = new Student('小明');
 xiaoming.hello();
 
 //+---------------------------------------------
+class Student {
+  constructor() {
+    console.log("I'm a student.");
+  }
+ 
+  study() {
+    console.log('study!');
+  }
+ 
+  static read() {  //函数中使用 static 关键词定义构造函数的的方法和属性：
+    console.log("Reading Now.");
+  }
+}
+ 
+console.log(typeof Student); // function
+let stu = new Student(); // "I'm a student."
+stu.study(); // "study!"
+stu.read(); // "Reading Now."
+
+
+//+---------------------------------------------
 class PrimaryStudent extends Student {  //继承用extend
     constructor(name, grade) {
         super(name); // 记得用super调用父类的构造方法!
@@ -1361,9 +1649,28 @@ class PrimaryStudent extends Student {  //继承用extend
         alert('I am at grade ' + this.grade);
     }
 }
+//+---------------------------------------------
+var parent = {
+  foo() {
+    console.log("Hello from the Parent");
+  }
+}
+ 
+var child = {
+  foo() {
+    super.foo();
+    console.log("Hello from the Child");
+  }
+}
+ 
+Object.setPrototypeOf(child, parent);   //可以这样写继承，也可以像上面用extends
+child.foo(); // Hello from the Parent
+             // Hello from the Child
 
 
-////////////////////////////////////////////////////////////////////////////////////// BOM操作
+
+
+////////////////////////////////////////////////////////////////////////////////// BOM操作
 浏览器对象：BOM  //+-----Browser Object Model
 /************************************************/
 
@@ -1990,6 +2297,8 @@ ctx.shadowColor = '#666666';
 ctx.font = '24px Arial';
 ctx.fillStyle = '#333333';
 ctx.fillText('带阴影的文字', 20, 40);
+
+
 
 /////////////////////////////////////// JQuery----start ////////////////////////////////////
 
@@ -3384,6 +3693,7 @@ export default {
 
 
 
+//////////////////////////////////////////////////////////////////////
 vue.js
 ============================================
 架构从MVC向Rest API+前端MV*迁移
@@ -3641,10 +3951,11 @@ Vue.use(VueRouter)
 在style中引用，需要前面加上~，import前面加@
 @import '~@/assets/styles/varibles.styl'
 
-webpack.base.config.js中的alias,在vue3.7中如何设置？
-axios返回的结果是一个promise对象，这个需要复习下？
-vue 3.x的moco数据放在哪里？ 以前是放在static目录下的的moco目录
-
+问题：
+1.webpack.base.config.js中的alias,在vue3.7中如何设置？
+2.axios返回的结果是一个promise对象，这个需要复习下？
+3.vue 3.x的moco数据放在哪里？ 以前是放在static目录下的的moco目录
+4.prevent之后，点击事件受影响，如何规避？
 
 vue-awesome-swiper
 npm install vue-awesome-swiper@2.6.7 --save
@@ -3774,3 +4085,22 @@ touch事件加上prevent
 
 // https://github.com/vuejs/awesome-vue
 awesome-vue是基本支持的插件资源都列在里面
+
+
+
+vue src下面的一般目录：
+/api
+/common/fonts,image,js,stylus(base,icon,index,mixin,reset,varibles.styl)
+
+
+eslink的检测规范：eslintrc.js
+'eol-last':0,
+'space-before-function-paren': 0
+
+alias在webpack.base.config.js中
+
+要让默认展示某一个router,可以再router.js中配置根目录的参数redirect
+ {
+      path: '/',
+      redirect: '/recommend'
+    },
