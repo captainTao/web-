@@ -97,6 +97,14 @@ function printText(text = 'default') {
 printText('hello'); // hello
 printText();// default
 
+
+// 数组预处理：
+function createGrid([width = 5, height = 5] = []) {
+  return `Generating a grid of ${width} by ${height}`;
+}
+createGrid(); // Generates a 5 x 5 grid
+
+
 // 对象的预处理：
 function createSundae({scoops = 1, toppings = ['Hot Fudge']}={}) {
   const scoopText = scoops === 1 ? 'scoop' : 'scoops';
@@ -107,6 +115,7 @@ createSundae({scoops: 2}); // Your sundae has 2 scoops with Hot Fudge toppings.
 createSundae({scoops: 2, toppings: ['Sprinkles']}); // Your sundae has 2 scoops with Sprinkles toppings.
 createSundae({toppings: ['Cookie Dough']}); // Your sundae has 1 scoop with Cookie Dough toppings.
 createSundae(); // Your sundae has 1 scoop with Hot Fudge toppings.
+
 
 6.展开运算符
 const fruits = ["apples", "bananas", "pears"];
@@ -210,6 +219,12 @@ child.foo(); // Hello from the Parent
 需要在子类中调用 super()
 
 
+12. import, export (default)
+// https://www.cnblogs.com/xiaotanke/p/7448383.html
+
+
+13. Object.assign({target},{source1},{source2})
+
 +----------------------------------------------------------变量
 null,undefined
 备注：
@@ -230,6 +245,8 @@ var b = !!"123";
 toString(), String()
 null和undefined没有tostring方法
 逻辑与&&或||
+
+encodeURIComponent(URIString) 函数可把字符串作为 URI 组件进行编码
 
 var
 ``
@@ -2257,6 +2274,34 @@ new Promise(function () {});
 console.log('支持Promise!');
 
 
+Promise.all()
+----------------
+// 两任务并行执行
+var p1 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 500, 'P1');
+});
+var p2 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 600, 'P2');
+});
+// 同时执行p1和p2，并在它们都完成后执行then:
+Promise.all([p1, p2]).then(function (results) {
+    console.log(results); // 获得一个Array: ['P1', 'P2']
+});
+
+Promise.race()
+---------------
+// 容错： 两任务看谁先返回
+var p1 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 500, 'P1');
+});
+var p2 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 600, 'P2');
+});
+Promise.race([p1, p2]).then(function (result) {
+    console.log(result); // 'P1'
+});
+
+
 canvas:
 /************************************************/
 var canvas = document.getElementById('test-canvas');
@@ -3693,7 +3738,87 @@ export default {
 
 
 
-//////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// vue
+问题：
+-----------------
+1.webpack.base.config.js中的alias,在vue3.7中如何设置？//自己添加vue.config.js
+2.如何设置eslintrc.js? //eslintrc需要在创建模板的时候自定义,或者自己添加
+3.vue 3.x的moco数据放在哪里？ 以前是放在static目录下的的moco目录
+4.prevent之后，点击事件受影响，如何规避？//更换prevent的事件
+5.v-model和v-bind用的区别？
+6.watch，computed用法区别？ 是否需要data预先定义值？
+
+设置alias:
+------------
+// https://www.cnblogs.com/Sweepingmonk/p/10868506.html
+npm install path --save
+手动根目录下创建vue.config.js
+
+const path = require('path')
+
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
+module.exports = {
+  lintOnSave: true,
+  configureWebpack: (config) => {
+    Object.assign(config, { // 开发生产共同配置
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, './src'),
+          '@assets': path.resolve(__dirname, './src/assets'),
+          '@api': path.resolve(__dirname, './src/api'),
+          'common': path.resolve(__dirname, './src/common')
+        }
+      }
+    })
+  },
+  devServer: {
+    open: true,
+    port: 8083,
+    https: false,
+    hotOnly: false,
+    proxy: {
+      '/Map': {
+        target: 'http://192.168.10.67',
+        pathRewrite: {
+          '^/Map': '/'
+        }
+      }
+    }
+  }
+}
+
+
+vue组件中导入,纯js,纯styls文件：
+script中：直接用alias: import { ERR_OK } from '@api/config'
+style中：用~alias, @import:  @import "~@/common/stylus/variable"
+
+
+
+eslintrc兼容webstorm格式化：
+---------------------------
+//https://blog.csdn.net/tozeroblog/article/details/85346166
+rules: {
+  'vue/script-indent': ['error', 2, {'baseIndent': 1}],
+  'semi': ["error", "always"]<br> //加不加分号，不判断用'semi': 0
+}
+overrides:[
+  {
+    'files':['*.vue'],
+    'rules':{
+      'indent':'off'
+    }
+  }
+]
+
+
+eslink的检测规范：eslintrc.js
+'eol-last':0,
+'space-before-function-paren': 0
+
+
 vue.js
 ============================================
 架构从MVC向Rest API+前端MV*迁移
@@ -3786,10 +3911,11 @@ var app = new vue({
 
 Note:
 1.组件也是一个vue的实例
-2.父组件往子组件通信通过属性，去传值
-3.子组件往父组件通信通过$emit，通过事件去传值
-4.Object.freeze(obj),会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
-5.created,mounted、updated 和 destroyed。
+2.父组件往子组件通信通过属性props，去传值
+3.子组件往父组件通信通过$emit，通过事件去传值，this.$emit('delete',this.index)
+4.非父子之间的通信可以通过：this.bus.$emit('change',this.selfContent)， this.bus.$on('change',function()..)
+5.Object.freeze(obj),会阻止修改现有的属性，也意味着响应系统无法再追踪变化。
+6.created,mounted、updated 和 destroyed。
 
 样式：可以用对象，或者数组来定义
 
@@ -3802,7 +3928,7 @@ vue-cli
 npm uninstall vue-cli -g
 npm install -g @vue/cli
 vue --version
-vue create my-project
+vue create my-project    // vue ui创建
 cd my-project
 npm run serve
  */
@@ -3951,15 +4077,12 @@ Vue.use(VueRouter)
 在style中引用，需要前面加上~，import前面加@
 @import '~@/assets/styles/varibles.styl'
 
-问题：
-1.webpack.base.config.js中的alias,在vue3.7中如何设置？
-2.axios返回的结果是一个promise对象，这个需要复习下？
-3.vue 3.x的moco数据放在哪里？ 以前是放在static目录下的的moco目录
-4.prevent之后，点击事件受影响，如何规避？
 
 vue-awesome-swiper
 npm install vue-awesome-swiper@2.6.7 --save
 https://segmentfault.com/a/1190000014609379
+
+swiper显示出现从最后一帧开始，这时候需要加上v-if,让有数据了才显示；
 
 .wrapper
   width: 100%
@@ -4002,6 +4125,13 @@ npm install better-scroll --save
 
 this.scroll = new BScroll(this.$refs.wrapper,{click: true})
 {click: true}表示获取dom元素中的点击事件，如果为false则不开启点击事件
+
+better-scroll在mounted()的时候没生效，往往是因为没有获取到dom,这时候一般需要setTimeout延时20ms执行，因为浏览器的刷新间隔为17ms
+
+获取dom:
+1.同一个组件之间：通过ref属性：this.$refs.search
+2.同一个组件之间：通过js原生方法： let wrapper = document.querySelector('.wrapper')
+3.父子组件之间：通过slot来传递
 
 <keep-alive></keep-alive>包裹的router-link，返回的时候，可以keep住原来的位置
 
@@ -4092,12 +4222,6 @@ vue src下面的一般目录：
 /api
 /common/fonts,image,js,stylus(base,icon,index,mixin,reset,varibles.styl)
 
-
-eslink的检测规范：eslintrc.js
-'eol-last':0,
-'space-before-function-paren': 0
-
-alias在webpack.base.config.js中
 
 要让默认展示某一个router,可以再router.js中配置根目录的参数redirect
  {

@@ -15,6 +15,7 @@
 			<!-- 通过监听子组件的delete事件 -->
 			<todo-item v-for="(item,index) of list" :key="index" :content="item" :index="index" @delete="handleDelete"></todo-item>
 		</ul>
+		<p>{{fullName}}</p>
 	</div>
 	<script>
 		// 全局组件（这是一个子组件）
@@ -58,7 +59,9 @@
 			// 这儿母组件的data是一个object.
 			data:{
 				list:[],
-				inputValue:''
+				inputValue:'',
+				firstName: 'Bruce',
+				lastName: 'Lee'
 			},
 			methods:{
 				handleSubmit: function(){
@@ -67,6 +70,11 @@
 				},
 				handleDelete: function(index){ //记得传入子组件中的index
 					this.list.splice(index,1)
+				}
+			},
+			computed:{
+				fullName() {
+					return this.firstName + ' ' + this.lastName
 				}
 			}
 		})
