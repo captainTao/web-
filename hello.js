@@ -4196,7 +4196,7 @@ router-link会把标签变成一个a标签，如果在router-link中加一个tag
 2.keep-alive排除缓存
 3.vue工程中查看结构
 
-联调：
+真机联调：
 一、局域网ip不能访问的时候
 在package.json中有一段： 
 "dev": "webpack-dev-server --inline --progress --config"
@@ -4204,7 +4204,7 @@ router-link会把标签变成一个a标签，如果在router-link中加一个tag
 "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config"
 
 二、联调的时候，部分手机出现白屏的状况，
-1.有可能不支持promise特性，这时候需要安装三方插件： 
+1.浏览器有可能不支持promise特性，这时候需要安装三方插件： 
 npm install babel-polyfill --save
 然后在main.js中引入：
 import 'babel-polyfill'
@@ -4228,3 +4228,86 @@ vue src下面的一般目录：
       path: '/',
       redirect: '/recommend'
     },
+
+
+后续学习vue的内容
+------------------
+vue-router
+vuex
+vue的服务端渲染
+vue常见的插件：https://github.com/vuejs/awesome-vue
+
+
+
+VueRouter
+------------------
+router.push()
+router.beforeEach()
+
+
+
+起一个访问本地资源的node服务
+--------------------------
+1.新建一个目录，test为例，进入test
+2.npm init,然后一路回车，文件夹会多一个package.json
+3.npm install koa koa-static, 文件夹会多package-lock.json 和一个node_modules目录
+4.拷贝要发布的文件夹到test目录下的一个子目录下面，比如 test/tools
+（一般不把文件夹拷贝到test根目录下，这样就没有了二级目录）
+备注：
+vue中如果要设置二级目录的话，
+需要在router.js中设置：
+mode: 'history',
+base: '/datafilter/',
+
+需要在vue.config.js中设置：
+publicPath: '/datafilter/',   
+
+如果是放根目录下的话，base和publicPath的值设置为'/'既可或者不设置这两个参数
+
+
+5.新建一个server.js,内容如下：
+
+const Koa = require('koa')
+const path = require('path')
+const staticFiles = require('koa-static')
+// 定义一个内核
+const app = new Koa()
+// 读取本地文件的目录
+let main = staticFiles(path.resolve(__dirname, "./tools"))
+// 内核读取哪些文件，这里为html
+app.use(main, {extensions: ['html']})
+// 启动服务 监听
+app.listen(4050, () =>{
+    console.log('server is running at http://localhost:4050')
+})
+
+6.启动服务
+node server.js
+
+7.浏览器访问地址：
+http://localhost:4050/     根目录
+http://localhost:4050/datafilter/    二级目录
+
+
+/*
+Form Data 和 Request Payload 区别
+------------------------------------
+// https://juejin.im/post/5bf60a3fe51d4548c6648622
+// https://blog.csdn.net/zwq912318834/article/details/79930423
+
+如果请求头里设置Content-Type: application/x-www-form-urlencoded，
+那么这个请求被认为是表单请求，参数出现在Form Data里，格式为key=value&key=value&key=value...
+
+原生的AJAX请求头里设置Content-Type:application/json，
+或者使用默认的请求头Content-Type:text/plain;参数会显示在Request payload块里提交。
+*/
+
+
+
+/*
+前端生成图片的控件
+---------------
+html2canvas
+*/
+
+
