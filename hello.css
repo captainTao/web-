@@ -60,6 +60,10 @@ overflow:hidden; 将超出部分的元素隐藏
 <div style="border:3px solid green"></div>
 
 <table width = "400px" height = "100px" bgcolor="green" align="center" cellspacing="1"></table>
+
+
+vue中设置样式：
+<textarea class="source" :style="{height: `${text1Height}px`,width:`${textwidth}px`}"></textarea>
 +-----------------------------------------------------------------------------
 
 
