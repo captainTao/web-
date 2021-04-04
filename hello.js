@@ -3925,12 +3925,27 @@ vue-cli
 -----------------------
 /*
 最新的：
+
+yarn global remove vue-cli
+yarn global add @vue/cli
+
+#or
+
 npm uninstall vue-cli -g
 npm install -g @vue/cli
+
 vue --version
 vue create my-project    // vue ui创建
 cd my-project
 npm run serve
+
+To create a production build, run npm run build.
+
+
+升级vue cli:
+npm update -g @vue/cli
+# 或者
+yarn global upgrade --latest @vue/cli
  */
 
 /*
